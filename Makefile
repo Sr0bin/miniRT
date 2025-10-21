@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 13:51:50 by rorollin          #+#    #+#              #
-#    Updated: 2025/10/21 13:58:09 by rorollin         ###   ########.fr        #
+#    Updated: 2025/10/21 16:11:43 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,20 @@ NAME = miniRT
 
 SOURCES_DIR = src
 
-SOURCES_NAME = main.c
+PARSING_DIR = parsing
+PARSING_FILES = parsing.c \
 
-SOURCES_GRAPHIC = 
+PRINTING_DIR = printing
+PRINTING_FILES = print_error.c \
 
-SOURCES = $(addprefix $(SOURCES_DIR)/,\
+SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
+			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
+
+
+#SOURCES_GRAPHIC = 
+
+SOURCES = main.c \
+		  $(addprefix $(SOURCES_DIR)/,\
 		  $(SOURCES_NAME)\
 		  )
 		  # $(addprefix graphic/, $(SOURCES_GRAPHIC))\
@@ -36,7 +45,7 @@ OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
 #DEPS##########################
 
-DEPS = $(SOURCES:%.c=$(OBJ_DIR)/%.d)
+DEPS = $(OBJECTS:%.o=%.d)
 
 #INCLUDES#######################
 
@@ -46,14 +55,16 @@ INCLUDES = $(addprefix -I , $(HEADERS_DIR))
 
 #LIBFT########################
 
-LIBFT = libft
+LIBFT_DIR = $(SOURCES_DIR)/libft
 
-LIBFT_PATH = $(SOURCES_DIR)/$(LIBFT)/$(LIBFT).a
+LIBFT_PATH = $(LIBFT_DIR)/libft.a
 #MINILIBX#####################
+
+MINILIBX_DIR = $(SOURCES_DIR)/minilibx-linux
 
 MINILIBX = libmlx.a
 
-MINILIBX_PATH = minilibx/$(MINILIBX)
+MINILIBX_PATH = $(MINILIBX_DIR)/$(MINILIBX)
 
 #CC#####################
 
@@ -70,36 +81,49 @@ CFLAGS = $(CFLAGS_DEBUG)
 
 export CFLAGS
 
-all: git make_libft make_minilibx $(NAME)
+# first:
+# 	@echo "OBJECTS = $(OBJECTS)"
+
+all: make_libft make_minilibx $(NAME)
 
 $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 	$(CC) $(CFLAGS) -lc -lm -lXext -lX11 $(INCLUDES) $^ -o $@
 	@echo "$(NAME) built succesfully."
 
-
-$(OBJ_DIR)/%.o: %.c 
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
 -include $(DEPS)
 
-git: 
-	@git submodule update --init --remote --recursive
+$(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR) $(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR) 
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR):
+	mkdir -p $@
+
+git_init:
+	git submodule update --init
+
+git_update:
+	git submodule update --init --remote --recursive
+
+#git: 
+#	@git submodule update --init --remote --recursive
 
 make_libft:
-	$(MAKE) -C $(LIBFT)
+	$(MAKE) -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)"
 	
 make_minilibx:
-	@$(MAKE) -s -C minilibx
+	@$(MAKE) -C $(MINILIBX_DIR);
 
 clean:
-	@$(MAKE) -s -C $(LIBFT) clean
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@rm -rf $(OBJ_DIR)
 	@rm -rf .cache/
 	@echo "Cleaned !"
 
 fclean:
-	@$(MAKE) -C $(LIBFT) fclean
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) clean
 	@rm -f $(NAME)
 	@echo "Fcleaned !"
