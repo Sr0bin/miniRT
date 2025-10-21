@@ -1,0 +1,12 @@
+*.o
+*.d
+*.txt
+miniRT
+.obj/
+.gitmodules
+.gdb_history
+compile_commands.json
+.cache
+.gdbinit
+.txt
+src/minilibx
