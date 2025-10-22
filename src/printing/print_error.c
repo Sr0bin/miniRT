@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "printing.h"
 #include "ft_io.h"
 
 int	print_error(void)
