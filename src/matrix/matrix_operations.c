@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:45:51 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:51:06 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_matrix	*add_matrix(t_matrix_const *a, t_matrix_const *b)
 	t_matrix	*added;
 
 	i = 0;
+	if (a == NULL | b == NULL)
+		return (NULL);
 	if (a->row_size != b->row_size || a->col_size != b->col_size)
 		return (NULL);
 	added = create_matrix(a->row_size, a->col_size);
@@ -56,6 +58,8 @@ t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b)
 	t_matrix	*substracted;
 
 	i = 0;
+	if (a == NULL | b == NULL)
+		return (NULL);
 	if (a->row_size != b->row_size || a->col_size != b->col_size)
 		return (NULL);
 	substracted = create_matrix(a->row_size, a->col_size);
@@ -79,7 +83,8 @@ static float	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
 	size_t	k;
 	float	sum;
 
-	//TODO: Add NULL CHECK
+	if (a == NULL | b == NULL)
+		return (NAN);
 	sum = 0;
 	k = 0;
 	while (k < a->col_size)
@@ -103,6 +108,8 @@ t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b)
 	t_matrix	*mult;
 
 	i = 0;
+	if (a == NULL | b == NULL)
+		return (NULL);
 	if (a->col_size != b->row_size)
 		return (NULL);
 	mult = create_matrix(a->row_size, b->col_size);
@@ -133,6 +140,8 @@ t_matrix	*scalar_matrix(t_matrix_const *matrix, float scalar)
 	t_matrix	*scaled;
 
 	i = 0;
+	if (matrix == NULL)
+		return (NULL);
 	scaled = create_matrix(matrix->row_size, matrix->col_size);
 	if (scaled == NULL)
 		return (NULL);

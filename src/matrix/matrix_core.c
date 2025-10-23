@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:40:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:51:56 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_matrix	*matrix_copy(t_matrix_const *matrix)
 	t_matrix	*copy;
 
 	i = 0;
+	if (matrix == NULL)
+		return (NULL);
 	copy = create_matrix(matrix->row_size, matrix->col_size);
 	if (copy == NULL)
 		return (NULL);
@@ -98,6 +100,8 @@ void	*free_matrix(t_matrix *matrix)
 
 float	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
 {
+	if (matrix == NULL)
+		return (NAN);
 	if (row > matrix->row_size || col > matrix->col_size)
 		return (NAN);
 	return (matrix->index[row][col]);
