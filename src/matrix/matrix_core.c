@@ -6,15 +6,16 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:09:24 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:24:41 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
+#include "ft_standard.h"
 
-t_matrix	create_matrix(size_t row, size_t col)
+t_matrix	*create_matrix(size_t row, size_t col)
 {
-	t_matrix	matrix;
+	t_matrix	*matrix;
 	size_t		i;
 
 	matrix = ft_calloc(1, sizeof(t_matrix_struct));
@@ -39,11 +40,11 @@ t_matrix	create_matrix(size_t row, size_t col)
 	return (matrix);
 }
 
-t_matrix	matrix_copy(t_matrix_const matrix)
+t_matrix	*matrix_copy(t_matrix_const *matrix)
 {
 	size_t		i;
 	size_t		j;
-	t_matrix	copy;
+	t_matrix	*copy;
 
 	i = 0;
 	copy = create_matrix(matrix->row_size, matrix->col_size);
@@ -62,7 +63,7 @@ t_matrix	matrix_copy(t_matrix_const matrix)
 	return (copy);
 }
 
-void	*free_matrix(t_matrix matrix)
+void	*free_matrix(t_matrix *matrix)
 {
 	size_t	i;
 
@@ -76,14 +77,14 @@ void	*free_matrix(t_matrix matrix)
 	return (NULL);
 }
 
-float	matrix_get_coord(t_matrix matrix, size_t row, size_t col)
+float	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
 {
 	if (row > matrix->row_size || col > matrix->col_size)
 		return (NAN);
 	return (matrix->index[row][col]);
 }
 
-void	matrix_set_coord(t_matrix matrix, size_t row, size_t col, float value)
+void	matrix_set_coord(t_matrix *matrix, size_t row, size_t col, float value)
 {
 	matrix->index[row][col] = value;
 }

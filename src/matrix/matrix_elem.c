@@ -6,13 +6,13 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:09:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:09:25 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:24:57 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
-void	*matrix_set_identity(t_matrix matrix)
+void	*matrix_set_identity(t_matrix *matrix)
 {
 	size_t	i;
 

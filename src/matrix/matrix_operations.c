@@ -6,17 +6,17 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:09:24 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:27:09 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
-t_matrix	add_matrix(t_matrix_const a, t_matrix_const b)
+t_matrix	*add_matrix(t_matrix_const *a, t_matrix_const *b)
 {
 	size_t		i;
 	size_t		j;
-	t_matrix	added;
+	t_matrix	*added;
 
 	i = 0;
 	if (a->row_size != b->row_size || a->col_size != b->col_size)
@@ -37,11 +37,11 @@ t_matrix	add_matrix(t_matrix_const a, t_matrix_const b)
 	return (added);
 }
 
-t_matrix	substract_matrix(t_matrix_const a, t_matrix_const b)
+t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b)
 {
 	size_t		i;
 	size_t		j;
-	t_matrix	substracted;
+	t_matrix	*substracted;
 
 	i = 0;
 	if (a->row_size != b->row_size || a->col_size != b->col_size)
@@ -62,7 +62,8 @@ t_matrix	substract_matrix(t_matrix_const a, t_matrix_const b)
 	return (substracted);
 }
 
-static float	clc_sum(t_matrix_const a, t_matrix_const b, size_t i, size_t j)
+//TODO: Add NULL CHECK
+static float	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
 {
 	size_t	k;
 	float	sum;
@@ -77,11 +78,11 @@ static float	clc_sum(t_matrix_const a, t_matrix_const b, size_t i, size_t j)
 	return (sum);
 }
 
-t_matrix	multiply_matrix(t_matrix_const a, t_matrix_const b)
+t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b)
 {
 	size_t		i;
 	size_t		j;
-	t_matrix	mult;
+	t_matrix	*mult;
 
 	i = 0;
 	if (a->col_size != b->row_size)
@@ -102,11 +103,11 @@ t_matrix	multiply_matrix(t_matrix_const a, t_matrix_const b)
 	return (mult);
 }
 
-t_matrix	scalar_matrix(t_matrix_const matrix, float scalar)
+t_matrix	*scalar_matrix(t_matrix_const *matrix, float scalar)
 {
 	size_t		i;
 	size_t		j;
-	t_matrix	scaled;
+	t_matrix	*scaled;
 
 	i = 0;
 	scaled = create_matrix(matrix->row_size, matrix->col_size);
