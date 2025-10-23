@@ -6,11 +6,17 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:27:09 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:45:51 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
+
+/*
+* add_matrix: Create a new matrix, the result of addition matrix A + B.
+* Matrices needs to be of the same size.
+* Returns NULL in case of memory error during allocation.
+*/
 
 t_matrix	*add_matrix(t_matrix_const *a, t_matrix_const *b)
 {
@@ -37,6 +43,12 @@ t_matrix	*add_matrix(t_matrix_const *a, t_matrix_const *b)
 	return (added);
 }
 
+/*
+* substract_matrix: Create a new matrix, the result of substraction matrix A - B.
+* Matrices needs to be of the same size.
+* Returns NULL in case of memory error during allocation.
+*/
+
 t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b)
 {
 	size_t		i;
@@ -62,12 +74,12 @@ t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b)
 	return (substracted);
 }
 
-//TODO: Add NULL CHECK
 static float	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
 {
 	size_t	k;
 	float	sum;
 
+	//TODO: Add NULL CHECK
 	sum = 0;
 	k = 0;
 	while (k < a->col_size)
@@ -77,6 +89,12 @@ static float	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
 	}
 	return (sum);
 }
+
+/*
+* multiply_matrix: Create a new matrix, the result of multiplication matrix A * B.
+* Matrices needs to be of compatible sizes.
+* Returns NULL in case of memory error during allocation.
+*/
 
 t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b)
 {
@@ -102,6 +120,11 @@ t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b)
 	}
 	return (mult);
 }
+
+/*
+* scalar_matrix: Create a new matrix, the result of multiplication   scalar * A.
+* Returns NULL in case of memory error during allocation.
+*/
 
 t_matrix	*scalar_matrix(t_matrix_const *matrix, float scalar)
 {

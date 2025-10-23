@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:05:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:27:16 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:34:53 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # include <stddef.h>
 # include <math.h>
 
+/*
+	* Simple lib for matrix representation. It is represented as a double array of float.
+	* Each matrix is allocatedm and a new one is created when you do an operation.
+	* That ensures that no data is lost, and care must be taken to free everything in the
+	* end.
+	* Each operation on the matrices need to be done on the lib to ensure that
+	* no date corruption can occur, with no out of bound comportement.
+	* TODO : Check that errors are properly managed.
+*/
 typedef struct s_matrix
 {
 	float	**index;

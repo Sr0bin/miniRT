@@ -6,12 +6,18 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:24:41 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:40:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 #include "ft_standard.h"
+
+
+/*
+ * create_matrix: Creates a row*col size matrix, returns NULL in case of 
+ * memory error.
+*/
 
 t_matrix	*create_matrix(size_t row, size_t col)
 {
@@ -35,11 +41,16 @@ t_matrix	*create_matrix(size_t row, size_t col)
 		(matrix->index)[i] = ft_calloc(col + 1, sizeof(float));
 		if ((matrix->index)[i] == NULL)
 			return (free_matrix(matrix));
+		//TODO:Maybe its possible here to free things that have not yet been alloced?
 		i++;
 	}
 	return (matrix);
 }
 
+/*
+* matrix_copy: Creates a copy of an existing const matrix. Returns NULL on failed
+* memory allocation.
+*/
 t_matrix	*matrix_copy(t_matrix_const *matrix)
 {
 	size_t		i;
@@ -63,6 +74,9 @@ t_matrix	*matrix_copy(t_matrix_const *matrix)
 	return (copy);
 }
 
+/*
+* free_matrix: Frees the matrix and it's elements.
+*/
 void	*free_matrix(t_matrix *matrix)
 {
 	size_t	i;
@@ -77,12 +91,22 @@ void	*free_matrix(t_matrix *matrix)
 	return (NULL);
 }
 
+/*
+* matrix_get_coord: Returns the number contained in the row*col.
+* Prototype needs to be changed if we decide we need doubles.
+*/
+
 float	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
 {
 	if (row > matrix->row_size || col > matrix->col_size)
 		return (NAN);
 	return (matrix->index[row][col]);
 }
+
+/*
+* matrix_set_coord: Sets the coord in row*col. 
+* Prototype needs to be changed if we decide we nede doubles.
+*/
 
 void	matrix_set_coord(t_matrix *matrix, size_t row, size_t col, float value)
 {
