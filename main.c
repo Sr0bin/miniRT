@@ -17,9 +17,9 @@
 int	main(int argc, char **argv)
 {
 	t_tmp_struct	tmp_struct;
+	int				ret;
 
-	if (parsing(argc, argv, &tmp_struct) != SUCCESS)
-	{
-		return (print_error());
-	}
+	ret = parsing(argc, argv, &tmp_struct);
+	if (ret != 0)
+		return (print_error(ret));
 }

@@ -13,6 +13,6 @@
 #ifndef PRINTING_H
 # define PRINTING_H
 
-int	print_error(void);
+int	print_error(int error);
 
 #endif

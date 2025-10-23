@@ -16,7 +16,10 @@
 enum e_status
 {
 	SUCCESS = 0,
-	FAILURE = 1
+	FAILURE = 1,
+	FAILURE_ARGS_WRONG_NUMBER,
+	FAILURE_ARGS_MAP_NAME_TOO_LONG,
+	FAILURE_ARGS_BAD_MAP_NAME,
 };
 
 # include "ft_vectors.h"

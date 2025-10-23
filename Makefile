@@ -92,6 +92,9 @@ $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 
 -include $(DEPS)
 
+%.o:
+	echo in rulle 
+
 $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR) $(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR) 
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
