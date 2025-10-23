@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:05:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 17:08:30 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 18:10:22 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MATRIX_H
 
 # include <stddef.h>
+# include <stdio.h>
 # include <math.h>
 
 /*
@@ -25,15 +26,15 @@
 	* no date corruption can occur, with no out of bound comportement.
 	* TODO : Check that errors are properly managed.
 */
+
 typedef struct s_matrix
 {
 	double	**index;
 	size_t	row_size;
 	size_t	col_size;
-}	t_matrix_struct;
+}	t_matrix;
 
-typedef t_matrix_struct	t_matrix;
-typedef const t_matrix_struct	t_matrix_const;
+typedef const t_matrix	t_matrix_const;
 
 t_matrix	*create_matrix(size_t row, size_t col);
 void		*free_matrix(t_matrix *matrix);
@@ -46,5 +47,6 @@ t_matrix	*add_matrix(t_matrix_const *a, t_matrix_const *b);
 t_matrix	*scalar_matrix(t_matrix_const *matrix, double scalar);
 t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b);
 
+void	print_matrix(t_matrix_const *matrix);
 #endif
 

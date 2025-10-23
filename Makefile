@@ -25,9 +25,13 @@ PARSING_FILES = parsing.c \
 PRINTING_DIR = printing
 PRINTING_FILES = print_error.c \
 
+VECTOR_DIR = vector
+VECTOR_FILES = vector_core.c vector_operations.c
+
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
 			   $(addprefix $(MATRIX_DIR)/,$(MATRIX_FILES)) \
+			   $(addprefix $(VECTOR_DIR)/,$(VECTOR_FILES)) \
 
 
 #SOURCES_GRAPHIC = 
@@ -99,6 +103,7 @@ $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 
 $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(VECTOR_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -109,6 +114,9 @@ $(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(VECTOR_DIR):
 	mkdir -p $@
 
 git_init:
