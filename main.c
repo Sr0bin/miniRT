@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:41:41 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/23 18:26:43 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:09:31 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 static void	vector_test(void)
 {
-	t_vector3	*a;
-	t_vector3	*b;
+	t_vec3	*a;
+	t_vec3	*b;
 
 	a = create_vector(1,0,0);
 	b = create_vector(0,1,0);

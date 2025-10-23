@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   point.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 17:25:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 19:09:31 by rorollin         ###   ########.fr       */
+/*   Created: 2025/10/23 18:36:37 by rorollin          #+#    #+#             */
+/*   Updated: 2025/10/23 19:09:50 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#ifndef POINT_H
+# define POINT_H
 # include "matrix.h"
+# include "vector.h"
 
-typedef struct s_matrix	t_vec3;
+typedef struct s_matrix	t_point;
 
-t_vec3	*create_vector(double x, double y, double z);
-double	vector_get_coord(t_vec3 vector, size_t i);
-void	*free_vector(t_vec3 *vector);
-double	dot_product(t_vec3 a, t_vec3 b);
-t_vec3	*cross_product(t_vec3 a, t_vec3 b);
-double	vector_norm(t_vec3 a);
-void	print_vector(t_vec3 *vector);
+t_point	*create_point(double x, double y, double z);
+double	point_get_coord(t_point point, size_t i);
+t_point	*offset_point(t_point *point, t_vec3 *vector);
+t_vec3	*vector_from_point(t_point *point);
+t_vec3	*vector_points(t_point *a, t_point *b);
+void	*free_point(t_point *point);
 #endif

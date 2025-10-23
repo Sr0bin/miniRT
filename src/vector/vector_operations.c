@@ -6,13 +6,13 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:45:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 18:23:13 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:09:31 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-double	dot_product(t_vector3 a, t_vector3 b)
+double	dot_product(t_vec3 a, t_vec3 b)
 {
 	size_t	i;
 	double sum;
@@ -27,7 +27,7 @@ double	dot_product(t_vector3 a, t_vector3 b)
 	return (sum);
 }
 
-double	vector_norm(t_vector3 a)
+double	vector_norm(t_vec3 a)
 {
 	size_t	i;
 	double	sum;
@@ -43,12 +43,12 @@ double	vector_norm(t_vector3 a)
 
 }
 
-t_vector3	*cross_product(t_vector3 a, t_vector3 b)
+t_vec3	*cross_product(t_vec3 a, t_vec3 b)
 {
 	double x;
 	double y;
 	double z;
-	t_vector3	*vector;
+	t_vec3	*vector;
 
 	x = (vector_get_coord(a, 1) * vector_get_coord(b, 2))
 		- (vector_get_coord(a, 2) * vector_get_coord(b, 1));

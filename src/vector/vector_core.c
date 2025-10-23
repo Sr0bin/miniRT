@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:25:34 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 18:13:20 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:09:31 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include <stdio.h>
 
-t_vector3	*create_vector(double x, double y, double z)
+t_vec3	*create_vector(double x, double y, double z)
 {
-	t_vector3	*vector;
+	t_vec3	*vector;
 
 	vector = create_matrix(4, 1);
 	if (vector == NULL)
@@ -29,17 +29,17 @@ t_vector3	*create_vector(double x, double y, double z)
 	return (vector);
 }
 
-void	print_vector(t_vector3 *vector)
+void	print_vector(t_vec3 *vector)
 {
 	print_matrix(vector);
 }
 
-double	vector_get_coord(t_vector3 vector, size_t i)
+double	vector_get_coord(t_vec3 vector, size_t i)
 {
 	return (matrix_get_coord(&vector, i, 0));
 }
 
-void	*free_vector(t_vector3 *vector)
+void	*free_vector(t_vec3 *vector)
 {
-	return(free_matrix(vector));
+	return (free_matrix(vector));
 }

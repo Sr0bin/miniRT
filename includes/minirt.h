@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:42:52 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/21 16:10:33 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/23 19:10:05 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,9 @@ enum e_status
 };
 
 # include "ft_vectors.h"
+# include "vector.h"
+# include "point.h"
 # include <stdint.h>
-
-typedef struct s_point
-{
-	double	x;
-	double	y;
-	double	z;
-}			t_point;
-
-typedef struct s_vec3
-{
-	double	x;
-	double	y;
-	double	z;
-}			t_vec3;
 
 typedef struct s_rgba
 {
