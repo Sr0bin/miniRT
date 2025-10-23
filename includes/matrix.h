@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:05:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 16:01:16 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:08:30 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef const t_matrix_struct	t_matrix_const;
 
 t_matrix	*create_matrix(size_t row, size_t col);
 void		*free_matrix(t_matrix *matrix);
-t_matrix	*matrix_copy(t_matrix_const *matrix);
+t_matrix	*matrix_duplicate(t_matrix_const *matrix);
 double		matrix_get_coord(t_matrix *matrix, size_t row, size_t col);
-void		matrix_set_coord(t_matrix *mat, size_t row, size_t col, double value);
+void		matrix_set_value(t_matrix *mat, size_t row, size_t col, double value);
 void		*matrix_set_identity(t_matrix *matrix);
 t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b);
 t_matrix	*add_matrix(t_matrix_const *a, t_matrix_const *b);

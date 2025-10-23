@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 16:07:13 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:11:14 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_matrix	*create_matrix(size_t row, size_t col)
 		(matrix->index)[i] = ft_calloc(col + 1, sizeof(float));
 		if ((matrix->index)[i] == NULL)
 			return (free_matrix(matrix));
-		//TODO:Maybe its possible here to free things that have not yet been alloced?
 		i++;
 	}
 	return (matrix);
@@ -51,7 +50,7 @@ t_matrix	*create_matrix(size_t row, size_t col)
 * matrix_copy: Creates a copy of an existing const matrix. Returns NULL on failed
 * memory allocation.
 */
-t_matrix	*matrix_copy(t_matrix_const *matrix)
+t_matrix	*matrix_duplicate(t_matrix_const *matrix)
 {
 	size_t		i;
 	size_t		j;
@@ -79,6 +78,7 @@ t_matrix	*matrix_copy(t_matrix_const *matrix)
 /*
 * free_matrix: Frees the matrix and it's elements.
 */
+
 void	*free_matrix(t_matrix *matrix)
 {
 	size_t	i;
@@ -86,7 +86,7 @@ void	*free_matrix(t_matrix *matrix)
 	i = 0;
 	if (matrix == NULL)
 		return (NULL);
-	while (i <= matrix->row_size)
+	while (i <= matrix->row_size && matrix->index[i] != NULL)
 		free(matrix->index[i++]);
 	free((void *) matrix->index);
 	free(matrix);
@@ -95,7 +95,6 @@ void	*free_matrix(t_matrix *matrix)
 
 /*
 * matrix_get_coord: Returns the number contained in the row*col.
-* Prototype needs to be changed if we decide we need doubles.
 */
 
 double	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
@@ -109,10 +108,9 @@ double	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
 
 /*
 * matrix_set_coord: Sets the coord in row*col. 
-* Prototype needs to be changed if we decide we nede doubles.
 */
 
-void	matrix_set_coord(t_matrix *matrix, size_t row, size_t col, double value)
+void	matrix_set_value(t_matrix *matrix, size_t row, size_t col, double value)
 {
 	matrix->index[row][col] = value;
 }

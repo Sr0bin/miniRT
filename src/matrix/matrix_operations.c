@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 16:07:26 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:10:16 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_matrix	*add_matrix(t_matrix_const *a, t_matrix_const *b)
 	t_matrix	*added;
 
 	i = 0;
-	if (a == NULL | b == NULL)
+	if (a == NULL || b == NULL)
 		return (NULL);
 	if (a->row_size != b->row_size || a->col_size != b->col_size)
 		return (NULL);
@@ -58,7 +58,7 @@ t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b)
 	t_matrix	*substracted;
 
 	i = 0;
-	if (a == NULL | b == NULL)
+	if (a == NULL || b == NULL)
 		return (NULL);
 	if (a->row_size != b->row_size || a->col_size != b->col_size)
 		return (NULL);
@@ -108,7 +108,7 @@ t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b)
 	t_matrix	*mult;
 
 	i = 0;
-	if (a == NULL | b == NULL)
+	if (a == NULL || b == NULL)
 		return (NULL);
 	if (a->col_size != b->row_size)
 		return (NULL);
