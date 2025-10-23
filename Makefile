@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 13:51:50 by rorollin          #+#    #+#              #
-#    Updated: 2025/10/21 16:11:43 by jweber           ###   ########.fr        #
+#    Updated: 2025/10/23 15:16:43 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,9 @@ NAME = miniRT
 
 SOURCES_DIR = src
 
+MATRIX_DIR = matrix
+MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c
+
 PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
 
@@ -24,6 +27,7 @@ PRINTING_FILES = print_error.c \
 
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
+			   $(addprefix $(MATRIX_DIR)/,$(MATRIX_FILES)) \
 
 
 #SOURCES_GRAPHIC = 
@@ -58,6 +62,7 @@ INCLUDES = $(addprefix -I , $(HEADERS_DIR))
 LIBFT_DIR = $(SOURCES_DIR)/libft
 
 LIBFT_PATH = $(LIBFT_DIR)/libft.a
+
 #MINILIBX#####################
 
 MINILIBX_DIR = $(SOURCES_DIR)/minilibx-linux
@@ -92,13 +97,18 @@ $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 
 -include $(DEPS)
 
-$(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR) $(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR) 
+$(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR):
 	mkdir -p $@
 
 git_init:
