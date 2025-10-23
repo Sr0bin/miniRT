@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 	int			ret;
 
 	//vector_test();
+	(void) vector_test();
 	ret = parsing(argc, argv, &objects);
 	if (ret != 0)
 		return (print_error(ret));
