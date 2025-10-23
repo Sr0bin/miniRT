@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_vectors.h"
 #include "minirt.h"
 #include "parsing.h"
 #include "printing.h"
@@ -27,18 +28,15 @@ static void	vector_test(void)
 	printf("Norm a:%f\n", vector_norm(*a));
 	printf("Dot Product :%f\n", dot_product(*a,*b));
 	print_vector(cross_product(*a, *b));
-
-	
 }
 
 int	main(int argc, char **argv)
 {
-	t_tmp_struct	tmp_struct;
-	int				ret;
+	t_vector	objects;
+	int			ret;
 
-
-	vector_test();
-	ret = parsing(argc, argv, &tmp_struct);
+	//vector_test();
+	ret = parsing(argc, argv, &objects);
 	if (ret != 0)
 		return (print_error(ret));
 }

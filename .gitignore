@@ -1,3 +1,4 @@
+launch_miniRT.sh
 *.o
 *.d
 *.txt

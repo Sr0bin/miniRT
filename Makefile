@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/21 13:51:50 by rorollin          #+#    #+#              #
-#    Updated: 2025/10/23 17:21:14 by rorollin         ###   ########lyon.fr    #
+#    Created: 2025/10/23 19:19:22 by jweber            #+#    #+#              #
+#    Updated: 2025/10/23 19:19:23 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c
 
 PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
+				get_file_content.c \
+				check_args.c \
 
 PRINTING_DIR = printing
 PRINTING_FILES = print_error.c \
