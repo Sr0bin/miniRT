@@ -10,16 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_vectors.h"
 #include "minirt.h"
 #include "parsing.h"
 #include "printing.h"
 
 int	main(int argc, char **argv)
 {
-	t_tmp_struct	tmp_struct;
-	int				ret;
+	t_vector	objects;
+	int			ret;
 
-	ret = parsing(argc, argv, &tmp_struct);
+	ret = parsing(argc, argv, &objects);
 	if (ret != 0)
 		return (print_error(ret));
 }

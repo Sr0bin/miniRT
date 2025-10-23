@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "minirt.h"
 #include "ft_string.h"
 
 #define MAP_NAME_MAX_LEN 8192

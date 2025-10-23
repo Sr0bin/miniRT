@@ -56,7 +56,7 @@ static int	fill_tmp_struct_from(t_vector file_content, t_vector *ptr_objets)
 {
 	char		**elements;
 	size_t		i;
-	t_object	obj_tmp;
+	//t_object	obj_tmp;
 
 	i = 0;
 	(void) ptr_objets;
@@ -65,16 +65,19 @@ static int	fill_tmp_struct_from(t_vector file_content, t_vector *ptr_objets)
 		elements = ft_split(((char **)file_content.data)[i], WHITE_SPACE);
 		if (elements == NULL)
 			return (FAILURE_MALLOC);
-		ret = fill_obj_content(&obj_tmp, elements);
 		/*
+		ret = fill_obj_content(&obj_tmp, elements);
 		ft_bzero(&obj_tmp, sizeof(obj_tmp));
 		obj_tmp.type = get_object_type(elements[0]);
 		if (obj_tmp.type < 0) 
 			return (FAILURE_PARSE_WRONG_OBJ_TYPE);
 		*/
+		(void) get_object_type;
 		free(elements);
+		/*
 		if (ret != 0)
 			return (ret);
+		*/
 		i++;
 	}
 	return (SUCCESS);

@@ -13,6 +13,7 @@
 #include "ft_io.h"
 #include "ft_vectors.h"
 #include "parsing.h"
+#include "minirt.h"
 #include <fcntl.h>
 #include <unistd.h>
 
