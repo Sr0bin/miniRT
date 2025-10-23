@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:51:06 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:07:26 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b)
 	return (substracted);
 }
 
-static float	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
+static double	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
 {
 	size_t	k;
-	float	sum;
+	double	sum;
 
 	if (a == NULL | b == NULL)
-		return (NAN);
+		return (nan(""));
 	sum = 0;
 	k = 0;
 	while (k < a->col_size)
@@ -133,7 +133,7 @@ t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b)
 * Returns NULL in case of memory error during allocation.
 */
 
-t_matrix	*scalar_matrix(t_matrix_const *matrix, float scalar)
+t_matrix	*scalar_matrix(t_matrix_const *matrix, double scalar)
 {
 	size_t		i;
 	size_t		j;

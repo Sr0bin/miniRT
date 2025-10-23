@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 15:51:56 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:07:13 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_matrix	*create_matrix(size_t row, size_t col)
 		return (NULL);
 	matrix->col_size = col;
 	matrix->row_size = row;
-	matrix->index = (float **) ft_calloc(row + 1, sizeof(float *));
+	matrix->index = (double **) ft_calloc(row + 1, sizeof(float *));
 	if (matrix->index == NULL)
 	{
 		free(matrix);
@@ -98,12 +98,12 @@ void	*free_matrix(t_matrix *matrix)
 * Prototype needs to be changed if we decide we need doubles.
 */
 
-float	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
+double	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
 {
 	if (matrix == NULL)
-		return (NAN);
+		return (nan(""));
 	if (row > matrix->row_size || col > matrix->col_size)
-		return (NAN);
+		return (nan(""));
 	return (matrix->index[row][col]);
 }
 
@@ -112,7 +112,7 @@ float	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
 * Prototype needs to be changed if we decide we nede doubles.
 */
 
-void	matrix_set_coord(t_matrix *matrix, size_t row, size_t col, float value)
+void	matrix_set_coord(t_matrix *matrix, size_t row, size_t col, double value)
 {
 	matrix->index[row][col] = value;
 }
