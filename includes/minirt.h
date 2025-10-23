@@ -26,6 +26,7 @@ enum e_status
 	FAILURE_OPEN,
 	FAILURE_MALLOC,
 	FAILURE_READ,
+	FAILURE_PARSE_WRONG_OBJ_TYPE,
 };
 
 # include "ft_vectors.h"
@@ -59,6 +60,16 @@ typedef union u_color
 	t_rgba	rgba;
 }	t_color;
 
+enum	e_obj_type
+{
+	OBJ_AMBIENT,
+	OBJ_CAMERA,
+	OBJ_LIGHT,
+	OBJ_SPHERE,
+	OBJ_PLANE,
+	OBJ_CYLINDER,
+};
+
 typedef struct s_ambient
 {
 	double	ratio;
@@ -67,14 +78,12 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
-	t_point	coordinates;
 	t_vec3	direction;
 	double	fov;
 }			t_camera;
 
 typedef struct s_light
 {
-	t_point	coordinates;
 	t_vec3	direction;
 	double	light_brightness;
 	t_color	color;
@@ -82,32 +91,40 @@ typedef struct s_light
 
 typedef struct s_sphere
 {
-	t_point	coordinates;
 	double	diameter;
 	t_color	color;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	t_point	coordinates;
 	t_vec3	direction;
 	t_color	color;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_point	coordinates;
 	t_vec3	direction;
 	double	diameter;
 	double	height;
 	t_color	color;
 }	t_cylinder;
 
-typedef	struct s_obj_type
+typedef union u_object_attr
 {
-	int		type;
-	void	*ptr_obj;
-}			t_obj_type;
+	t_camera	camera;
+	t_light		light;
+	t_ambient	ambient;
+	t_plane		plane;
+	t_sphere	sphere;
+	t_cylinder	cylinder;
+}	t_object_attr;
+
+typedef	struct s_object
+{
+	int				type;
+	t_point			coordinates;
+	t_object_attr	object_attr;
+}			t_object;
 
 typedef struct s_tmp_struct
 {

@@ -57,12 +57,14 @@ static int	get_each_line(int fd, t_vector *ptr_file_content)
 			else if (ret == -3)
 				return (FAILURE_MALLOC);
 		}
-		if (line != NULL)
+		if (line != NULL && (line[0] != '\n' && line[1] != '\0'))
 		{
 			ret = ft_vector_add_single(ptr_file_content, &line);
 			if (ret != SUCCESS)
 				return (FAILURE_MALLOC);
 		}
+		else if (line != NULL)
+			free(line);
 	}
 	return (SUCCESS);
 }

@@ -13,9 +13,11 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "minirt.h"
+# include "ft_vectors.h"
 
-int	parsing(int argc, char **argv, t_tmp_struct *ptr_tmp_struct);
+# define WHITE_SPACE " \f\n\r\t\v"
+
+int	parsing(int argc, char **argv, t_vector *ptr_objects);
 int	check_args(int argc, char **argv);
 int	get_file_content(char *filename, t_vector *ptr_file_content);
 
