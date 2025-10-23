@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/23 16:42:33 by jweber           ###   ########.fr       */
+/*   Created: 2025/10/23 15:27:50 by jweber            #+#    #+#             */
+/*   Updated: 2025/10/23 15:28:51 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "parsing.h"
+#include "ft_string.h"
 
-# include "minirt.h"
+#define MAP_NAME_MAX_LEN 8192
 
-int	parsing(int argc, char **argv, t_tmp_struct *ptr_tmp_struct);
-int	check_args(int argc, char **argv);
-int	get_file_content(char *filename, t_vector *ptr_file_content);
+int	check_args(int argc, char **argv)
+{
+	size_t	len;
 
-#endif // !PARSING_H
+	if (argc != 2)
+		return (FAILURE_ARGS_WRONG_NUMBER);
+	if (ft_strlen_safe(argv[1], &len, MAP_NAME_MAX_LEN) != SUCCESS)
+		return (FAILURE_ARGS_MAP_NAME_TOO_LONG);
+	if (ft_strcmp(argv[1] + len - 3, ".rt") != 0)
+		return (FAILURE_ARGS_BAD_MAP_NAME);
+	return (SUCCESS);
+}

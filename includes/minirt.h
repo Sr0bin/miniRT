@@ -13,6 +13,9 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# undef SUCCESS
+# undef FAILURE
+
 enum e_status
 {
 	SUCCESS = 0,
@@ -20,6 +23,9 @@ enum e_status
 	FAILURE_ARGS_WRONG_NUMBER,
 	FAILURE_ARGS_MAP_NAME_TOO_LONG,
 	FAILURE_ARGS_BAD_MAP_NAME,
+	FAILURE_OPEN,
+	FAILURE_MALLOC,
+	FAILURE_READ,
 };
 
 # include "ft_vectors.h"

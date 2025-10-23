@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 13:51:50 by rorollin          #+#    #+#              #
-#    Updated: 2025/10/21 16:11:43 by jweber           ###   ########.fr        #
+#    Updated: 2025/10/23 16:43:23 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SOURCES_DIR = src
 
 PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
+				get_file_content.c \
+				check_args.c \
 
 PRINTING_DIR = printing
 PRINTING_FILES = print_error.c \
