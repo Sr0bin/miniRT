@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/23 19:19:22 by jweber            #+#    #+#              #
-#    Updated: 2025/10/23 19:19:23 by jweber           ###   ########.fr        #
+#    Created: 2025/10/24 17:31:05 by jweber            #+#    #+#              #
+#    Updated: 2025/10/24 17:31:54 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,18 @@ MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c
 PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
 				get_file_content.c \
+				fill_obj_content.c \
+				fill_obj_ambient.c \
+				fill_obj_camera.c \
+				fill_obj_light.c \
+				fill_obj_sphere.c \
+				fill_obj_plane.c \
+				fill_obj_cylinder.c \
+				fill_coordinates.c \
+				fill_color.c \
+				fill_single_double.c \
+				fill_single_double_range.c \
+				fill_direction.c \
 				check_args.c \
 
 PRINTING_DIR = printing

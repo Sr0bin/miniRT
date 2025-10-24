@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 14:42:52 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/23 19:10:05 by rorollin         ###   ########.fr       */
+/*   Created: 2025/10/24 17:32:11 by jweber            #+#    #+#             */
+/*   Updated: 2025/10/24 17:32:29 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,20 @@ enum e_status
 	FAILURE_OPEN,
 	FAILURE_MALLOC,
 	FAILURE_READ,
-	FAILURE_PARSE_WRONG_OBJ_TYPE,
+	FAILURE_PARSE_EMPTY_LINE,
+	FAILURE_PARSE_WRONG_OBJ_IDENTIFIER,
+	FAILURE_PARSE_WRONG_OBJ_NB_OF_INFO,
+	FAILURE_PARSE_COLOR_WRONG_FORMAT,
+	FAILURE_PARSE_COLOR_ATOI_FAILED,
+	FAILURE_PARSE_COLOR_WRONG_VALUE,
+	FAILURE_PARSE_COO_WRONG_FORMAT,
+	FAILURE_PARSE_COO_ATOF_FAILED,
+	FAILURE_PARSE_COO_WRONG_VALUE,
+	FAILURE_PARSE_SINGLE_ATOF_FAILED,
+	FAILURE_PARSE_SINGLE_WRONG_VALUE,
+	FAILURE_PARSE_DIRECTION_WRONG_FORMAT,
+	FAILURE_PARSE_DIRECTION_ATOF_FAIL,
+	FAILURE_PARSE_DIRECTION_WRONG_VALUE,
 };
 
 # include "ft_vectors.h"
@@ -48,11 +61,18 @@ typedef union u_color
 	t_rgba	rgba;
 }	t_color;
 
+/*	ambian, camera, light
+ *	are posistionned 0, 1, 2 to 
+ *	allow, when object array is sorted
+ *	to have them first place to check
+ *	for the correct number of each type
+ *	(only one allowed for each in mandatory part)
+*/
 enum	e_obj_type
 {
-	OBJ_AMBIENT,
-	OBJ_CAMERA,
-	OBJ_LIGHT,
+	OBJ_AMBIENT = 0,
+	OBJ_CAMERA = 1,
+	OBJ_LIGHT = 2,
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER,
@@ -73,7 +93,7 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_vec3	direction;
-	double	light_brightness;
+	double	brightness;
 	t_color	color;
 }			t_light;
 
