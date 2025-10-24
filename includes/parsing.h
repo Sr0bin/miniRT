@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/23 16:42:33 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/24 16:47:26 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,26 @@
 # define PARSING_H
 
 # include "ft_vectors.h"
+# include "minirt.h"
 
 # define WHITE_SPACE " \f\n\r\t\v"
 
 int	parsing(int argc, char **argv, t_vector *ptr_objects);
 int	check_args(int argc, char **argv);
 int	get_file_content(char *filename, t_vector *ptr_file_content);
+int	fill_obj_content(t_object *ptr_obj_tmp, char **elements);
+int	fill_obj_ambient(t_object *ptr_obj_tmp, char **elements);
+int	fill_obj_camera(t_object *ptr_obj_tmp, char **elements);
+int	fill_obj_light(t_object *ptr_obj_tmp, char **elements);
+int	fill_obj_sphere(t_object *ptr_obj_tmp, char **elements);
+int	fill_obj_plane(t_object *ptr_obj_tmp, char **elements);
+int	fill_obj_cylinder(t_object *ptr_obj_tmp, char **elements);
+int	fill_colors(t_rgba *ptr_rgba, const char *str);
+int	fill_coordinates(t_point *ptr_coo, const char *coo);
+int	fill_direction(t_vec3 *ptr_direction, const char *direction,
+		double min, double max);
+int	fill_single_double_range(double *ptr_double, const char *str,
+		double min, double max);
+int	fill_single_double(double *ptr_double, const char *str);
 
 #endif // !PARSING_H

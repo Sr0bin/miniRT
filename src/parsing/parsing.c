@@ -6,18 +6,17 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:27:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/23 16:43:52 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/24 16:53:39 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_memory.h"
 #include "ft_standard.h"
-#include "ft_string.h"
 #include "ft_vectors.h"
 #include "minirt.h"
 #include "parsing.h"
 
 static int	parse_file(char *filename, t_vector *ptr_objects);
+static int	get_each_objects(t_vector file_content, t_vector *ptr_objects);
 
 int	parsing(int argc, char **argv, t_vector *ptr_objects)
 {
@@ -32,71 +31,74 @@ int	parsing(int argc, char **argv, t_vector *ptr_objects)
 	return (SUCCESS);
 }
 
-static int	fill_tmp_struct_from(t_vector file_content, t_vector *ptr_objects);
+static int	get_objects(t_vector file_content, t_vector *ptr_objets);
 
 static int	parse_file(char *filename, t_vector *ptr_objects)
 {
 	t_vector	file_content;
 	int			ret;
 
-	(void)ptr_objects;
 	ret = get_file_content(filename, &file_content);
 	if (ret != 0)
 		return (ret);
-	ret = fill_tmp_struct_from(file_content, ptr_objects);
+	ret = get_objects(file_content, ptr_objects);
 	ft_vector_free(&file_content);
 	if (ret != 0)
 		return (ret);
 	return (SUCCESS);
 }
 
-static int	get_object_type(char *str);
+void	free_obj_vector(t_vector *ptr_vec);
 
-static int	fill_tmp_struct_from(t_vector file_content, t_vector *ptr_objets)
+static int	get_objects(t_vector file_content, t_vector *ptr_objects)
 {
-	char		**elements;
+	int			ret;
+
+	ret = ft_vector_init(ptr_objects, 10, sizeof(t_object), free_obj_vector);
+	if (ret != SUCCESS)
+		return (FAILURE_MALLOC);
+	ret = get_each_objects(file_content, ptr_objects);
+	if (ret != SUCCESS)
+	{
+		ft_vector_free(ptr_objects);
+		return (ret);
+	}
+	return (SUCCESS);
+}
+
+static int	get_each_objects(t_vector file_content, t_vector *ptr_objects)
+{
 	size_t		i;
-	//t_object	obj_tmp;
+	char		**elements;
+	int			ret;
+	t_object	obj_tmp;
 
 	i = 0;
-	(void) ptr_objets;
 	while (i < file_content.size)
 	{
 		elements = ft_split(((char **)file_content.data)[i], WHITE_SPACE);
+		//TODO: change whitesaces by only " " to split only on spaces (it thinkg
+		// it is ok to let splitting on whitespace -> to see with roro
+		// but think to trim '\n' at the end of ((char **)file_content.data)[i] !
 		if (elements == NULL)
 			return (FAILURE_MALLOC);
-		/*
 		ret = fill_obj_content(&obj_tmp, elements);
-		ft_bzero(&obj_tmp, sizeof(obj_tmp));
-		obj_tmp.type = get_object_type(elements[0]);
-		if (obj_tmp.type < 0) 
-			return (FAILURE_PARSE_WRONG_OBJ_TYPE);
-		*/
-		(void) get_object_type;
-		free(elements);
-		/*
+		ft_split_free(elements);
 		if (ret != 0)
 			return (ret);
-		*/
+		ret = ft_vector_add_single(ptr_objects, &obj_tmp);
+		if (ret != 0)
+			return (ret);
 		i++;
 	}
 	return (SUCCESS);
 }
 
-static int	get_object_type(char *str)
+void	free_obj_vector(t_vector *ptr_vec)
 {
-	if (ft_strcmp(str, "A") == 0)
-		return (OBJ_AMBIENT);
-	else if (ft_strcmp(str, "C") == 0)
-		return (OBJ_CAMERA);
-	else if (ft_strcmp(str, "L") == 0)
-		return (OBJ_LIGHT);
-	else if (ft_strcmp(str, "sp") == 0)
-		return (OBJ_SPHERE);
-	else if (ft_strcmp(str, "pl") == 0)
-		return (OBJ_PLANE);
-	else if (ft_strcmp(str, "cy") == 0)
-		return (OBJ_CYLINDER);
-	else
-		return (-1);
+	free(ptr_vec->data);
+	ptr_vec->data = NULL;
+	ptr_vec->data_size = 0;
+	ptr_vec->size = 0;
+	ptr_vec->capacity = 0;
 }

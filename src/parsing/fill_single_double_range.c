@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fill_single_double_range.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 14:41:41 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/24 17:28:51 by jweber           ###   ########lyon.fr   */
+/*   Created: 2025/10/24 13:27:32 by jweber            #+#    #+#             */
+/*   Updated: 2025/10/24 13:46:27 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_standard.h"
 #include "ft_vectors.h"
 #include "minirt.h"
-#include "parsing.h"
-#include "printing.h"
 
-int	main(int argc, char **argv)
+int	fill_single_double_range(double *ptr_double, const char *str,
+		double min, double max);
+
+int	fill_single_double_range(double *ptr_double, const char *str,
+		double min, double max)
 {
-	t_vector	objects;
-	int			ret;
+	int	ret;
 
-	ret = parsing(argc, argv, &objects);
-	if (ret != 0)
-		return (print_error(ret));
-	ft_vector_free(&objects);
+	ret = ft_atof_safe(str, ptr_double);
+	if (ret != SUCCESS)
+		return (FAILURE_PARSE_SINGLE_ATOF_FAILED);
+	if (*ptr_double < min || *ptr_double > max)
+		return (FAILURE_PARSE_SINGLE_WRONG_VALUE);
+	return (SUCCESS);
 }

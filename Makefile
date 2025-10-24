@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 13:51:50 by rorollin          #+#    #+#              #
-#    Updated: 2025/10/23 16:43:23 by jweber           ###   ########.fr        #
+#    Updated: 2025/10/24 16:56:35 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,18 @@ SOURCES_DIR = src
 PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
 				get_file_content.c \
+				fill_obj_content.c \
+				fill_obj_ambient.c \
+				fill_obj_camera.c \
+				fill_obj_light.c \
+				fill_obj_sphere.c \
+				fill_obj_plane.c \
+				fill_obj_cylinder.c \
+				fill_coordinates.c \
+				fill_color.c \
+				fill_single_double.c \
+				fill_single_double_range.c \
+				fill_direction.c \
 				check_args.c \
 
 PRINTING_DIR = printing
@@ -93,9 +105,6 @@ $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 	@echo "$(NAME) built succesfully."
 
 -include $(DEPS)
-
-%.o:
-	echo in rulle 
 
 $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR) $(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR) 
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
