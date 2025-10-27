@@ -12,3 +12,4 @@ compile_commands.json
 .txt
 src/minilibx
 src/minilibx-linux
+test_ray_tracing_one_weekend/

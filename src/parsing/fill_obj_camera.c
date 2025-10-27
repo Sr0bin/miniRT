@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:41:38 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/24 16:42:09 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/27 18:34:55 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	fill_obj_camera(t_object *ptr_obj_tmp, char **elements)
 	if (elements[1] == NULL || elements[2] == NULL
 		|| elements[3] == NULL || elements[4] != NULL)
 		return (FAILURE_PARSE_WRONG_OBJ_NB_OF_INFO);
-	ret = fill_coordinates(&ptr_obj_tmp->coordinates, elements[1]);
+	ret = fill_coordinates(&ptr_obj_tmp->ptr_coordinates, elements[1]);
 	if (ret != 0)
 		return (ret);
-	ret = fill_direction(&ptr_obj_tmp->object_attr.camera.direction,
+	ret = fill_direction(&ptr_obj_tmp->object_attr.camera.ptr_direction,
 			elements[2], -1.0, 1.0);
 	if (ret != 0)
 		return (ret);

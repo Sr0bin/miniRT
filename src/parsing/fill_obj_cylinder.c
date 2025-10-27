@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:45:36 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/24 16:46:45 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/27 18:38:30 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	fill_obj_cylinder(t_object *ptr_obj_tmp, char **elem)
 	if (elem[1] == NULL || elem[2] == NULL || elem[3] == NULL || elem[4] == NULL
 		|| elem[5] == NULL || elem[6] != NULL)
 		return (FAILURE_PARSE_WRONG_OBJ_NB_OF_INFO);
-	ret = fill_coordinates(&ptr_obj_tmp->coordinates, elem[1]);
+	ret = fill_coordinates(&ptr_obj_tmp->ptr_coordinates, elem[1]);
 	if (ret != SUCCESS)
 		return (ret);
-	ret = fill_direction(&ptr_obj_tmp->object_attr.cylinder.direction,
+	ret = fill_direction(&ptr_obj_tmp->object_attr.cylinder.ptr_direction,
 			elem[2], -1.0, 1.0);
 	if (ret != SUCCESS)
 		return (ret);

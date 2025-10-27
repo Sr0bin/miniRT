@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:27:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/24 16:53:39 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/27 18:53:52 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ static int	parse_file(char *filename, t_vector *ptr_objects)
 	return (SUCCESS);
 }
 
-void	free_obj_vector(t_vector *ptr_vec);
-
 static int	get_objects(t_vector file_content, t_vector *ptr_objects)
 {
 	int			ret;
@@ -80,6 +78,7 @@ static int	get_each_objects(t_vector file_content, t_vector *ptr_objects)
 		//TODO: change whitesaces by only " " to split only on spaces (it thinkg
 		// it is ok to let splitting on whitespace -> to see with roro
 		// but think to trim '\n' at the end of ((char **)file_content.data)[i] !
+		// or no ?
 		if (elements == NULL)
 			return (FAILURE_MALLOC);
 		ret = fill_obj_content(&obj_tmp, elements);
@@ -92,13 +91,4 @@ static int	get_each_objects(t_vector file_content, t_vector *ptr_objects)
 		i++;
 	}
 	return (SUCCESS);
-}
-
-void	free_obj_vector(t_vector *ptr_vec)
-{
-	free(ptr_vec->data);
-	ptr_vec->data = NULL;
-	ptr_vec->data_size = 0;
-	ptr_vec->size = 0;
-	ptr_vec->capacity = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:32:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/24 17:32:29 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/27 18:34:49 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
-	t_vec3	direction;
+	t_vec3	*ptr_direction;
 	double	fov;
 }			t_camera;
 
 typedef struct s_light
 {
-	t_vec3	direction;
+	t_vec3	*ptr_direction;
 	double	brightness;
 	t_color	color;
 }			t_light;
@@ -105,13 +105,13 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_vec3	direction;
+	t_vec3	*ptr_direction;
 	t_color	color;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_vec3	direction;
+	t_vec3	*ptr_direction;
 	double	diameter;
 	double	height;
 	t_color	color;
@@ -130,7 +130,7 @@ typedef union u_object_attr
 typedef	struct s_object
 {
 	int				type;
-	t_point			coordinates;
+	t_point			*ptr_coordinates;
 	t_object_attr	object_attr;
 }			t_object;
 
