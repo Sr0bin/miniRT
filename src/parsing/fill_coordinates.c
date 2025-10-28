@@ -52,5 +52,7 @@ static int	fill_from_splitted_coo(t_point **ptr_to_ptr_coo,
 	if (ret != SUCCESS)
 		return (FAILURE_PARSE_COO_ATOF_FAILED);
 	*ptr_to_ptr_coo = create_vector(tmp_x, tmp_y, tmp_z);
+	if (*ptr_to_ptr_coo == NULL)
+		return (FAILURE_MALLOC);
 	return (SUCCESS);
 }
