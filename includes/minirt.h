@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:32:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/27 18:34:49 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/28 14:21:47 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ enum e_status
 	FAILURE_PARSE_DIRECTION_ATOF_FAIL,
 	FAILURE_PARSE_DIRECTION_WRONG_VALUE,
 };
+
 
 # include "ft_vectors.h"
 # include "vector.h"

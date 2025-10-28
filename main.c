@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:32:56 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/27 18:54:54 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/28 14:42:48 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ static void	vector_test(void)
 	t_vec3	*a;
 	t_vec3	*b;
 
-	a = create_vector(1, 0, 0);
+	a = create_vector(-1, -1, 0);
 	b = create_vector(0, 1, 0);
 	print_vector(a);
 	print_vector(b);
+	print_delimitor();
 	printf("Norm a:%f\n", vector_norm(*a));
+	print_delimitor();
 	printf("Dot Product :%f\n", dot_product(*a,*b));
 	print_vector(cross_product(*a, *b));
+	print_vector(reflection_vector(*a, *b));
 }
 
 int	main(int argc, char **argv)
@@ -35,7 +38,8 @@ int	main(int argc, char **argv)
 	t_vector	objects;
 	int			ret;
 
-	(void) vector_test;
+	// (void) vector_test;
+	vector_test();
 	ret = parsing(argc, argv, &objects);
 	if (ret != 0)
 		return (print_error(ret));

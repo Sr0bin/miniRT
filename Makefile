@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 17:31:05 by jweber            #+#    #+#              #
-#    Updated: 2025/10/27 18:54:07 by jweber           ###   ########.fr        #
+#    Updated: 2025/10/28 12:54:37 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ PARSING_FILES = parsing.c \
 				check_args.c \
 
 PRINTING_DIR = printing
-PRINTING_FILES = print_error.c \
+PRINTING_FILES = print_error.c print_types.c
 
 VECTOR_DIR = vector
 VECTOR_FILES = vector_core.c vector_operations.c
@@ -46,11 +46,14 @@ VECTOR_FILES = vector_core.c vector_operations.c
 POINT_DIR = point
 POINT_FILES = point_core.c
 
+RAY_DIR = ray
+RAY_FILES = ray_core.c
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
 			   $(addprefix $(MATRIX_DIR)/,$(MATRIX_FILES)) \
 			   $(addprefix $(VECTOR_DIR)/,$(VECTOR_FILES)) \
 			   $(addprefix $(POINT_DIR)/,$(POINT_FILES)) \
+			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
 
 
 #SOURCES_GRAPHIC = 
@@ -124,7 +127,8 @@ $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(VECTOR_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR)\
-	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR):
@@ -140,6 +144,9 @@ $(OBJ_DIR)/$(SOURCES_DIR)/$(VECTOR_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR):
 	mkdir -p $@
 
 git_init:

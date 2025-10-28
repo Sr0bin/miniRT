@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:05:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 18:10:22 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:01:29 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void		matrix_set_value(t_matrix *mat, size_t row, size_t col, double value);
 void		*matrix_set_identity(t_matrix *matrix);
 t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b);
 t_matrix	*add_matrix(t_matrix_const *a, t_matrix_const *b);
-t_matrix	*scalar_matrix(t_matrix_const *matrix, double scalar);
+t_matrix	*scalar_matrix_new(t_matrix_const *matrix, double scalar);
+void		scalar_matrix(t_matrix *matrix, double scalar);
 t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b);
 
 void	print_matrix(t_matrix_const *matrix);
