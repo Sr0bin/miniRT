@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 17:32:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 14:21:47 by rorollin         ###   ########.fr       */
+/*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
+/*   Updated: 2025/10/29 16:47:01 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,20 @@ enum e_status
 	FAILURE_OPEN,
 	FAILURE_MALLOC,
 	FAILURE_READ,
+	FAILURE_PARSE_PERSONNALIZED,
 	FAILURE_PARSE_EMPTY_LINE,
 	FAILURE_PARSE_WRONG_OBJ_IDENTIFIER,
-	FAILURE_PARSE_WRONG_OBJ_NB_OF_INFO,
+	FAILURE_PARSE_AMBIENT_WRONG_OBJ_NB_OF_INFO,
+	FAILURE_PARSE_CAMERA_WRONG_OBJ_NB_OF_INFO,
+	FAILURE_PARSE_LIGHT_WRONG_OBJ_NB_OF_INFO,
+	FAILURE_PARSE_SPHERE_WRONG_OBJ_NB_OF_INFO,
+	FAILURE_PARSE_PLANE_WRONG_OBJ_NB_OF_INFO,
+	FAILURE_PARSE_CYLINDER_WRONG_OBJ_NB_OF_INFO,
 	FAILURE_PARSE_COLOR_WRONG_FORMAT,
 	FAILURE_PARSE_COLOR_ATOI_FAILED,
 	FAILURE_PARSE_COLOR_WRONG_VALUE,
 	FAILURE_PARSE_COO_WRONG_FORMAT,
 	FAILURE_PARSE_COO_ATOF_FAILED,
-	FAILURE_PARSE_COO_WRONG_VALUE,
 	FAILURE_PARSE_SINGLE_ATOF_FAILED,
 	FAILURE_PARSE_SINGLE_WRONG_VALUE,
 	FAILURE_PARSE_DIRECTION_WRONG_FORMAT,
@@ -93,7 +98,6 @@ typedef struct s_camera
 
 typedef struct s_light
 {
-	t_vec3	*ptr_direction;
 	double	brightness;
 	t_color	color;
 }			t_light;

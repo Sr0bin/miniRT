@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:38:06 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/27 18:58:04 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/29 13:30:04 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	free_obj_vector(t_vector *ptr_vec)
 			free_vector(ptr_obj->object_attr.camera.ptr_direction);
 		if (ptr_obj->type == OBJ_CYLINDER)
 			free_vector(ptr_obj->object_attr.cylinder.ptr_direction);
-		if (ptr_obj->type == OBJ_LIGHT)
-			free_vector(ptr_obj->object_attr.light.ptr_direction);
 		i++;
 	}
 	free(ptr_vec->data);

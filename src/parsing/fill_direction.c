@@ -11,16 +11,18 @@
 /* ************************************************************************** */
 
 #include "ft_standard.h"
+#include "ft_string.h"
+#include "ft_vectors.h"
 #include "minirt.h"
 #include "vector.h"
 
-int			fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
-				double min, double max);
+int			fill_direction(t_vec3 **ptr_to_ptr_direction,
+				const char *direction, char **ptr_str_err_msg);
 static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
-				char **splitted_direction, double min, double max);
+				char **splitted_direction, char **ptr_str_err_msg);
 
 int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
-		double min, double max)
+		char **ptr_str_err_msg)
 {
 	char	**splitted_direction;
 	int		ret;
@@ -28,8 +30,14 @@ int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 	splitted_direction = ft_split(direction, ",");
 	if (splitted_direction == NULL)
 		return (FAILURE_MALLOC);
-	ret = fill_from_splitted_direction(ptr_to_ptr_direction, splitted_direction,
-			min, max);
+	ret = fill_from_splitted_direction(ptr_to_ptr_direction,
+			splitted_direction, ptr_str_err_msg);
+	if (ret == FAILURE_PARSE_PERSONNALIZED)
+	{
+		*ptr_str_err_msg = ft_strjoin_free_second("[DIRECTION VALUES] : ", *ptr_str_err_msg);
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
+	}
 	ft_split_free(splitted_direction);
 	if (ret != 0)
 		return (ret);
@@ -37,7 +45,7 @@ int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 }
 
 static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
-				char **splitted_direction, double min, double max)
+				char **splitted_direction, char **ptr_str_err_msg)
 {
 	double	tmp_x;
 	double	tmp_y;
@@ -46,22 +54,44 @@ static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
 
 	if (splitted_direction[0] == NULL || splitted_direction[1] == NULL
 		|| splitted_direction[2] == NULL || splitted_direction[3] != NULL)
+	{
+		*ptr_str_err_msg = ft_strdup("wrong number of values to convert, "
+			"must take 3 numbers separated by spaces\n");
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_DIRECTION_WRONG_FORMAT);
+	}
 	ret = ft_atof_safe(splitted_direction[0], &tmp_x);
 	if (ret != 0)
+	{
+		*ptr_str_err_msg = ft_strdup("could not convert [value[0]] ");
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_DIRECTION_ATOF_FAIL);
-	if (tmp_x < min || tmp_x > max)
-		return (FAILURE_PARSE_DIRECTION_WRONG_VALUE);
+	}
 	ret = ft_atof_safe(splitted_direction[1], &tmp_y);
 	if (ret != 0)
+	{
+		*ptr_str_err_msg = ft_strdup("could not convert [value[1]] ");
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_DIRECTION_ATOF_FAIL);
-	if (tmp_y < min || tmp_y > max)
-		return (FAILURE_PARSE_DIRECTION_WRONG_VALUE);
+	}
 	ret = ft_atof_safe(splitted_direction[2], &tmp_z);
 	if (ret != 0)
+	{
+		*ptr_str_err_msg = ft_strdup("could not convert [value[2]] ");
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_DIRECTION_ATOF_FAIL);
-	if (tmp_z < min || tmp_z > max)
+	}
+	if (fabs(sqrt(tmp_x * tmp_x + tmp_y * tmp_y + tmp_z * tmp_z) - 1.0) > 1e-5)
+	{
+		*ptr_str_err_msg = ft_strdup("value are not normalized ! ");
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_DIRECTION_WRONG_VALUE);
+	}
 	*ptr_to_ptr_direction = create_vector(tmp_x, tmp_y, tmp_z);
 	if (*ptr_to_ptr_direction == NULL)
 		return (FAILURE_MALLOC);
