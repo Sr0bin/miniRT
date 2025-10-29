@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 17:31:05 by jweber            #+#    #+#              #
-#    Updated: 2025/10/27 18:54:07 by jweber           ###   ########.fr        #
+#    Updated: 2025/10/29 16:25:30 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,15 @@ PARSING_FILES = parsing.c \
 				fill_obj_cylinder.c \
 				fill_coordinates.c \
 				fill_color.c \
-				fill_single_double.c \
-				fill_single_double_range.c \
 				fill_direction.c \
 				free_obj_vector.c \
 				check_args.c \
+				init_msg_atof_failed.c \
+				init_msg_atoi_failed.c \
 
 PRINTING_DIR = printing
 PRINTING_FILES = print_error.c \
+				 print_objects.c \
 
 VECTOR_DIR = vector
 VECTOR_FILES = vector_core.c vector_operations.c

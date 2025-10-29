@@ -6,13 +6,14 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:55:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/27 18:37:40 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/28 18:27:12 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_standard.h"
 #include "minirt.h"
 #include "vector.h"
+#include <math.h>
 
 int			fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo);
 static int	fill_from_splitted_coo(t_point **ptr_to_ptr_coo,
@@ -51,7 +52,7 @@ static int	fill_from_splitted_coo(t_point **ptr_to_ptr_coo,
 	ret = ft_atof_safe(splitted_coo[2], &tmp_z);
 	if (ret != SUCCESS)
 		return (FAILURE_PARSE_COO_ATOF_FAILED);
-	*ptr_to_ptr_coo = create_vector(tmp_x, tmp_y, tmp_z);
+	*ptr_to_ptr_coo = create_point(tmp_x, tmp_y, tmp_z);
 	if (*ptr_to_ptr_coo == NULL)
 		return (FAILURE_MALLOC);
 	return (SUCCESS);
