@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 16:14:58 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/31 12:47:22 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,58 +54,72 @@ int		init_msg_atof_failed(char **ptr_str_err_msg,
 int		init_msg_atoi_failed(char **ptr_str_err_msg,
 			int ret, char *input);
 
-# define MSG_AMBIENT_WRONG_ARGUMENTS "Ambient : \
-wrong number of arguments, \
-Ambient takes 3 arguments separated by spaces:\n\
+# define MSG_AMBIENT_WRONG_ARGUMENTS "Ambient:\n\
+Wrong number of arguments.\n\
+Ambient takes 3 arguments separated by spaces.\n\
 ex: A\t0.2\t255,255,255\t\n\
 1: ambient identifer\n\
 2: ambient lighting ratio\n\
 3: ambient colors (RGB)\n"
 
-# define MSG_CAMERA_WRONG_ARGUMENTS "Camera : \
-wrong number of arguments,\
-Camera takes 4 arguments separated by spaces:\n\
+# define MSG_CAMERA_WRONG_ARGUMENTS "Camera:\n\
+Wrong number of arguments.\n\
+Camera takes 4 arguments separated by spaces.\n\
 ex: C\t-50.0,0,20\t0,0,1\t70\n\
 1: camera identifer\n\
 2: viewpoint coordinates\n\
 3: 3D normalized orientation vector\n\
 4: FOV: Horizontal field of view in degree\n"
 
-# define MSG_LIGHT_WRONG_ARGUMENTS "Light: \
-wrong number of arguments, \
-Light takes 4 arguments separated by spaces:\n\
+# define MSG_LIGHT_WRONG_ARGUMENTS "Light:\n\
+Wrong number of arguments.\n\
+Light takes 4 arguments separated by spaces.\n\
 ex: L\t-40.0,50.0,0.0\t0.6\t10,0,255\n\
 1: light identifer\n\
 2: cooridnates of light point\n\
 3: light brightness ratio\n\
 4: light color (RGB)\n"
 
-# define MSG_SPHERE_WRONG_ARGUMENTS "Sphere: \
-wrong number of arguments, \
-Sphere takes 4 arguments separated by spaces:\n\
+# define MSG_SPHERE_WRONG_ARGUMENTS "Sphere:\n\
+Wrong number of arguments.\n\
+Sphere takes 4 arguments separated by spaces.\n\
 ex: sp\t-40.0,50.0,0.0\t0.6\t10,0,255\n\
 1: sphere identifer\n\
 2: sphere center coordinates\n\
 3: sphere diameter\n\
 4: sphere colors (RGB)\n"
 
-# define MSG_PLANE_WRONG_ARGUMENTS "Plane: \
-wrong number of arguments, \
-Plane takes 4 arguments separated by spaces:\n\
+# define MSG_PLANE_WRONG_ARGUMENTS "Plane:\n\
+Wrong number of arguments.\n\
+Plane takes 4 arguments separated by spaces.\n\
 ex: pl\t0.0,0.0,-10.0\t0.0,1.0,0.0\t0,0,225\n\
 1: plane identifer\n\
 2: coordinates of a point in the plane\n\
 3: 3D normalized vector\n\
 4: plan color (RGB)\n"
 
-# define MSG_CYLINDER_WRONG_ARGUMENTS "Cylinder: \
-wrong number of arguments, \
-Cylinder takes 4 arguments separated by spaces:\n\
+# define MSG_CYLINDER_WRONG_ARGUMENTS "Cylinder:\n\
+Wrong number of arguments.\n\
+Cylinder takes 4 arguments separated by spaces.\n\
 ex: cy\t50.0,0.0,20.6\t0.0,0.0,1.0\t14.2\t21.42\t10,0,255\n\
 1: cylinder identifer\n\
 2: 3D normalized vector of axis of cylinder\n\
 3: cylinder diameter\n\
 4: cylinder height\n\
 5: cylinder color (RGB)\n"
+
+# define MSG_COLOR_WRONG_ARGUMENTS "Wrong number of colors.\n\
+Colors consists of 3 integer, between 0 and 255, separated by \
+exactly one comma, of format RGB.\n\
+ex: 10,0,255\n"
+
+# define MSG_COORDINATES_WRONG_ARGUMENTS "wrong number of coordinates.\n\
+Coordinates consists of 3 decimal values separated by exactly one comma.\n\
+ex: 10,0,255\n"
+
+# define MSG_DIRECTION_WRONG_ARGUMENTS "wrong number of direction.\n\
+direction consists of 3 decimal values separated by exactly one comma, \
+its value must be normalized.\n\
+ex: 10,0,255\n"
 
 #endif // !PARSING_H

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:40:28 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 16:24:59 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/31 12:54:24 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	fill_obj_ambient(t_object *ptr_obj_tmp, char **elements,
 	if (ret != SUCCESS)
 	{
 		ret = init_msg_atof_failed(ptr_str_err_msg, ret, elements[1]);
-		*ptr_str_err_msg = ft_strjoin_free_second("ambient ratio:\n", *ptr_str_err_msg);
+		if (ret == FAILURE_MALLOC)
+			return (ret);
+		*ptr_str_err_msg = ft_strjoin_free_second("Ambient ratio:\n", *ptr_str_err_msg);
 		if (*ptr_str_err_msg == NULL)
 			return (FAILURE_MALLOC);
 		return (ret);
@@ -43,7 +45,7 @@ int	fill_obj_ambient(t_object *ptr_obj_tmp, char **elements,
 	if (ptr_obj_tmp->object_attr.ambient.ratio <= 0
 		|| ptr_obj_tmp->object_attr.ambient.ratio >= 1)
 	{
-		*ptr_str_err_msg = ft_strdup("ambient ratio:\n'");
+		*ptr_str_err_msg = ft_strdup("Ambient ratio:\n'");
 		if (*ptr_str_err_msg == NULL)
 			return (FAILURE_MALLOC);
 		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
@@ -62,7 +64,7 @@ int	fill_obj_ambient(t_object *ptr_obj_tmp, char **elements,
 	{
 		if (ret == FAILURE_PARSE_PERSONNALIZED)
 		{
-			*ptr_str_err_msg = ft_strjoin_free_second("ambient colors:\n'",
+			*ptr_str_err_msg = ft_strjoin_free_second("Ambient colors:\n",
 					*ptr_str_err_msg);
 			if (*ptr_str_err_msg == NULL)
 				return (FAILURE_MALLOC);

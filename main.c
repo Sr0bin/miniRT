@@ -16,7 +16,9 @@
 #include "printing.h"
 #include "vector.h"
 
-static void	vector_test(void)
+void	vector_test(void);
+
+void	vector_test(void)
 {
 	t_vec3	*a;
 	t_vec3	*b;
@@ -39,7 +41,7 @@ int	main(int argc, char **argv)
 	int			ret;
 	char		*str_err_msg;
 
-	vector_test();
+	//vector_test();
 	str_err_msg = NULL;
 	ret = parsing(argc, argv, &objects, &str_err_msg);
 	if (ret != 0)

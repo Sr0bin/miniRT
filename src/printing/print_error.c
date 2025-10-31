@@ -17,7 +17,7 @@ int	print_error(int error, char *str);
 
 int	print_error(int error, char *str)
 {
-	ft_putstr_fd("error\n", 2);
+	ft_putstr_fd("Error\n", 2);
 	if (error == FAILURE_ARGS_WRONG_NUMBER)
 	{
 		ft_putstr_fd("wrong number of args\n", 2);
@@ -34,6 +34,10 @@ int	print_error(int error, char *str)
 	{
 		if (str != NULL)
 			ft_putstr_fd(str, 2);
+	}
+	else if (error == FAILURE_OPEN)
+	{
+		ft_putstr_fd("could not open file\n", 2);
 	}
 	else if (error == FAILURE_PARSE_AMBIENT_WRONG_OBJ_NB_OF_INFO)
 		ft_putstr_fd("wrong number of parameter for ambient\n", 2);

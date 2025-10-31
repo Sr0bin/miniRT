@@ -13,6 +13,11 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "ft_vectors.h"
+# include "vector.h"
+# include "point.h"
+# include <stdint.h>
+
 # undef SUCCESS
 # undef FAILURE
 
@@ -47,11 +52,11 @@ enum e_status
 	FAILURE_PARSE_DIRECTION_WRONG_VALUE,
 };
 
-
-# include "ft_vectors.h"
-# include "vector.h"
-# include "point.h"
-# include <stdint.h>
+enum e_bool
+{
+	FALSE = 0,
+	TRUE = 1,
+};
 
 typedef struct s_rgba
 {

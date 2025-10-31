@@ -30,7 +30,7 @@ PARSING_FILES = parsing.c \
 				fill_obj_plane.c \
 				fill_obj_cylinder.c \
 				fill_coordinates.c \
-				fill_color.c \
+				fill_colors.c \
 				fill_direction.c \
 				free_obj_vector.c \
 				check_args.c \

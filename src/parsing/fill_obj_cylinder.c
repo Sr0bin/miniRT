@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:45:36 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 15:05:55 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/31 12:56:34 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,20 @@ int	fill_obj_cylinder(t_object *ptr_obj_tmp, char **elem,
 	ret = fill_colors(&ptr_obj_tmp->object_attr.cylinder.color.rgba, elem[5],
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
+	{
 		return (ret);
+	}
 	ret = fill_coordinates(&ptr_obj_tmp->ptr_coordinates, elem[1],
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
+	{
+		if (ret == FAILURE_MALLOC)
+			return (ret);
+		*ptr_str_err_msg = ft_strjoin_free_second("cylinder coordinates:\n'", *ptr_str_err_msg);
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
 		return (ret);
+	}
 	ret = fill_direction(&ptr_obj_tmp->object_attr.cylinder.ptr_direction,
 			elem[2], ptr_str_err_msg);
 	if (ret != SUCCESS)

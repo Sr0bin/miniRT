@@ -6,20 +6,20 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:55:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 18:27:12 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/31 12:53:20 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_standard.h"
+#include "ft_string.h"
 #include "minirt.h"
-#include "vector.h"
-#include <math.h>
+#include "parsing.h"
 
-int			fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo);
 static int	fill_from_splitted_coo(t_point **ptr_to_ptr_coo,
-				char **splitted_coo);
+				char **splitted_coo, char **ptr_str_err_msg);
 
-int	fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo)
+int	fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo,
+		char **ptr_str_err_msg)
 {
 	char	**splitted_coo;
 	int		ret;
@@ -27,31 +27,47 @@ int	fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo)
 	splitted_coo = ft_split(coo, ",");
 	if (splitted_coo == NULL)
 		return (FAILURE_MALLOC);
-	ret = fill_from_splitted_coo(ptr_to_ptr_coo, splitted_coo);
+	if (splitted_coo[0] == NULL || splitted_coo [1] == NULL
+		|| splitted_coo [2] == NULL || splitted_coo[3] != NULL)
+	{
+		ft_split_free(splitted_coo);
+		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
+		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, coo);
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
+		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "': ");
+		if (*ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
+		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
+				MSG_COORDINATES_WRONG_ARGUMENTS);
+		if (ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
+		return (FAILURE_PARSE_PERSONNALIZED);
+	}
+	ret = fill_from_splitted_coo(ptr_to_ptr_coo, splitted_coo, ptr_str_err_msg);
 	ft_split_free(splitted_coo);
 	return (ret);
 }
 
 static int	fill_from_splitted_coo(t_point **ptr_to_ptr_coo,
-				char **splitted_coo)
+				char **splitted_coo, char **ptr_str_err_msg)
 {
 	double	tmp_x;
 	double	tmp_y;
 	double	tmp_z;
 	int		ret;
 
-	if (splitted_coo[0] == NULL || splitted_coo [1] == NULL
-		|| splitted_coo [2] == NULL || splitted_coo[3] != NULL)
-		return (FAILURE_PARSE_COLOR_WRONG_FORMAT);
 	ret = ft_atof_safe(splitted_coo[0], &tmp_x);
 	if (ret != SUCCESS)
-		return (FAILURE_PARSE_COO_ATOF_FAILED);
+		return (init_msg_atof_failed(ptr_str_err_msg, ret, splitted_coo[0]));
 	ret = ft_atof_safe(splitted_coo[1], &tmp_y);
 	if (ret != SUCCESS)
-		return (FAILURE_PARSE_COO_ATOF_FAILED);
+		return (init_msg_atof_failed(ptr_str_err_msg, ret, splitted_coo[1]));
 	ret = ft_atof_safe(splitted_coo[2], &tmp_z);
 	if (ret != SUCCESS)
-		return (FAILURE_PARSE_COO_ATOF_FAILED);
+		return (init_msg_atof_failed(ptr_str_err_msg, ret, splitted_coo[2]));
 	*ptr_to_ptr_coo = create_point(tmp_x, tmp_y, tmp_z);
 	if (*ptr_to_ptr_coo == NULL)
 		return (FAILURE_MALLOC);
