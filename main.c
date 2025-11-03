@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 16:48:20 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/03 16:33:47 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int	main(int argc, char **argv)
 	ret = parsing(argc, argv, &objects, &str_err_msg);
 	if (ret != 0)
 		return (print_error(ret, str_err_msg));
-	print_objects(objects);
+	//print_objects(objects);
 	ft_vector_free(&objects);
 }

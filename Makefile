@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/03 16:22:06 by jweber           ###   ########.fr        #
+#    Updated: 2025/11/03 16:33:31 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
 				get_file_content.c \
 				parse_file_content.c \
+				check_objects.c \
 				fill_obj_content.c \
 				fill_obj_ambient.c \
 				fill_obj_camera.c \

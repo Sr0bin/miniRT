@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:11:13 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/03 16:33:14 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		check_args(int argc, char **argv);
 int		get_file_content(char *filename, t_vector *ptr_file_content);
 int		parse_file_content(t_vector file_content, t_vector *ptr_objects,
 			char **ptr_str_err_msg);
+int		check_objects(t_vector *ptr_objects);
 int		fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
 int		fill_obj_ambient(t_object *ptr_obj_tmp, char **elements,

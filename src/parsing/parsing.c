@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:27:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:21:43 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/03 16:32:41 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,11 @@ int	parsing(int argc, char **argv, t_vector *ptr_objects,
 	ft_vector_free(&file_content);
 	if (ret != 0)
 		return (ret);
+	ret = check_objects(ptr_objects);
+	if (ret != 0)
+	{
+		ft_vector_free(ptr_objects);
+		return (ret);
+	}
 	return (SUCCESS);
 }
