@@ -14,7 +14,6 @@
 #include "ft_string.h"
 #include "minirt.h"
 
-
 int			init_msg_atoi_failed(char **ptr_str_err_msg,
 				int ret, char *input);
 static int	msg_atoi_wrong_input(char **ptr_str_err_msg);
@@ -53,7 +52,7 @@ int	init_msg_atoi_failed(char **ptr_str_err_msg,
 static int	msg_atoi_too_large_input(char **ptr_str_err_msg)
 {
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
-			"...' : given value can not be converted to int"
+			"...': given value can not be converted to int"
 			"input string is too long to get converted\n");
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
@@ -63,7 +62,7 @@ static int	msg_atoi_too_large_input(char **ptr_str_err_msg)
 static int	msg_atoi_overflow_underflow(char **ptr_str_err_msg)
 {
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
-			"' : value can not be converted to int: "
+			"': value can not be converted to int: "
 			"will overflow / underflow\n");
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
@@ -73,7 +72,7 @@ static int	msg_atoi_overflow_underflow(char **ptr_str_err_msg)
 static int	msg_atoi_wrong_input(char **ptr_str_err_msg)
 {
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
-			"' : unexepected character while processing conversion\n");
+			"': unexepected character while processing conversion\n");
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
 	return (FAILURE_PARSE_PERSONNALIZED);

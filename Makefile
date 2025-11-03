@@ -34,6 +34,7 @@ PARSING_FILES = parsing.c \
 				fill_direction.c \
 				free_obj_vector.c \
 				check_args.c \
+				fail_add_msg.c \
 				init_msg_atof_failed.c \
 				init_msg_atoi_failed.c \
 

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/31 12:47:22 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/03 11:20:08 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		init_msg_atof_failed(char **ptr_str_err_msg,
 			int ret, char *input);
 int		init_msg_atoi_failed(char **ptr_str_err_msg,
 			int ret, char *input);
+int		fail_add_msg(const char *msg, int ret, char **ptr_str_err_msg);
 
 # define MSG_AMBIENT_WRONG_ARGUMENTS "Ambient:\n\
 Wrong number of arguments.\n\

@@ -15,14 +15,14 @@
 #include "ft_memory.h"
 #include "minirt.h"
 
-int	fill_obj_content(t_object *ptr_obj_tmp, char **elements,
-		char **ptr_str_err_msg);
+int			fill_obj_content(t_object *ptr_obj_tmp, char **elements,
+				char **ptr_str_err_msg);
+static int	fill_from_object_id(t_object *ptr_obj_tmp, char **elements,
+				char **ptr_str_err_msg);
 
 int	fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 		char **ptr_str_err_msg)
 {
-	int	ret;
-
 	if (elements[0] == NULL)
 	{
 		*ptr_str_err_msg = ft_strdup("empty line\n");
@@ -31,18 +31,25 @@ int	fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 		return (FAILURE_PARSE_PERSONNALIZED);
 	}
 	ft_bzero(ptr_obj_tmp, sizeof(*ptr_obj_tmp));
+	return (fill_from_object_id(ptr_obj_tmp,
+			elements, ptr_str_err_msg));
+}
+
+static int	fill_from_object_id(t_object *ptr_obj_tmp, char **elements,
+		char **ptr_str_err_msg)
+{
 	if (ft_strcmp(elements[0], "A") == 0)
-		ret = fill_obj_ambient(ptr_obj_tmp, elements, ptr_str_err_msg);
+		return (fill_obj_ambient(ptr_obj_tmp, elements, ptr_str_err_msg));
 	else if (ft_strcmp(elements[0], "C") == 0)
-		ret = fill_obj_camera(ptr_obj_tmp, elements, ptr_str_err_msg);
+		return (fill_obj_camera(ptr_obj_tmp, elements, ptr_str_err_msg));
 	else if (ft_strcmp(elements[0], "L") == 0)
-		ret = fill_obj_light(ptr_obj_tmp, elements, ptr_str_err_msg);
+		return (fill_obj_light(ptr_obj_tmp, elements, ptr_str_err_msg));
 	else if (ft_strcmp(elements[0], "sp") == 0)
-		ret = fill_obj_sphere(ptr_obj_tmp, elements, ptr_str_err_msg);
+		return (fill_obj_sphere(ptr_obj_tmp, elements, ptr_str_err_msg));
 	else if (ft_strcmp(elements[0], "pl") == 0)
-		ret = fill_obj_plane(ptr_obj_tmp, elements, ptr_str_err_msg);
+		return (fill_obj_plane(ptr_obj_tmp, elements, ptr_str_err_msg));
 	else if (ft_strcmp(elements[0], "cy") == 0)
-		ret = fill_obj_cylinder(ptr_obj_tmp, elements, ptr_str_err_msg);
+		return (fill_obj_cylinder(ptr_obj_tmp, elements, ptr_str_err_msg));
 	else
 	{
 		*ptr_str_err_msg = ft_strdup("unexepected identifier : [IDENTIFIER]\n");
@@ -50,5 +57,4 @@ int	fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_PERSONNALIZED);
 	}
-	return (ret);
 }

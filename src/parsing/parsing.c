@@ -124,7 +124,7 @@ int	append_line_nbr_content(t_line line, char **ptr_str_err_msg, int ret_val)
 		free(ptr_str_err_msg);
 		return (FAILURE_MALLOC);
 	}
-	tmp_line = ft_strjoin_free_first(tmp_line, " : ");
+	tmp_line = ft_strjoin_free_first(tmp_line, ": ");
 	if (tmp_line == NULL)
 		return (FAILURE_MALLOC);
 	tmp_line = ft_strjoin_free_first(tmp_line, line.content);

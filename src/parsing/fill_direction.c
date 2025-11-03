@@ -54,6 +54,8 @@ int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 	ret = fill_from_splitted_direction(ptr_to_ptr_direction,
 			splitted_direction, ptr_str_err_msg);
 	ft_split_free(splitted_direction);
+	if (ret != 0)
+		return (ret);
 	if (is_normed(**ptr_to_ptr_direction) == FALSE)
 	{
 		free_matrix(*ptr_to_ptr_direction);
@@ -114,15 +116,3 @@ static int	is_normed(t_vec3 vec)
 	else
 		return (TRUE);
 }
-
-/*
-	char	**splitted_coo;
-	int		ret;
-
-	splitted_coo = ft_split(coo, ",");
-	if (splitted_coo == NULL)
-		return (FAILURE_MALLOC);
-	ret = fill_from_splitted_coo(ptr_coo, splitted_coo);
-	free(splitted_coo);
-	return (ret);
-*/
