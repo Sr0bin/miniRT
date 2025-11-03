@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:29:01 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/31 12:47:29 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/03 16:01:39 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 
 int			fill_colors(t_rgba *ptr_rgba, const char *str,
 				char **ptr_str_err_msg);
+static int	colors_wrong_nb_args(char **ptr_str_err_msg, const char *color_str);
 static int	fill_from_splitted_colors(t_rgba *ptr_rgba,
 				char **splitted_colors, char **ptr_str_err_msg);
+int			get_color_i(char **splitted_colors, int color_i,
+				uint8_t *ptr_color, char **ptr_str_err_msg);
 
 int	fill_colors(t_rgba *ptr_rgba, const char *str, char **ptr_str_err_msg)
 {
@@ -32,28 +35,12 @@ int	fill_colors(t_rgba *ptr_rgba, const char *str, char **ptr_str_err_msg)
 		|| splitted_colors [2] == NULL || splitted_colors[3] != NULL)
 	{
 		ft_split_free(splitted_colors);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, str);
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "': ");
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
-				MSG_COLOR_WRONG_ARGUMENTS);
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		return (FAILURE_PARSE_PERSONNALIZED);
+		return (colors_wrong_nb_args(ptr_str_err_msg, str));
 	}
 	ret = fill_from_splitted_colors(ptr_rgba, splitted_colors, ptr_str_err_msg);
 	ft_split_free(splitted_colors);
 	return (ret);
 }
-
-int			get_color_i(char **splitted_colors, int color_i,
-				uint8_t *ptr_color, char **ptr_str_err_msg);
 
 static int	fill_from_splitted_colors(t_rgba *ptr_rgba,
 				char **splitted_colors, char **ptr_str_err_msg)
@@ -71,9 +58,6 @@ static int	fill_from_splitted_colors(t_rgba *ptr_rgba,
 		return (ret);
 	return (SUCCESS);
 }
-
-static int	init_msg_wrong_color_value(char **splitted_colors, int color_i,
-				char **ptr_str_err_msg);
 
 int	get_color_i(char **splitted_colors, int color_i,
 		uint8_t *ptr_color, char **ptr_str_err_msg)
@@ -96,18 +80,19 @@ int	get_color_i(char **splitted_colors, int color_i,
 	return (SUCCESS);
 }
 
-static int	init_msg_wrong_color_value(char **splitted_colors, int color_i,
-				char **ptr_str_err_msg)
+static int	colors_wrong_nb_args(char **ptr_str_err_msg, const char *color_str)
 {
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
-	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
-			splitted_colors[color_i]);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, color_str);
+	if (*ptr_str_err_msg == NULL)
+		return (FAILURE_MALLOC);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "': ");
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
-			"': color value must be between 0 and 255\n");
+			MSG_COLOR_WRONG_ARGUMENTS);
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
 	return (FAILURE_PARSE_PERSONNALIZED);

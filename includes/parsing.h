@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 11:20:08 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/03 16:11:13 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		parsing(int argc, char **argv, t_vector *ptr_objects,
 			char **ptr_str_err_msg);
 int		check_args(int argc, char **argv);
 int		get_file_content(char *filename, t_vector *ptr_file_content);
+int		parse_file_content(t_vector file_content, t_vector *ptr_objects,
+			char **ptr_str_err_msg);
 int		fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
 int		fill_obj_ambient(t_object *ptr_obj_tmp, char **elements,
@@ -44,6 +46,8 @@ int		fill_obj_cylinder(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
 int		fill_colors(t_rgba *ptr_rgba, const char *str,
 			char **ptr_str_err_msg);
+int		init_msg_wrong_color_value(char **splitted_colors, int color_i,
+			char **ptr_str_err_msg);
 int		fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo,
 			char **ptr_str_err_msg);
 int		fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
@@ -54,6 +58,7 @@ int		init_msg_atof_failed(char **ptr_str_err_msg,
 int		init_msg_atoi_failed(char **ptr_str_err_msg,
 			int ret, char *input);
 int		fail_add_msg(const char *msg, int ret, char **ptr_str_err_msg);
+int		is_normed(t_vec3 vec);
 
 # define MSG_AMBIENT_WRONG_ARGUMENTS "Ambient:\n\
 Wrong number of arguments.\n\

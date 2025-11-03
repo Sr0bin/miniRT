@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:41:53 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 19:01:51 by jweber           ###   ########.fr       */
+/*   Updated: 2025/10/28 19:01:35 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 static int	get_each_line(int fd, t_vector *ptr_file_content);
 static void	free_file_content(t_vector *ptr_vec);
+static int	gnl_failure(int ret);
 
 int	get_file_content(char *filename, t_vector *ptr_file_content)
 {
@@ -55,12 +56,7 @@ static int	get_each_line(int fd, t_vector *ptr_file_content)
 		line.line_nbr = line_i;
 		line.content = get_next_line(fd, &ret);
 		if (ret != SUCCESS)
-		{
-			if (ret == -1)
-				return (FAILURE_READ);
-			else if (ret == -3)
-				return (FAILURE_MALLOC);
-		}
+			return (gnl_failure(ret));
 		if (line.content != NULL
 			&& (line.content[0] != '\n' && line.content[1] != '\0'))
 		{
@@ -73,6 +69,14 @@ static int	get_each_line(int fd, t_vector *ptr_file_content)
 		line_i++;
 	}
 	return (SUCCESS);
+}
+
+static int	gnl_failure(int ret)
+{
+	if (ret == -3)
+		return (FAILURE_MALLOC);
+	else
+		return (FAILURE_READ);
 }
 
 static void	free_file_content(t_vector *ptr_vec)

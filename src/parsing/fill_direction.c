@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 13:49:54 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/27 18:53:19 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/03 16:09:00 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int			fill_direction(t_vec3 **ptr_to_ptr_direction,
 				const char *direction, char **ptr_str_err_msg);
 static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
 				char **splitted_direction, char **ptr_str_err_msg);
-static int	is_normed(t_vec3 vec);
+static int	direction_wrong_nb_args(char **ptr_str_err_msg,
+				const char *direction_str);
+static int	not_normed(char **ptr_str_err_msg, const char *direction_str);
 
 int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 		char **ptr_str_err_msg)
@@ -36,20 +38,7 @@ int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 		|| splitted_direction[2] == NULL || splitted_direction[3] != NULL)
 	{
 		ft_split_free(splitted_direction);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, direction);
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "': ");
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
-				MSG_DIRECTION_WRONG_ARGUMENTS);
-		if (ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		return (FAILURE_PARSE_PERSONNALIZED);
+		return (direction_wrong_nb_args(ptr_str_err_msg, direction));
 	}
 	ret = fill_from_splitted_direction(ptr_to_ptr_direction,
 			splitted_direction, ptr_str_err_msg);
@@ -59,22 +48,30 @@ int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 	if (is_normed(**ptr_to_ptr_direction) == FALSE)
 	{
 		free_matrix(*ptr_to_ptr_direction);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, direction);
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
-				"': value are not normalized ! (sqrt(x^2 + y^2 + z^2) "
-				"should equal 1)\n");
-		if (*ptr_str_err_msg == NULL)
-			return (FAILURE_MALLOC);
-		return (FAILURE_PARSE_PERSONNALIZED);
+		return (not_normed(ptr_str_err_msg, direction));
 	}
 	if (ret != 0)
 		return (ret);
 	return (SUCCESS);
+}
+
+static int	direction_wrong_nb_args(char **ptr_str_err_msg,
+				const char *direction_str)
+{
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
+	if (*ptr_str_err_msg == NULL)
+		return (FAILURE_MALLOC);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, direction_str);
+	if (*ptr_str_err_msg == NULL)
+		return (FAILURE_MALLOC);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "': ");
+	if (*ptr_str_err_msg == NULL)
+		return (FAILURE_MALLOC);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
+			MSG_DIRECTION_WRONG_ARGUMENTS);
+	if (ptr_str_err_msg == NULL)
+		return (FAILURE_MALLOC);
+	return (FAILURE_PARSE_PERSONNALIZED);
 }
 
 static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
@@ -103,16 +100,18 @@ static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
 	return (SUCCESS);
 }
 
-/* this function should:
- * return TRUE if a vec3/point is normalized
- * return FALSE if it it not normalized
-*/
-static int	is_normed(t_vec3 vec)
+static int	not_normed(char **ptr_str_err_msg, const char *direction_str)
 {
-	if (fabs(sqrt(vec.index[0][0] * vec.index[0][0]
-		+ vec.index[1][0] * vec.index[1][0]
-		+ vec.index[2][0] * vec.index[2][0])) - 1 > 1e-5)
-		return (FALSE);
-	else
-		return (TRUE);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
+	if (*ptr_str_err_msg == NULL)
+		return (FAILURE_MALLOC);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, direction_str);
+	if (*ptr_str_err_msg == NULL)
+		return (FAILURE_MALLOC);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
+			"': value are not normalized ! (sqrt(x^2 + y^2 + z^2) "
+			"should equal 1)\n");
+	if (*ptr_str_err_msg == NULL)
+		return (FAILURE_MALLOC);
+	return (FAILURE_PARSE_PERSONNALIZED);
 }
