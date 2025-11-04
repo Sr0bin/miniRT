@@ -43,6 +43,8 @@ int	print_error(int error, char *str)
 		ft_putstr_fd("Wrong number of Light object: configuration file can only have one light object\n", 2);
 	else if (error == FAILURE_PARSE_WRONG_NB_CAMERA)
 		ft_putstr_fd("Wrong number of Camera object: configuration file can only have one camera object\n", 2);
+	else if (error == FAILURE_MLX)
+		ft_putstr_fd("MLX failed to init itself\n", 2);
 	free(str);
 	return (FAILURE);
 }

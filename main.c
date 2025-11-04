@@ -6,17 +6,41 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:33:47 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/04 10:32:54 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vectors.h"
-#include "minirt.h"
+#include "graphics.h"
+#include "mlx_setup.h"
 #include "parsing.h"
 #include "printing.h"
 #include "vector.h"
 
 void	vector_test(void);
+
+int	main(int argc, char **argv)
+{
+	t_vector	objects;
+	int			ret;
+	char		*str_err_msg;
+	t_mlx		mlx;
+
+	//vector_test();
+	str_err_msg = NULL;
+	ret = parsing(argc, argv, &objects, &str_err_msg);
+	if (ret != 0)
+		return (print_error(ret, str_err_msg));
+	print_objects(objects);
+	ret = mlx_setup(&mlx);
+	if (ret != 0)
+	{
+		ft_vector_free(&objects);
+		return (ret);
+	}
+	mlx_free_all(&mlx);
+	ft_vector_free(&objects);
+}
 
 void	vector_test(void)
 {
@@ -35,17 +59,3 @@ void	vector_test(void)
 	print_vector(reflection_vector(*a, *b));
 }
 
-int	main(int argc, char **argv)
-{
-	t_vector	objects;
-	int			ret;
-	char		*str_err_msg;
-
-	//vector_test();
-	str_err_msg = NULL;
-	ret = parsing(argc, argv, &objects, &str_err_msg);
-	if (ret != 0)
-		return (print_error(ret, str_err_msg));
-	//print_objects(objects);
-	ft_vector_free(&objects);
-}

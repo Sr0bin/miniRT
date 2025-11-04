@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/03 16:33:31 by jweber           ###   ########.fr        #
+#    Updated: 2025/11/04 10:01:52 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,10 @@ SOURCES_DIR = src
 
 MATRIX_DIR = matrix
 MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c
+
+MLX_SETUP_DIR = mlx_setup
+MLX_SETUP_FILES = mlx_setup.c \
+				  mlx_free_all.c \
 
 PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
@@ -57,6 +61,7 @@ RAY_DIR = ray
 RAY_FILES = ray_core.c
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
+			   $(addprefix $(MLX_SETUP_DIR)/,$(MLX_SETUP_FILES)) \
 			   $(addprefix $(MATRIX_DIR)/,$(MATRIX_FILES)) \
 			   $(addprefix $(VECTOR_DIR)/,$(VECTOR_FILES)) \
 			   $(addprefix $(POINT_DIR)/,$(POINT_FILES)) \
@@ -86,7 +91,7 @@ DEPS = $(OBJECTS:%.o=%.d)
 
 #INCLUDES#######################
 
-HEADERS_DIR = includes/ src/libft/includes/ minilibx/
+HEADERS_DIR = includes/ $(LIBFT_DIR)/includes/ $(MINILIBX_DIR)/
 
 INCLUDES = $(addprefix -I , $(HEADERS_DIR))
 
@@ -133,10 +138,15 @@ $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(VECTOR_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(MLX_SETUP_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(MLX_SETUP_DIR):
+	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR):
 	mkdir -p $@

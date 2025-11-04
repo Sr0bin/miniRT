@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.h                                         :+:      :+:    :+:   */
+/*   mlx_setup.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 18:06:16 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 18:10:32 by jweber           ###   ########.fr       */
+/*   Created: 2025/11/04 10:02:21 by jweber            #+#    #+#             */
+/*   Updated: 2025/11/04 10:33:05 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHICS_H
-# define GRAPHICS_H
+#ifndef MLX_SETUP_H
+# define MLX_SETUP_H
 
-# include <stdlib.h>
+# include "graphics.h"
 
-#define WINDOW_HEIGHT 500
-#define WINDOW_WIDTH 800
-
-typedef struct s_mlx
-{
-	void	*mlx_ptr;
-	void	*mlx_window;
-	void	*mlx_img;
-	char	*mlx_img_data;
-	size_t	width;
-	size_t	height;
-	size_t	bbp;
-	int		endian;
-}	t_mlx;
+int		mlx_setup(t_mlx *ptr_mlx);
+void	mlx_free_all(t_mlx *ptr_mlx);
 
 #endif

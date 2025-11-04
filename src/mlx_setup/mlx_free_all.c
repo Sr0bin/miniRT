@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.h                                         :+:      :+:    :+:   */
+/*   mlx_free_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 18:06:16 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 18:10:32 by jweber           ###   ########.fr       */
+/*   Created: 2025/11/04 10:35:01 by jweber            #+#    #+#             */
+/*   Updated: 2025/11/04 10:35:55 by jweber           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHICS_H
-# define GRAPHICS_H
+#include "graphics.h"
+#include "mlx_setup.h"
+#include "mlx.h"
 
-# include <stdlib.h>
-
-#define WINDOW_HEIGHT 500
-#define WINDOW_WIDTH 800
-
-typedef struct s_mlx
+void	mlx_free_all(t_mlx *ptr_mlx)
 {
-	void	*mlx_ptr;
-	void	*mlx_window;
-	void	*mlx_img;
-	char	*mlx_img_data;
-	size_t	width;
-	size_t	height;
-	size_t	bbp;
-	int		endian;
-}	t_mlx;
-
-#endif
+	mlx_destroy_image(ptr_mlx->mlx_ptr, ptr_mlx->mlx_img);
+	mlx_destroy_window(ptr_mlx->mlx_ptr, ptr_mlx->mlx_window);
+	mlx_destroy_display(ptr_mlx->mlx_ptr);
+	free(ptr_mlx->mlx_ptr);
+}
