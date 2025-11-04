@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 12:41:06 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/28 16:00:54 by rorollin         ###   ########.fr       */
+/*   Created: 2025/10/28 16:03:52 by rorollin          #+#    #+#             */
+/*   Updated: 2025/10/28 19:35:26 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
-# include "minirt.h"
-
-typedef struct s_ray
+#include "intersection.h"
+#include "ray.h"
+t_point	*intersection_sphere(t_ray ray, t_sphere sphere)
 {
-	t_point	*origin;
-	t_vec3	*direction;
-	t_color	color;	
-}	t_ray;
+	t_point	*point;
 
-t_ray	create_ray(t_point *origin, t_vec3 *direction);
-#endif
 
+	return (point);
+
+}
+
+t_point	*intersection_check(t_ray ray, t_object obj)
+{
+	t_point	*point;
+
+	return (point);
+}
