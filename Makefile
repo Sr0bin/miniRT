@@ -59,6 +59,10 @@ POINT_FILES = point_core.c
 
 RAY_DIR = ray
 RAY_FILES = ray_core.c
+
+INTERSECTION_DIR = intersection
+INTERSECTION_FILES = intersection.c
+
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
 			   $(addprefix $(MLX_SETUP_DIR)/,$(MLX_SETUP_FILES)) \
@@ -66,6 +70,7 @@ SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(VECTOR_DIR)/,$(VECTOR_FILES)) \
 			   $(addprefix $(POINT_DIR)/,$(POINT_FILES)) \
 			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
+			   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES)) \
 
 
 #SOURCES_GRAPHIC = 
@@ -141,7 +146,8 @@ $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MLX_SETUP_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
-	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 
@@ -164,6 +170,9 @@ $(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR):
 	mkdir -p $@
 
 git_init:
