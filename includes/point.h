@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:36:37 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 19:09:50 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:12:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ t_point	*offset_point(t_point *point, t_vec3 *vector);
 t_vec3	*vector_from_point(t_point *point);
 t_vec3	*vector_points(t_point *a, t_point *b);
 void	*free_point(t_point *point);
+double	points_distance(t_point *a, t_point *b);
 #endif

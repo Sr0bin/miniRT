@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 19:01:12 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 19:09:50 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:12:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_vec3	*vector_from_point(t_point *point)
 {
 	t_vec3	*vector;
 
-	vector = create_vector(point_get_coord(*point, 0),
-						point_get_coord(*point, 1),
-						point_get_coord(*point, 2));
+	vector = create_vector(point_get_coord(*point, X),
+						point_get_coord(*point, Y),
+						point_get_coord(*point, Z));
 	return (vector);
 }
 
@@ -32,9 +32,17 @@ t_vec3	*vector_points(t_point *a, t_point *b)
 {
 	t_vec3	*vector;
 
-	vector = create_vector(point_get_coord(*b, 0) - point_get_coord(*a, 0),
-						point_get_coord(*b, 1) - point_get_coord(*a, 1),
-						point_get_coord(*b, 2) - point_get_coord(*a, 2));
+	vector = create_vector(point_get_coord(*b, X) - point_get_coord(*a, X),
+						point_get_coord(*b, Y) - point_get_coord(*a, Y),
+						point_get_coord(*b, Z) - point_get_coord(*a, Z));
 	return (vector);
 
+}
+
+double	points_distance(t_point *a, t_point *b)
+{
+	return (sqrt(
+		pow((point_get_coord(*b, X) - point_get_coord(*a, X)),2) + 
+		pow((point_get_coord(*b, Y) - point_get_coord(*a, Y)),2) + 
+		pow((point_get_coord(*b, Z) - point_get_coord(*a, Z)),2)));
 }

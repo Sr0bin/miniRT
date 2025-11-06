@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/04 10:01:52 by jweber           ###   ########.fr        #
+#    Updated: 2025/11/06 18:21:56 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ VECTOR_DIR = vector
 VECTOR_FILES = vector_core.c vector_operations.c
 
 POINT_DIR = point
-POINT_FILES = point_core.c
+POINT_FILES = point_core.c point_operations.c
 
 RAY_DIR = ray
 RAY_FILES = ray_core.c
