@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/04 10:32:54 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/24 18:01:07 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "parsing.h"
 #include "printing.h"
 #include "vector.h"
+#include "render.h"
 
 void	vector_test(void);
 
@@ -39,10 +40,10 @@ int	main(int argc, char **argv)
 		ft_vector_free(&objects);
 		return (ret);
 	}
-	init_rays(mlx, &array_ray);
-	mlx_free_all(&mlx);
-	render(objects, array_ray, mlx)
 	mlx_start(&mlx);
+	init_rays(&array_ray, 179.0);
+	// render(objects, array_ray, mlx)
+	mlx_free_all(&mlx);
 	ft_vector_free(&objects);
 }
 
