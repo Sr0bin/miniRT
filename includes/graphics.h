@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 18:06:16 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 18:10:32 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/24 18:00:10 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 
 # include <stdlib.h>
 
-#define WINDOW_HEIGHT 500
-#define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 5
+# define WINDOW_WIDTH 5
+# if WINDOW_HEIGHT <= 4
+#  error WINDOW_HEIGHT must be greater than 0
+# endif
+# if WINDOW_WIDTH <= 4
+#  error WINDOW_WIDTH must be greater than 0
+# endif
 
 typedef struct s_mlx
 {
@@ -26,7 +32,8 @@ typedef struct s_mlx
 	char	*mlx_img_data;
 	size_t	width;
 	size_t	height;
-	size_t	bbp;
+	int		line_size;
+	int		bpp;
 	int		endian;
 }	t_mlx;
 
