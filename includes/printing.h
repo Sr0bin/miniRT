@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 15:29:25 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 12:56:45 by rorollin         ###   ########.fr       */
+/*   Created: 2025/10/29 16:47:33 by jweber            #+#    #+#             */
+/*   Updated: 2025/10/29 16:47:41 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 # include "ray.h"
 # define DELIMITOR "#########################\n"
 
-int	print_error(int error);
+# include "ft_vectors.h"
+
+int		print_error(int error, char *str);
+int		print_objects(t_vector objects);
 void	print_delimitor(void);
 void	print_color(t_color color);
 void	print_ray(t_ray ray);

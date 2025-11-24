@@ -5,13 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 17:32:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 14:21:47 by rorollin         ###   ########.fr       */
+/*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
+/*   Updated: 2025/10/29 16:47:01 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
+
+# include "ft_vectors.h"
+# include "vector.h"
+# include "point.h"
+# include <stdint.h>
 
 # undef SUCCESS
 # undef FAILURE
@@ -26,27 +31,20 @@ enum e_status
 	FAILURE_OPEN,
 	FAILURE_MALLOC,
 	FAILURE_READ,
+	FAILURE_PARSE_PERSONNALIZED,
 	FAILURE_PARSE_EMPTY_LINE,
 	FAILURE_PARSE_WRONG_OBJ_IDENTIFIER,
-	FAILURE_PARSE_WRONG_OBJ_NB_OF_INFO,
-	FAILURE_PARSE_COLOR_WRONG_FORMAT,
-	FAILURE_PARSE_COLOR_ATOI_FAILED,
-	FAILURE_PARSE_COLOR_WRONG_VALUE,
-	FAILURE_PARSE_COO_WRONG_FORMAT,
-	FAILURE_PARSE_COO_ATOF_FAILED,
-	FAILURE_PARSE_COO_WRONG_VALUE,
-	FAILURE_PARSE_SINGLE_ATOF_FAILED,
-	FAILURE_PARSE_SINGLE_WRONG_VALUE,
-	FAILURE_PARSE_DIRECTION_WRONG_FORMAT,
-	FAILURE_PARSE_DIRECTION_ATOF_FAIL,
-	FAILURE_PARSE_DIRECTION_WRONG_VALUE,
+	FAILURE_PARSE_WRONG_NB_AMBIENT,
+	FAILURE_PARSE_WRONG_NB_LIGHT,
+	FAILURE_PARSE_WRONG_NB_CAMERA,
+	FAILURE_MLX,
 };
 
-
-# include "ft_vectors.h"
-# include "vector.h"
-# include "point.h"
-# include <stdint.h>
+enum e_bool
+{
+	FALSE = 0,
+	TRUE = 1,
+};
 
 typedef struct s_rgba
 {
@@ -93,7 +91,6 @@ typedef struct s_camera
 
 typedef struct s_light
 {
-	t_vec3	*ptr_direction;
 	double	brightness;
 	t_color	color;
 }			t_light;
@@ -137,13 +134,10 @@ typedef	struct s_object
 
 typedef struct s_tmp_struct
 {
-	t_vector	all;
-	t_vector	ambiant_lightings_arr;
-	t_vector	cameras_arr;
+	t_object	ambiant_lightings_arr;
+	t_object	cameras_arr;
 	t_vector	lights_arr;
-	t_vector	spheres_arr;
-	t_vector	planes_arr;
-	t_vector	cylinder_arr;
+	t_vector	objects;
 }	t_tmp_struct;
 
 #endif // !PARSING_H

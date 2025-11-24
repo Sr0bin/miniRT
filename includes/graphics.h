@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_single_double.c                               :+:      :+:    :+:   */
+/*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 13:27:32 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/24 16:28:54 by jweber           ###   ########.fr       */
+/*   Created: 2025/10/28 18:06:16 by jweber            #+#    #+#             */
+/*   Updated: 2025/10/28 18:10:32 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_standard.h"
-#include "ft_vectors.h"
-#include "minirt.h"
+#ifndef GRAPHICS_H
+# define GRAPHICS_H
 
-int	fill_single_double(double *ptr_double, const char *str);
+# include <stdlib.h>
 
-int	fill_single_double(double *ptr_double, const char *str)
+#define WINDOW_HEIGHT 500
+#define WINDOW_WIDTH 800
+
+typedef struct s_mlx
 {
-	int	ret;
+	void	*mlx_ptr;
+	void	*mlx_window;
+	void	*mlx_img;
+	char	*mlx_img_data;
+	size_t	width;
+	size_t	height;
+	size_t	bbp;
+	int		endian;
+}	t_mlx;
 
-	ret = ft_atof_safe(str, ptr_double);
-	if (ret != SUCCESS)
-		return (FAILURE_PARSE_SINGLE_ATOF_FAILED);
-	return (SUCCESS);
-}
+#endif
