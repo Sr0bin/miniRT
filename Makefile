@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/04 10:01:52 by jweber           ###   ########.fr        #
+#    Updated: 2025/11/25 12:47:33 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c
 MLX_SETUP_DIR = mlx_setup
 MLX_SETUP_FILES = mlx_setup.c \
 				  mlx_free_all.c \
+
 
 PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
@@ -63,6 +64,9 @@ RAY_FILES = ray_core.c
 INTERSECTION_DIR = intersection
 INTERSECTION_FILES = intersection.c
 
+SCN_OBJ_DIR = scene_objects
+SCN_OBJ_FILES = search_object.c scene_core.c
+
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
 			   $(addprefix $(MLX_SETUP_DIR)/,$(MLX_SETUP_FILES)) \
@@ -71,6 +75,7 @@ SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(POINT_DIR)/,$(POINT_FILES)) \
 			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
 			   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES)) \
+			   $(addprefix $(SCN_OBJ_DIR)/,$(SCN_OBJ_FILES)) \
 
 
 #SOURCES_GRAPHIC = 
@@ -147,7 +152,8 @@ $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)\
-	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(SCN_OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 
@@ -173,6 +179,9 @@ $(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(SCN_OBJ_DIR):
 	mkdir -p $@
 
 git_init:

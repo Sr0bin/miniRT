@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:33:14 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/25 12:53:14 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo,
 			char **ptr_str_err_msg);
 int		fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 			char **ptr_str_err_msg);
+// void	free_obj_vector(t_vector *ptr_vec);
 void	free_obj_vector(t_vector **ptr_to_ptr_vec, char **ptr_str_err_msg);
 int		init_msg_atof_failed(char **ptr_str_err_msg,
 			int ret, char *input);

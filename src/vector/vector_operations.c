@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:45:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/28 15:02:02 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/25 13:30:30 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ double	vector_norm(t_vec3 a)
 	sum = 0;
 	while (axis < a.row_size)
 	{
-		sum += vector_get_coord(a, axis) * vector_get_coord(a, axis);
+		sum += pow(vector_get_coord(a, axis), 2);
 		axis++;
 	}
 	return (sqrt(sum));
@@ -65,12 +65,7 @@ t_vec3	*reflection_vector(t_vec3 incident, t_vec3 normal)
 
 void	normalize_vector(t_vec3	*vector)
 {
-	double	norm;
-
-	norm = vector_norm(*vector);
-	vector_set_value(vector, X, vector_get_coord(*vector, X) / norm);
-	vector_set_value(vector, Y, vector_get_coord(*vector, Y) / norm);
-	vector_set_value(vector, Z, vector_get_coord(*vector, Z) / norm);
+	scalar_vector(vector, 1 / vector_norm(*vector));
 }
 
 t_vec3	*cross_product(t_vec3 a, t_vec3 b)

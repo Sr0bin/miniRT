@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:27:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:32:41 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/25 12:46:44 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ft_vectors.h"
 #include "minirt.h"
 #include "parsing.h"
+#include "object.h"
 
 int	parsing(int argc, char **argv, t_vector *ptr_objects,
 		char **ptr_str_err_msg)
@@ -40,3 +41,4 @@ int	parsing(int argc, char **argv, t_vector *ptr_objects,
 	}
 	return (SUCCESS);
 }
+
