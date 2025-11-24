@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	int			ret;
 	char		*str_err_msg;
 	t_mlx		mlx;
+	t_ray		*array_ray;
 
 	//vector_test();
 	str_err_msg = NULL;
@@ -38,7 +39,10 @@ int	main(int argc, char **argv)
 		ft_vector_free(&objects);
 		return (ret);
 	}
+	init_rays(mlx, &array_ray);
 	mlx_free_all(&mlx);
+	render(objects, array_ray, mlx)
+	mlx_start(&mlx);
 	ft_vector_free(&objects);
 }
 

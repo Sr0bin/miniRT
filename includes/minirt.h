@@ -134,13 +134,10 @@ typedef	struct s_object
 
 typedef struct s_tmp_struct
 {
-	t_vector	all;
-	t_vector	ambiant_lightings_arr;
-	t_vector	cameras_arr;
+	t_object	ambiant_lightings_arr;
+	t_object	cameras_arr;
 	t_vector	lights_arr;
-	t_vector	spheres_arr;
-	t_vector	planes_arr;
-	t_vector	cylinder_arr;
+	t_vector	objects;
 }	t_tmp_struct;
 
 #endif // !PARSING_H
