@@ -6,12 +6,13 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/24 18:01:07 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/25 10:19:10 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vectors.h"
 #include "graphics.h"
+#include "minirt.h"
 #include "mlx_setup.h"
 #include "parsing.h"
 #include "printing.h"
@@ -40,9 +41,9 @@ int	main(int argc, char **argv)
 		ft_vector_free(&objects);
 		return (ret);
 	}
+	ret = render(objects, &array_ray, mlx);
+	free_rays(&array_ray, WINDOW_WIDTH * WINDOW_HEIGHT);
 	mlx_start(&mlx);
-	init_rays(&array_ray, 179.0);
-	// render(objects, array_ray, mlx)
 	mlx_free_all(&mlx);
 	ft_vector_free(&objects);
 }

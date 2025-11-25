@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/24 17:47:51 by jweber           ###   ########.fr        #
+#    Updated: 2025/11/25 10:18:10 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c
 
 MLX_SETUP_DIR = mlx_setup
 MLX_SETUP_FILES = mlx_setup.c \
+				  mlx_start.c \
 				  mlx_free_all.c \
 
 PARSING_DIR = parsing
@@ -53,7 +54,9 @@ PRINTING_FILES = print_error.c \
 
 RENDER_DIR = render
 RENDER_FILES = init_rays.c \
+			   free_rays.c \
 			   fill_canvas_point_arrays_distance_variation.c \
+			   fill_canvas_point_arrays_angle_variation.c \
 
 VECTOR_DIR = vector
 VECTOR_FILES = vector_core.c vector_operations.c
