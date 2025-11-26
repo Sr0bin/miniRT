@@ -29,18 +29,13 @@ double	dot_product(t_vec3 a, t_vec3 b)
 
 double	vector_norm(t_vec3 a)
 {
-	t_axis	axis;
-	double	sum;
-
-	axis = X;
-	sum = 0;
-	while (axis < a.row_size)
-	{
-		sum += vector_get_coord(a, axis) * vector_get_coord(a, axis);
-		axis++;
-	}
-	return (sqrt(sum));
-
+	return (
+		sqrt(
+			vector_get_coord(a, X) * vector_get_coord(a, X)
+			+ vector_get_coord(a, Y) * vector_get_coord(a, Y)
+			+ vector_get_coord(a, Z) * vector_get_coord(a, Z)
+		)
+	);
 }
 
 /*

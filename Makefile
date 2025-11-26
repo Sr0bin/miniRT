@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/25 10:18:10 by jweber           ###   ########.fr        #
+#    Updated: 2025/11/26 11:22:11 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,10 +53,13 @@ PRINTING_FILES = print_error.c \
 				 print_objects.c \
 
 RENDER_DIR = render
-RENDER_FILES = init_rays.c \
+RENDER_FILES = render.c \
+			   prepare_rays.c \
 			   free_rays.c \
 			   fill_canvas_point_arrays_distance_variation.c \
 			   fill_canvas_point_arrays_angle_variation.c \
+			   normalize_canvas_point_array.c \
+			   rotate_canvas_point_array.c \
 
 VECTOR_DIR = vector
 VECTOR_FILES = vector_core.c vector_operations.c

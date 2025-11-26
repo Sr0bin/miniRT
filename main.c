@@ -12,7 +12,6 @@
 
 #include "ft_vectors.h"
 #include "graphics.h"
-#include "minirt.h"
 #include "mlx_setup.h"
 #include "parsing.h"
 #include "printing.h"
@@ -42,10 +41,11 @@ int	main(int argc, char **argv)
 		return (ret);
 	}
 	ret = render(objects, &array_ray, mlx);
-	free_rays(&array_ray, WINDOW_WIDTH * WINDOW_HEIGHT);
 	mlx_start(&mlx);
 	mlx_free_all(&mlx);
+	free_rays(&array_ray, WINDOW_WIDTH * WINDOW_HEIGHT);
 	ft_vector_free(&objects);
+	return (0);
 }
 
 void	vector_test(void)
@@ -64,4 +64,3 @@ void	vector_test(void)
 	print_vector(cross_product(*a, *b));
 	print_vector(reflection_vector(*a, *b));
 }
-

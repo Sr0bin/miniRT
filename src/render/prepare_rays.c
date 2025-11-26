@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_rays.c                                        :+:      :+:    :+:   */
+/*   prepare_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:46:08 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/25 10:12:04 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/26 11:21:38 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	create_rays(t_ray **ptr_array_rays, size_t nb_rays,
 static int	create_ray_content(t_ray *array_rays,
 				double (*canvas_point_arrays)[3], t_point **ptr_ptr_cam_point);
 
-int	init_rays(t_ray **ptr_array_rays, double horizontal_fov,
+int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
 		t_object camera)
 {
 	size_t	nb_rays;
@@ -36,7 +36,7 @@ int	init_rays(t_ray **ptr_array_rays, double horizontal_fov,
 		horizontal_fov);
 	normalize_canvas_point_array(canvas_point_arrays, nb_rays);
 	rotate_canvas_point_array(canvas_point_arrays, nb_rays,
-		camera.object_attr.camera.ptr_direction);
+		*camera.object_attr.camera.ptr_direction);
 	if (create_rays(ptr_array_rays, nb_rays,
 			canvas_point_arrays, &camera.ptr_coordinates) != SUCCESS)
 	{

@@ -14,8 +14,6 @@
 #include "graphics.h"
 #include "render.h"
 
-#define M_PI		3.14159265358979323846	/* pi */
-
 void	fill_canvas_point_arrays_angle_variation(
 			double (*canvas_point_arrays)[3], double horizontal_fov)
 {
