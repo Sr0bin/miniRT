@@ -6,19 +6,24 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/26 15:31:59 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:54:44 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "intersection.h"
 #include "ray.h"
 
-t_point	*intersection_sphere(t_ray ray, t_sphere sphere)
+double	discriminant(double a, double b, double c)
 {
-	t_point	*point;
+	return (pow(b, 2) - (4 * a * c));
+}
 
+double	intersection_sphere(t_ray ray, t_sphere sphere, t_point *intersection)
+{
+	double	distance;
 
-	return (point);
+	return (distance);
 
 }
 
