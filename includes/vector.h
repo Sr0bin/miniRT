@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:25:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/28 14:40:12 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:37:21 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 # define VECTOR_H
 # include "matrix.h"
 
-typedef struct s_matrix	t_vec3;
+typedef struct s_vec3
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_vec3;
 
 typedef enum e_axis
 {

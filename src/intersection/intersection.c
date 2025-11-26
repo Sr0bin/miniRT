@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/26 15:54:44 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:37:21 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ double	discriminant(double a, double b, double c)
 double	intersection_sphere(t_ray ray, t_sphere sphere, t_point *intersection)
 {
 	double	distance;
+	double	a;
+	double	b;
+	double	c;
+	static	t_vec3	*CO;
+
+	
+	if (CO)
+	a = dot_product(*ray.direction, *ray.direction);
+	
 
 	return (distance);
 
