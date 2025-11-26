@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:45:42 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/26 15:15:23 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:32:09 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	obj_fill_tangible_vec(t_vector *to_fill, t_vector *ptr_objects)
 	}
 	return (SUCCESS);
 }
+
 void	free_scene(t_scene *scene)
 {
 	free(scene->lights_arr.data);
@@ -60,6 +61,7 @@ static void	free_vector_scene(t_vector *vector)
 {
 	free(vector->data);
 }
+
 int	scene_init(t_scene *scene, t_vector *ptr_objects)
 {
 	int	ret;
