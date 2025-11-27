@@ -82,11 +82,8 @@ SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(VECTOR_DIR)/,$(VECTOR_FILES)) \
 			   $(addprefix $(POINT_DIR)/,$(POINT_FILES)) \
 			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
-<<<<<<< HEAD
 			   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES)) \
-=======
 			   $(addprefix $(RENDER_DIR)/, $(RENDER_FILES)) \
->>>>>>> jules
 
 
 #SOURCES_GRAPHIC = 
@@ -168,11 +165,8 @@ $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)\
-<<<<<<< HEAD
-	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)
-=======
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RENDER_DIR)
->>>>>>> jules
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 
