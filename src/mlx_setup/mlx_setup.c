@@ -6,24 +6,14 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 09:58:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/04 10:33:20 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/25 10:17:55 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vectors.h"
 #include "minirt.h"
 #include "graphics.h"
 #include "mlx_setup.h"
 #include "mlx.h"
-
-#define XK_MISCELLANY
-
-#include <X11/X.h>
-#include <X11/keysym.h>
-#include <X11/keysymdef.h>
-
-int	key_press(int key_code, void *params);
-int	key_release(int key_code, void *params);
 
 int	mlx_setup(t_mlx *ptr_mlx)
 {
@@ -46,26 +36,7 @@ int	mlx_setup(t_mlx *ptr_mlx)
 		free(ptr_mlx->mlx_ptr);
 		return (FAILURE_MLX);
 	}
-	mlx_hook(ptr_mlx->mlx_window, KeyPress, KeyPressMask,
-		&key_press, ptr_mlx);
-	mlx_hook(ptr_mlx->mlx_window, KeyRelease, KeyPressMask,
-		&key_release, ptr_mlx);
-	mlx_hook(ptr_mlx->mlx_window, DestroyNotify, NoEventMask,
-		&mlx_loop_end, ptr_mlx->mlx_ptr);
-	mlx_loop(ptr_mlx->mlx_ptr);
+	ptr_mlx->mlx_img_data = mlx_get_data_addr(ptr_mlx->mlx_img,
+			&ptr_mlx->bpp, &ptr_mlx->line_size, &ptr_mlx->endian);
 	return (SUCCESS);
-}
-
-int	key_press(int key_code, void *params)
-{
-	if (key_code == XK_Escape)
-		mlx_loop_end(((t_mlx *)params)->mlx_ptr);
-	return (0);
-}
-
-int	key_release(int key_code, void *params)
-{
-	(void) key_code;
-	(void) params;
-	return (0);
 }

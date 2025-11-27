@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printing.h                                         :+:      :+:    :+:   */
+/*   free_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 16:47:33 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 11:06:33 by jweber           ###   ########.fr       */
+/*   Created: 2025/11/25 10:11:32 by jweber            #+#    #+#             */
+/*   Updated: 2025/11/25 10:11:54 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTING_H
-# define PRINTING_H
-# include "ray.h"
-# define DELIMITOR "#########################\n"
+#include "ray.h"
+#include "render.h"
 
-# include "ft_vectors.h"
-# include "graphics.h"
+void	free_rays(t_ray **ptr_array_rays, size_t nb_rays)
+{
+	size_t	i;
 
-int		print_error(int error, char *str);
-int		print_objects(t_vector objects);
-void	print_delimitor(void);
-void	print_color(t_color color);
-void	print_ray(t_ray ray);
-void	print_vector(t_vec3 *vector);
-void	print_mlx_stats(t_mlx mlx);
-
-#endif
+	i = 0;
+	while (i < nb_rays)
+	{
+		if ((*ptr_array_rays)[i].direction != NULL)
+		{
+			free_matrix((*ptr_array_rays)[i].direction);
+			(*ptr_array_rays)[i].direction = NULL;
+		}
+		i++;
+	}
+	free(*ptr_array_rays);
+	*ptr_array_rays = NULL;
+	return ;
+}

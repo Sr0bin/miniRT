@@ -24,7 +24,7 @@ int	is_normed(t_vec3 vec)
 {
 	if (fabs(sqrt(vec.index[0][0] * vec.index[0][0]
 		+ vec.index[1][0] * vec.index[1][0]
-		+ vec.index[2][0] * vec.index[2][0])) - 1 > 1e-5)
+		+ vec.index[2][0] * vec.index[2][0]) - 1) > 1e-8)
 		return (FALSE);
 	else
 		return (TRUE);

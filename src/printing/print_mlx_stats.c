@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printing.h                                         :+:      :+:    :+:   */
+/*   print_mlx_stats.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 16:47:33 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 11:06:33 by jweber           ###   ########.fr       */
+/*   Created: 2025/11/27 11:05:43 by jweber            #+#    #+#             */
+/*   Updated: 2025/11/27 11:09:13 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTING_H
-# define PRINTING_H
-# include "ray.h"
-# define DELIMITOR "#########################\n"
+#include "graphics.h"
+#include "printing.h"
 
-# include "ft_vectors.h"
-# include "graphics.h"
-
-int		print_error(int error, char *str);
-int		print_objects(t_vector objects);
-void	print_delimitor(void);
-void	print_color(t_color color);
-void	print_ray(t_ray ray);
-void	print_vector(t_vec3 *vector);
-void	print_mlx_stats(t_mlx mlx);
-
-#endif
+void	print_mlx_stats(t_mlx mlx)
+{
+	printf("mlx.bpp = %i\n", mlx.bpp);
+	printf("mlx.line_size = %i\n", mlx.line_size);
+	printf("mlx.endian = %i\n", mlx.endian);
+	return ;
+}

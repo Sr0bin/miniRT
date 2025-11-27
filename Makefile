@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/06 18:21:56 by rorollin         ###   ########.fr        #
+#    Updated: 2025/11/27 17:58:01 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c
 
 MLX_SETUP_DIR = mlx_setup
 MLX_SETUP_FILES = mlx_setup.c \
+				  mlx_start.c \
 				  mlx_free_all.c \
 
 PARSING_DIR = parsing
@@ -50,6 +51,17 @@ PRINTING_DIR = printing
 PRINTING_FILES = print_error.c \
 				 print_types.c \
 				 print_objects.c \
+				 print_mlx_stats.c \
+
+RENDER_DIR = render
+RENDER_FILES = render.c \
+			   prepare_rays.c \
+			   free_rays.c \
+			   fill_canvas_point_arrays_distance_variation.c \
+			   fill_canvas_point_arrays_angle_variation.c \
+			   normalize_canvas_point_array.c \
+			   rotate_canvas_point_array.c \
+			   test_intersection_jules.c \
 
 VECTOR_DIR = vector
 VECTOR_FILES = vector_core.c vector_operations.c
@@ -70,7 +82,11 @@ SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(VECTOR_DIR)/,$(VECTOR_FILES)) \
 			   $(addprefix $(POINT_DIR)/,$(POINT_FILES)) \
 			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
+<<<<<<< HEAD
 			   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES)) \
+=======
+			   $(addprefix $(RENDER_DIR)/, $(RENDER_FILES)) \
+>>>>>>> jules
 
 
 #SOURCES_GRAPHIC = 
@@ -123,9 +139,14 @@ CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsig
 -Wcast-align -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
 -Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
 
+CFLAGS_DEBUG_NO_CASE_ALIGN = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wmissing-prototypes \
+-Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
+-Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
+-Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
+
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3
 
-CFLAGS = $(CFLAGS_DEBUG)
+CFLAGS = $(CFLAGS_DEBUG_NO_CASE_ALIGN)
 
 export CFLAGS
 
@@ -147,9 +168,16 @@ $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)\
+<<<<<<< HEAD
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)
+=======
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(RENDER_DIR)
+>>>>>>> jules
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(RENDER_DIR):
+	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(MLX_SETUP_DIR):
 	mkdir -p $@
