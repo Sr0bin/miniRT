@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/26 15:54:58 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:43:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 # include "minirt.h"
 # include "ray.h"
 double	discriminant(double a, double b, double c);
-double	intersection_sphere(t_ray ray, t_sphere sphere, t_point *intersection);
+double	intersection_sphere(t_ray ray, t_sphere sphere, t_point3 *intersection);
 #endif
 

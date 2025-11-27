@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/25 13:01:13 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:43:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef union u_object_attr
 typedef	struct s_object
 {
 	t_obj_type		type;
-	t_point			*ptr_coordinates;
+	t_point3			*ptr_coordinates;
 	t_object_attr	object_attr;
 }		t_object;
 

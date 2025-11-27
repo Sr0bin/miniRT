@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 13:49:54 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:09:00 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/27 18:31:23 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 		return (ret);
 	if (is_normed(**ptr_to_ptr_direction) == FALSE)
 	{
-		free_matrix(*ptr_to_ptr_direction);
+		// free_matrix(*ptr_to_ptr_direction);
 		return (not_normed(ptr_str_err_msg, direction));
 	}
 	if (ret != 0)
@@ -94,7 +94,7 @@ static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
 	if (ret != 0)
 		return (init_msg_atof_failed(ptr_str_err_msg, ret,
 				splitted_direction[2]));
-	*ptr_to_ptr_direction = create_vector(tmp_x, tmp_y, tmp_z);
+	*ptr_to_ptr_direction = vec3_alloc(tmp_x, tmp_y, tmp_z);
 	if (*ptr_to_ptr_direction == NULL)
 		return (FAILURE_MALLOC);
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:45:36 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/31 12:56:34 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/27 18:57:46 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	fill_obj_cylinder(t_object *ptr_obj_tmp, char **elem,
 			elem[2], ptr_str_err_msg);
 	if (ret != SUCCESS)
 	{
-		free_matrix(ptr_obj_tmp->ptr_coordinates);
+		free_point(ptr_obj_tmp->ptr_coordinates);
 		return (fail_add_msg("Cylinder coordinates:\n", ret, ptr_str_err_msg));
 	}
 	return (SUCCESS);

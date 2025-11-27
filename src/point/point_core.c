@@ -6,32 +6,29 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:36:26 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 19:09:50 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:57:14 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "point.h"
+#include "vector.h"
 
-t_point	*create_point(double x, double y, double z)
+t_point3	*create_point(double x, double y, double z)
 {
-	t_point	*point;
-
-	point = create_matrix(4, 1);
-	if (point == NULL)
-		return (NULL);
-	matrix_set_value(point, 0, 0, x);
-	matrix_set_value(point, 1, 0, y);
-	matrix_set_value(point, 2, 0, z);
-	matrix_set_value(point, 3, 0, 1);
-	return (point);
+	return (vec3_alloc(x, y, z));
 }
 
-double	point_get_coord(t_point point, size_t i)
+double	point3_get(t_point3 point, t_axis axis)
 {
-	return (matrix_get_coord(&point, i, 0));
+	return (vec3_get(point, axis));
 }
 
-void	*free_point(t_point *point)
+void	point3_set(t_point3 *point, t_axis axis, double value)
 {
-	return (free_matrix(point));
+	vec3_set(point, axis, value);
+}
+
+void	*free_point(t_point3 *point)
+{
+	return (free_vector(point));
 }

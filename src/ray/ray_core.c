@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:43:02 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/26 15:41:44 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:43:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ray_destroy(t_ray	**ray)
 	return (NULL);
 }
 
-t_ray	*create_ray(t_point *origin, t_vec3 *direction)
+t_ray	*create_ray(t_point3 *origin, t_vec3 *direction)
 {
 	t_ray *ray;
 

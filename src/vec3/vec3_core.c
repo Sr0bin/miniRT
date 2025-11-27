@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:25:34 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/26 16:51:07 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:50:01 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,37 @@
 
 #include <stdio.h>
 
-t_vec3	*create_vector(double x, double y, double z)
+t_vec3	*vec3_alloc(double x, double y, double z)
 {
 	t_vec3	*vector;
 
 	vector = malloc(1 * sizeof(t_vec3));
 	if (vector == NULL)
 		return (NULL);
-	vector_set_value(vector, X, x);
-	vector_set_value(vector, Y, y);
-	vector_set_value(vector, Z, z);
+	vec3_set(vector, X, x);
+	vec3_set(vector, Y, y);
+	vec3_set(vector, Z, z);
 	return (vector);
 }
 
-t_vec3	*vector_copy(t_vec3 vector)
+t_vec3	*vect3_copy(t_vec3 vector)
 {
-	return (create_vector(
-		vector_get_coord(vector, X),
-		vector_get_coord(vector, Y),
-		vector_get_coord(vector, Z)
+	return (vec3_alloc(
+		vec3_get(vector, X),
+		vec3_get(vector, Y),
+		vec3_get(vector, Z)
 	));
 }
-void	vector_set_value(t_vec3 *vector, t_axis axis, double value)
+t_vec3	vec3_set_all(double x, double y, double z)
+{
+	t_vec3	vector;
+
+	vec3_set(&vector, X, x);
+	vec3_set(&vector, Y, y);
+	vec3_set(&vector, Z, z);
+	return (vector);
+}
+void	vec3_set(t_vec3 *vector, t_axis axis, double value)
 {
 	if (axis == X)
 		vector->x = value;
@@ -47,7 +56,7 @@ void	vector_set_value(t_vec3 *vector, t_axis axis, double value)
 		vector->z = value;
 }
 
-double	vector_get_coord(t_vec3 vector, t_axis axis)
+double	vec3_get(t_vec3 vector, t_axis axis)
 {
 	if (axis == X)
 		return (vector.x);
@@ -58,10 +67,23 @@ double	vector_get_coord(t_vec3 vector, t_axis axis)
 	return (0);
 }
 
-void	scalar_vector(t_vec3 *vector, double scalar)
+t_vec3	vec3_scale(t_vec3 vector, double scalar)
 {
-	scalar_matrix(vector, scalar);
+	t_vec3	temp_vec;
+	t_axis	axis;
+	double	temp_value;
+
+	axis = X;
+	temp_value = 0;
+	while (axis < AXIS_COUNT)
+	{
+		temp_value = vec3_get(vector, axis) * scalar;
+		vec3_set(&temp_vec, axis, temp_value);
+		axis++;
+	}
+	return (temp_vec);
 }
+
 void	*free_vector(t_vec3 *vector)
 {
 	free(vector);

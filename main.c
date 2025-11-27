@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/26 15:11:34 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:30:52 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,14 @@ void	vector_test(void)
 	t_vec3	*a;
 	t_vec3	*b;
 
-	a = create_vector(-1, -1, 0);
-	b = create_vector(0, 1, 0);
+	a = vec3_alloc(-1, -1, 0);
+	b = vec3_alloc(0, 1, 0);
 	print_vector(a);
 	print_vector(b);
 	print_delimitor();
 	printf("Norm a:%f\n", vector_norm(*a));
 	print_delimitor();
 	printf("Dot Product :%f\n", dot_product(*a,*b));
-	print_vector(cross_product(*a, *b));
-	print_vector(reflection_vector(*a, *b));
+	// print_vector(cross_product(*a, *b));
+	// print_vector(reflection_vector(*a, *b));
 }
-
