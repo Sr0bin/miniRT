@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:24:58 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/24 18:06:03 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/27 14:51:16 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void	fill_canvas_point_arrays_distance_variation(
 		}
 		x_i++;
 	}
+	printf("%f\n", canvas_point_arrays[0][X]);
 	return ;
 }

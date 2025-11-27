@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/26 11:22:11 by jweber           ###   ########.fr        #
+#    Updated: 2025/11/27 14:16:29 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ PRINTING_DIR = printing
 PRINTING_FILES = print_error.c \
 				 print_types.c \
 				 print_objects.c \
+				 print_mlx_stats.c \
 
 RENDER_DIR = render
 RENDER_FILES = render.c \
@@ -60,6 +61,7 @@ RENDER_FILES = render.c \
 			   fill_canvas_point_arrays_angle_variation.c \
 			   normalize_canvas_point_array.c \
 			   rotate_canvas_point_array.c \
+			   test_intersection_jules.c \
 
 VECTOR_DIR = vector
 VECTOR_FILES = vector_core.c vector_operations.c
@@ -129,9 +131,14 @@ CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsig
 -Wcast-align -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
 -Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
 
+CFLAGS_DEBUG_NO_CASE_ALIGN = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wmissing-prototypes \
+-Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
+-Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
+-Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
+
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3
 
-CFLAGS = $(CFLAGS_DEBUG)
+CFLAGS = $(CFLAGS_DEBUG_NO_CASE_ALIGN)
 
 export CFLAGS
 

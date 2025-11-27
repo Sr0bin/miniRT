@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/25 10:19:10 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/27 16:37:27 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "printing.h"
 #include "vector.h"
 #include "render.h"
+#include <stdio.h>
 
 void	vector_test(void);
 
@@ -40,7 +41,35 @@ int	main(int argc, char **argv)
 		ft_vector_free(&objects);
 		return (ret);
 	}
+	/*
+	printf("WINDOW_WIDTH * WINDOW_HEIGHT * 4 = %i\n", WINDOW_HEIGHT * WINDOW_WIDTH * 4);
+	for (int i = 0; i < WINDOW_WIDTH * WINDOW_HEIGHT * 4;)
+	{
+		printf("pixel[%i + 0] = %i\n", i / 4, mlx.mlx_img_data[i + 0]);
+		printf("pixel[%i + 1] = %i\n", i / 4, mlx.mlx_img_data[i + 1]);
+		printf("pixel[%i + 2] = %i\n", i / 4, mlx.mlx_img_data[i + 2]);
+		printf("pixel[%i + 3] = %i\n", i / 4, mlx.mlx_img_data[i + 3]);
+		i += 4;
+	}
+	*/
+	print_mlx_stats(mlx);
+	fflush(stdout);
 	ret = render(objects, &array_ray, mlx);
+	if (ret != 0)
+	{
+		// do stuff
+	}
+	/*
+	for (int i = 0; i < WINDOW_WIDTH * WINDOW_HEIGHT * 4;)
+	{
+		printf("pixel[%i + 0] = %i\n", i / 4, mlx.mlx_img_data[i + 0]);
+		printf("pixel[%i + 1] = %i\n", i / 4, mlx.mlx_img_data[i + 1]);
+		printf("pixel[%i + 2] = %i\n", i / 4, mlx.mlx_img_data[i + 2]);
+		printf("pixel[%i + 3] = %i\n", i / 4, mlx.mlx_img_data[i + 3]);
+		i += 4;
+	}
+	*/
+	fflush(stdout);
 	mlx_start(&mlx);
 	mlx_free_all(&mlx);
 	free_rays(&array_ray, WINDOW_WIDTH * WINDOW_HEIGHT);

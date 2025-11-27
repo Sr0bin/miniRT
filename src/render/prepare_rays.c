@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:46:08 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/26 11:21:38 by jweber           ###   ########.fr       */
+/*   Updated: 2025/11/27 14:52:52 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
 		return (FAILURE_MALLOC);
 	fill_canvas_point_arrays_distance_variation(canvas_point_arrays,
 		horizontal_fov);
+	printf("%f\n", canvas_point_arrays[0][X]);
+	printf("%f\n", canvas_point_arrays[0][Y]);
+	printf("%f\n", canvas_point_arrays[0][Z]);
 	normalize_canvas_point_array(canvas_point_arrays, nb_rays);
+	printf("%f\n", canvas_point_arrays[0][X]);
 	rotate_canvas_point_array(canvas_point_arrays, nb_rays,
 		*camera.object_attr.camera.ptr_direction);
 	if (create_rays(ptr_array_rays, nb_rays,
@@ -89,5 +93,9 @@ static int	create_ray_content(t_ray *array_rays,
 		}
 		x_i++;
 	}
+	//printf("%f\n", canvas_point_arrays[0][X]);
+	//printf("%f\n", canvas_point_arrays[0][Y]);
+	//printf("%f\n", canvas_point_arrays[0][Z]);
+	//printf("%f\n", array_rays[0].direction->index[0][0]);
 	return (SUCCESS);
 }
