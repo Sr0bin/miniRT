@@ -97,12 +97,7 @@ void	set_pixel_color(t_ray ray, t_color *ptr_pixel, t_vector objects)
 		obj_i++;
 	}
 	if (intersect_data.ptr_obj != NULL)
-	{
-		//printf("DOES intersect an objects\n");
 		ptr_pixel->color = intersect_data.ptr_obj->object_attr.sphere.color.color;
-	}
-	else
-		//printf("do not intersect any objects\n");
 	return ;
 }
 
@@ -143,7 +138,7 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 		return (FALSE);
 	else if (fabs(delta - 0) < 1e-5)
 	{
-		double t = -b / 2 * a;
+		double t = (-b) / (2 * a);
 		if (t > 0)
 		{
 			intersect_point[X] = point_get_coord(*ray.start, X) + t * vector_get_coord(*ray.direction, X);
@@ -156,15 +151,15 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 	}
 	else
 	{
-		double t1 = (- b - sqrt(delta)) / 2 * a;
-		double t2 = (- b + sqrt(delta)) / 2 * a;
+		double t1 = (-b - sqrt(delta)) / (2 * a);
+		double t2 = (-b + sqrt(delta)) / (2 * a);
 		if (t1 > 0 && t2 > 0)
 		{
 			if (t1 < t2)
 			{
-				intersect_point[X] = point_get_coord(*ray.start, X) + t2 * vector_get_coord(*ray.direction, X);
-				intersect_point[Y] = point_get_coord(*ray.start, Y) + t2 * vector_get_coord(*ray.direction, Y);
-				intersect_point[Z] = point_get_coord(*ray.start, Z) + t2 * vector_get_coord(*ray.direction, Z);
+				intersect_point[X] = point_get_coord(*ray.start, X) + t1 * vector_get_coord(*ray.direction, X);
+				intersect_point[Y] = point_get_coord(*ray.start, Y) + t1 * vector_get_coord(*ray.direction, Y);
+				intersect_point[Z] = point_get_coord(*ray.start, Z) + t1 * vector_get_coord(*ray.direction, Z);
 				return (TRUE);
 			}
 			else
