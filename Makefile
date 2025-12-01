@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/27 14:16:29 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/01 18:10:58 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ PARSING_FILES = parsing.c \
 				fill_obj_light.c \
 				fill_obj_sphere.c \
 				fill_obj_plane.c \
+				fill_plane_coef.c \
 				fill_obj_cylinder.c \
 				fill_coordinates.c \
 				fill_colors.c \
@@ -61,6 +62,8 @@ RENDER_FILES = render.c \
 			   fill_canvas_point_arrays_angle_variation.c \
 			   normalize_canvas_point_array.c \
 			   rotate_canvas_point_array.c \
+			   rotate_double3.c \
+			   set_rotation_matrix.c \
 			   test_intersection_jules.c \
 
 VECTOR_DIR = vector
