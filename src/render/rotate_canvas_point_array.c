@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:38:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 15:52:59 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/01 17:59:46 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int	get_r2(double r2[3][3], t_vec3 cam_direction, double *ptr_angle);
 static int	get_r1(double r1[3][3], t_vec3 cam_direction, double *ptr_angle);
-static void	rotate_around(double (*canvas_point_array)[3],
+static void	rotate_all_points(double (*canvas_point_array)[3],
 				size_t nb_rays, double r[3][3]);
 
 /* this function will transform all canvas point array from the camera frame
@@ -73,7 +73,7 @@ void	rotate_canvas_point_array(double (*canvas_point_array)[3],
 			"frame (or 'temporary' frame)\n",
 			angle,
 			angle * 180 / M_PI);
-		rotate_around(canvas_point_array, nb_rays, r1);
+		rotate_all_points(canvas_point_array, nb_rays, r1);
 	}
 	else
 		printf("no rotation around 'z' of 'camera' frame\n"
@@ -85,7 +85,7 @@ void	rotate_canvas_point_array(double (*canvas_point_array)[3],
 			"of 'temporary' (or 'world' frame) frame\n",
 			angle,
 			angle * 180 / M_PI);
-		rotate_around(canvas_point_array, nb_rays, r2);
+		rotate_all_points(canvas_point_array, nb_rays, r2);
 	}
 	else
 		printf("no rotation around 'y' axis of 'temporary' frame\n");
@@ -123,16 +123,7 @@ static int	get_r1(double r1[3][3], t_vec3 cam_direction, double *ptr_angle)
 	if ((angle - 0) < 1e-5)
 		return (1);
 	*ptr_angle = angle;
-	/* to check but i think thats it ! */
-	r1[0][0] = cos(angle);
-	r1[0][1] = -sin(angle);
-	r1[0][2] = 0;
-	r1[1][0] = sin(angle);
-	r1[1][1] = cos(angle);
-	r1[1][2] = 0;
-	r1[2][0] = 0;
-	r1[2][1] = 0;
-	r1[2][2] = 1;
+	set_rotation_matrix(r1, angle, Z);
 	return (0);
 }
 
@@ -158,42 +149,19 @@ static int	get_r2(double r2[3][3], t_vec3 cam_direction, double *ptr_angle)
 	if (cam_direction_no_y[Z] > 0)
 		angle = 2 * M_PI - angle;
 	*ptr_angle = angle;
-	/* to check but i think its that ! */
-	r2[0][0] = cos(angle);
-	r2[0][1] = 0;
-	r2[0][2] = sin(angle);
-	r2[1][0] = 0;
-	r2[1][1] = 1;
-	r2[1][2] = 0;
-	r2[2][0] = -sin(angle);
-	r2[2][1] = 0;
-	r2[2][2] = cos(angle);
+	set_rotation_matrix(r2, angle, Y);
 	return (0);
 }
 
-static void	rotate_around(double (*canvas_point_array)[3],
+static void	rotate_all_points(double (*canvas_point_array)[3],
 				size_t nb_rays, double r[3][3])
 {
 	size_t	i;
-	double	tmp_x;
-	double	tmp_y;
-	double	tmp_z;
 
 	i = 0;
 	while (i < nb_rays)
 	{
-		tmp_x = r[0][0] * canvas_point_array[i][X]
-			+ r[0][1] * canvas_point_array[i][Y]
-			+ r[0][2] * canvas_point_array[i][Z];
-		tmp_y = r[1][0] * canvas_point_array[i][X]
-			+ r[1][1] * canvas_point_array[i][Y]
-			+ r[1][2] * canvas_point_array[i][Z];
-		tmp_z = r[2][0] * canvas_point_array[i][X]
-			+ r[2][1] * canvas_point_array[i][Y]
-			+ r[2][2] * canvas_point_array[i][Z];
-		canvas_point_array[i][X] = tmp_x;
-		canvas_point_array[i][Y] = tmp_y;
-		canvas_point_array[i][Z] = tmp_z;
+		rotate_double3(canvas_point_array[i], r);
 		i++;
 	}
 	return ;
