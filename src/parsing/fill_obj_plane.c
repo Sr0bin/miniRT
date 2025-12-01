@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:45:04 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 15:06:03 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/01 11:00:07 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	fill_obj_plane(t_object *ptr_obj_tmp, char **elements,
 		free_matrix(ptr_obj_tmp->ptr_coordinates);
 		return (fail_add_msg("Plane direction:\n", ret, ptr_str_err_msg));
 	}
+	//fill_plane_coef(&ptr_obj_tmp);
 	return (SUCCESS);
 }
 
