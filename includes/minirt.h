@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 18:43:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/01 22:00:51 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MINIRT_H
 
 # include "ft_vectors.h"
-# include "vector.h"
-# include "point.h"
+# include "vec3.h"
+# include "point3.h"
 # include <stdint.h>
 
 # undef SUCCESS

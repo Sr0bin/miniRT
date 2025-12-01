@@ -13,7 +13,7 @@
 #include "ft_io.h"
 #include "ft_vectors.h"
 #include "minirt.h"
-#include "vector.h"
+#include "vec3.h"
 
 int	print_objects(t_vector objects);
 int	print_ambient(t_object obj);

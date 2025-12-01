@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_core.c                                       :+:      :+:    :+:   */
+/*   point3_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 18:36:26 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/27 18:57:14 by rorollin         ###   ########.fr       */
+/*   Created: 2025/12/01 22:22:33 by rorollin          #+#    #+#             */
+/*   Updated: 2025/12/01 22:30:03 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "point.h"
-#include "vector.h"
+#include "point3.h"
+#include "vec3.h"
 
-t_point3	*create_point(double x, double y, double z)
+t_point3	*point3_alloc(double x, double y, double z)
 {
 	return (vec3_alloc(x, y, z));
 }
@@ -28,7 +28,7 @@ void	point3_set(t_point3 *point, t_axis axis, double value)
 	vec3_set(point, axis, value);
 }
 
-void	*free_point(t_point3 *point)
+void	*free_point3(t_point3 *point)
 {
-	return (free_vector(point));
+	return (free_vec3(point));
 }

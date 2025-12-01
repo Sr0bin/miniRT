@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_operations.c                                 :+:      :+:    :+:   */
+/*   point3_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 19:01:12 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/27 18:54:23 by rorollin         ###   ########.fr       */
+/*   Created: 2025/12/01 22:22:23 by rorollin          #+#    #+#             */
+/*   Updated: 2025/12/01 22:30:03 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "point.h"
+#include "point3.h"
+#include "vec3.h"
 
-t_point3	offset_point(t_point3 point, t_vec3 vector)
+t_point3	offset_point3(t_point3 point, t_vec3 vector)
 {
 	return (vec3_add(point, vector));
 }

@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_core.c                                         :+:      :+:    :+:   */
+/*   point4_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 12:43:02 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 04:04:24 by rorollin         ###   ########.fr       */
+/*   Created: 2025/12/01 22:29:02 by rorollin          #+#    #+#             */
+/*   Updated: 2025/12/02 04:02:24 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
-#include "ft_standard.h"
+#include "point4.h"
+#include "vec4.h"
 
-void	*ray_destroy(t_ray	**ray)
+t_point4	*point4_alloc(double x, double y, double z)
 {
-	if (ray == NULL || *ray == NULL)
-		return (NULL);
-	**ray = (t_ray) {0};
-	free(*ray);
-	*ray = NULL;
-	return (NULL);
+	return (vec4_alloc(x, y, z, 1));
 }
 
-t_ray	*create_ray(t_point3 *origin, t_vec3 *direction)
+double	point4_get(t_point4 point, t_axis axis)
 {
-	t_ray *ray;
-
-	ray = ft_calloc(sizeof(t_ray), 1);
-	ray->origin = origin;
-	ray->direction = direction;
-	ray->color.color = 0;
-	ray->last_hit = (t_point3) {0};
-	return (ray);
+	return (vec4_get(point, axis));
 }
 
+void	point4_set(t_point4 *point, t_axis axis, double value)
+{
+	vec4_set(point, axis, value);
+}
+
+void	*free_point4(t_point4 *point)
+{
+	return (free_vec4(point));
+}

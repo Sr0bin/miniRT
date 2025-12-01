@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 #include "object.h"
-#include "vector.h"
+#include "vec3.h"
 #include "parsing.h"
 
 int	obj_fill_type_vec(t_vector *to_fill, t_vector *ptr_objects, t_obj_type type)

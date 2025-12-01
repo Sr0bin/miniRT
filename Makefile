@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/11/27 18:30:37 by rorollin         ###   ########.fr        #
+#    Updated: 2025/12/01 22:28:26 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,11 @@ PRINTING_FILES = print_error.c \
 VEC3_DIR = vec3
 VEC3_FILES = vec3_core.c vec3_operations.c
 
-POINT_DIR = point
-POINT_FILES = point_core.c
+POINT3_DIR = point3
+POINT3_FILES = point3_core.c point3_operations.c
+
+POINT4_DIR = point4
+POINT4_FILES = point4_core.c point4_operations.c
 
 RAY_DIR = ray
 RAY_FILES = ray_core.c
@@ -67,12 +70,17 @@ INTERSECTION_FILES = intersection.c
 SCN_OBJ_DIR = scene_objects
 SCN_OBJ_FILES = search_object.c scene_core.c
 
+VEC4_DIR = vec4
+VEC4_FILES = vec4_core.c vec4_operations.c
+
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
 			   $(addprefix $(MLX_SETUP_DIR)/,$(MLX_SETUP_FILES)) \
 			   $(addprefix $(MATRIX_DIR)/,$(MATRIX_FILES)) \
 			   $(addprefix $(VEC3_DIR)/,$(VEC3_FILES)) \
-			   $(addprefix $(POINT_DIR)/,$(POINT_FILES)) \
+			   $(addprefix $(VEC4_DIR)/,$(VEC4_FILES)) \
+			   $(addprefix $(POINT3_DIR)/,$(POINT3_FILES)) \
+			   $(addprefix $(POINT4_DIR)/,$(POINT4_FILES)) \
 			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
 			   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES)) \
 			   $(addprefix $(SCN_OBJ_DIR)/,$(SCN_OBJ_FILES)) \
@@ -148,8 +156,10 @@ $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(VEC3_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(VEC4_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MLX_SETUP_DIR)\
-	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT3_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT4_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)\
@@ -172,7 +182,13 @@ $(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR):
 $(OBJ_DIR)/$(SOURCES_DIR)/$(VEC3_DIR):
 	mkdir -p $@
 
-$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR):
+$(OBJ_DIR)/$(SOURCES_DIR)/$(VEC4_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT3_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT4_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR):

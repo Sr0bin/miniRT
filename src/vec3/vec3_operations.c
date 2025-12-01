@@ -6,20 +6,20 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:45:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/27 18:52:32 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/01 22:14:48 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "vec3.h"
 
-double	dot_product(t_vec3 a, t_vec3 b)
+double	dot_product3(t_vec3 a, t_vec3 b)
 {
 	t_axis	axis;
 	double sum;
 
 	axis = X;
 	sum = 0;
-	while (axis < AXIS_COUNT)
+	while (axis < AXIS_THREE)
 	{
 		sum += vec3_get(a, axis) * vec3_get(b, axis);
 		axis++;
@@ -27,14 +27,14 @@ double	dot_product(t_vec3 a, t_vec3 b)
 	return (sum);
 }
 
-double	vector_norm(t_vec3 a)
+double	vector_norm3(t_vec3 a)
 {
 	t_axis	axis;
 	double	sum;
 
 	axis = X;
 	sum = 0;
-	while (axis < AXIS_COUNT)
+	while (axis < AXIS_THREE)
 	{
 		sum += pow(vec3_get(a, axis), 2);
 		axis++;
@@ -50,7 +50,7 @@ t_vec3	vec3_add(t_vec3 a, t_vec3 b)
 
 	axis = X;
 	temp_value = 0;
-	while (axis < AXIS_COUNT)
+	while (axis < AXIS_THREE)
 	{
 		temp_value = vec3_get(a, axis) + vec3_get(b, axis);
 		vec3_set(&temp_vec, axis, temp_value);
@@ -67,7 +67,7 @@ t_vec3	vec3_subtract(t_vec3 a, t_vec3 b)
 
 	axis = X;
 	temp_value = 0;
-	while (axis < AXIS_COUNT)
+	while (axis < AXIS_THREE)
 	{
 		temp_value = vec3_get(a, axis) - vec3_get(b, axis);
 		vec3_set(&temp_vec, axis, temp_value);
@@ -79,25 +79,25 @@ t_vec3	vec3_subtract(t_vec3 a, t_vec3 b)
 * WARNING : Normal needs to be normalized
 */
 
-t_vec3	reflection_vector(t_vec3 incident, t_vec3 normal)
+t_vec3	reflection_vector3(t_vec3 incident, t_vec3 normal)
 {
 	double	dot;
 	t_vec3	temp;
 	t_vec3	result;
 
 	temp = normal;
-	dot = dot_product(incident, normal);
+	dot = dot_product3(incident, normal);
 	temp = vec3_scale(temp, (-2 * dot));
 	result = vec3_add(incident, temp);
 	return (result);
 }
 
-void	normalize_vector(t_vec3	*vector)
+void	normalize_vec3(t_vec3	*vector)
 {
-	*vector = vec3_scale(*vector, 1 / vector_norm(*vector));
+	*vector = vec3_scale(*vector, 1 / vector_norm3(*vector));
 }
 
-t_vec3	cross_product(t_vec3 a, t_vec3 b)
+t_vec3	cross_product3(t_vec3 a, t_vec3 b)
 {
 	double x;
 	double y;

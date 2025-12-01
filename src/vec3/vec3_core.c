@@ -6,12 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:25:34 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/27 18:50:01 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/01 22:18:58 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
-#include "vector.h"
+#include "vec3.h"
 #include "minirt.h"
 
 #include <stdio.h>
@@ -75,7 +75,7 @@ t_vec3	vec3_scale(t_vec3 vector, double scalar)
 
 	axis = X;
 	temp_value = 0;
-	while (axis < AXIS_COUNT)
+	while (axis < AXIS_THREE)
 	{
 		temp_value = vec3_get(vector, axis) * scalar;
 		vec3_set(&temp_vec, axis, temp_value);
@@ -84,7 +84,7 @@ t_vec3	vec3_scale(t_vec3 vector, double scalar)
 	return (temp_vec);
 }
 
-void	*free_vector(t_vec3 *vector)
+void	*free_vec3(t_vec3 *vector)
 {
 	free(vector);
 	return (NULL);

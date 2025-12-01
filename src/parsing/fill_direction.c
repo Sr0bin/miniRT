@@ -15,7 +15,7 @@
 #include "matrix.h"
 #include "minirt.h"
 #include "parsing.h"
-#include "vector.h"
+#include "vec3.h"
 
 int			fill_direction(t_vec3 **ptr_to_ptr_direction,
 				const char *direction, char **ptr_str_err_msg);

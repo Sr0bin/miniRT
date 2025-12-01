@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:55:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 18:43:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 04:01:44 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	fill_from_splitted_coo(t_point3 **ptr_to_ptr_coo,
 	ret = ft_atof_safe(splitted_coo[2], &tmp_z);
 	if (ret != SUCCESS)
 		return (init_msg_atof_failed(ptr_str_err_msg, ret, splitted_coo[2]));
-	*ptr_to_ptr_coo = create_point(tmp_x, tmp_y, tmp_z);
+	*ptr_to_ptr_coo = point3_alloc(tmp_x, tmp_y, tmp_z);
 	if (*ptr_to_ptr_coo == NULL)
 		return (FAILURE_MALLOC);
 	return (SUCCESS);
