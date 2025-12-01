@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 16:47:01 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/01 10:57:04 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,10 @@ typedef struct s_plane
 {
 	t_vec3	*ptr_direction;
 	t_color	color;
+	double	a;
+	double	b;
+	double	c;
+	double	d;
 }	t_plane;
 
 typedef struct s_cylinder

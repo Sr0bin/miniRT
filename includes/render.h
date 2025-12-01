@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:56:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 12:27:54 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/01 13:41:58 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	normalize_canvas_point_array(double (*canvas_point_array)[3],
 			size_t	nb_rays);
 void	rotate_canvas_point_array(double (*canvas_point_array)[3],
 			size_t nb_rays, t_vec3 direction);
+void	rotate_double3(double arr[3], double r[3][3]);
+void	set_rotation_matrix(double rotation_matrix[3][3], double theta, int axis);
 
 int		test_intersection_jules(t_ray *ray_array, size_t nb_rays,
 			t_color *pixel_array, t_vector objects);

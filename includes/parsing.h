@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:33:14 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/01 18:11:46 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		fill_obj_sphere(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
 int		fill_obj_plane(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
+void	fill_plane_coef(t_object *ptr_plane);
 int		fill_obj_cylinder(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
 int		fill_colors(t_rgba *ptr_rgba, const char *str,
