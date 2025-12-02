@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:45:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 14:39:21 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 18:30:33 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ double	dot_product3(t_vec3 a, t_vec3 b)
 	return (sum);
 }
 
-double	vector_norm3(t_vec3 a)
+double	vec3_norm(t_vec3 a)
 {
 	t_axis	axis;
 	double	sum;
@@ -95,7 +95,7 @@ t_vec3	reflection_vector3(t_vec3 incident, t_vec3 normal)
 
 void	normalize_vec3(t_vec3	*vector)
 {
-	*vector = vec3_scale(*vector, 1 / vector_norm3(*vector));
+	*vector = vec3_scale(*vector, 1 / vec3_norm(*vector));
 }
 
 t_vec3	cross_product3(t_vec3 a, t_vec3 b)
@@ -113,4 +113,22 @@ t_vec3	cross_product3(t_vec3 a, t_vec3 b)
 		- (vec3_get(a, Y) * vec3_get(b, X));
 	vector = vec3_set_all(x, y, z);
 	return (vector);
+}
+
+t_vec3	vec3_mult_mat3(t_vec3 vec, t_mat3 mat)
+{
+	double	tmp_x;
+	double	tmp_y;
+	double	tmp_z;
+
+	tmp_x = (mat.index[X][X] * vec.x)
+		+ (mat.index[X][Y] * vec.y)
+		+ (mat.index[X][Z] * vec.z);
+	tmp_y = (mat.index[Y][X] * vec.x)
+		+ (mat.index[Y][Y] * vec.y)
+		+ (mat.index[Y][Z] * vec.z);
+	tmp_z = (mat.index[Z][X] * vec.x)
+		+ (mat.index[Z][Y] * vec.y)
+		+ (mat.index[Z][Z] * vec.z);
+	return(vec3_set_all(tmp_x, tmp_y, tmp_z));
 }

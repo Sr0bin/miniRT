@@ -104,7 +104,7 @@ void	vector_test(void)
 	print_vector(a);
 	print_vector(b);
 	print_delimitor();
-	printf("Norm a:%f\n", vector_norm3(*a));
+	printf("Norm a:%f\n", vec3_norm(*a));
 	print_delimitor();
 	printf("Dot Product :%f\n", dot_product3(*a,*b));
 	// print_vector(cross_product(*a, *b));

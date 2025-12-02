@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:06:18 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/01 22:02:27 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 18:30:37 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_normed(t_vec3 vec);
 */
 int	is_normed(t_vec3 vec)
 {
-	if (fabs(vector_norm3(vec)) - 1 > 1e-5)
+	if (fabs(vec3_norm(vec)) - 1 > 1e-5)
 		return (FALSE);
 	else
 		return (TRUE);

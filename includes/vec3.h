@@ -6,13 +6,13 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 21:59:06 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 14:14:20 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 18:30:37 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECT3_H
 # define VECT3_H
-# include "matrix.h"
+# include "mat3.h"
 
 typedef struct s_vec3
 {
@@ -40,7 +40,8 @@ double	dot_product3(t_vec3 a, t_vec3 b);
 t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_subtract(t_vec3 a, t_vec3 b);
 t_vec3	cross_product3(t_vec3 a, t_vec3 b);
-double	vector_norm3(t_vec3 a);
+double	vec3_norm(t_vec3 a);
 void	normalize_vec3(t_vec3	*vector);
 t_vec3	reflection_vector3(t_vec3 incident, t_vec3 normal);
+t_vec3	vec3_mult_mat3(t_vec3 vec, t_mat3 mat);
 #endif
