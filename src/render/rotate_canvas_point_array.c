@@ -6,13 +6,13 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:38:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/01 17:59:46 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 16:10:06 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "point.h"
+#include "point3.h"
 #include "render.h"
-#include "vector.h"
+#include "vec3.h"
 #include <math.h>
 
 static int	get_r2(double r2[3][3], t_vec3 cam_direction, double *ptr_angle);
@@ -117,9 +117,9 @@ static int	get_r1(double r1[3][3], t_vec3 cam_direction, double *ptr_angle)
 	double			norm_cam_direction;
 	double			angle;
 
-	norm_cam_direction = vector_norm(cam_direction);
+	norm_cam_direction = vector_norm3(cam_direction);
 	angle = (M_PI / 2.0)
-		- acos(vector_get_coord(cam_direction, Y) / norm_cam_direction);
+		- acos(vec3_get(cam_direction, Y) / norm_cam_direction);
 	if ((angle - 0) < 1e-5)
 		return (1);
 	*ptr_angle = angle;
@@ -137,9 +137,9 @@ static int	get_r2(double r2[3][3], t_vec3 cam_direction, double *ptr_angle)
 	double			norm_cam_direction_no_y;
 	double			angle;
 
-	cam_direction_no_y[X] = vector_get_coord(cam_direction, X);
+	cam_direction_no_y[X] = vec3_get(cam_direction, X);
 	cam_direction_no_y[Y] = 0;
-	cam_direction_no_y[Z] = vector_get_coord(cam_direction, Z);
+	cam_direction_no_y[Z] = vec3_get(cam_direction, Z);
 	norm_cam_direction_no_y = sqrt(cam_direction_no_y[X] * cam_direction_no_y[X]
 			+ cam_direction_no_y[Y] * cam_direction_no_y[Y]
 			+ cam_direction_no_y[Z] * cam_direction_no_y[Z]);

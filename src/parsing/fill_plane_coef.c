@@ -6,15 +6,15 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:55:02 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/01 18:31:34 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 16:05:46 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "parsing.h"
-#include "point.h"
+#include "point3.h"
 #include "render.h"
-#include "vector.h"
+#include "vec3.h"
 
 static void	set_x_y_z(double x[3], double y[3], double z[3]);
 static void	rotate_frame(double frame_x[3], double frame_y[3], 
@@ -32,18 +32,21 @@ void	fill_plane_coef(t_object *ptr_plane)
 	// step 1 : rotate x, y, z to aligne 'z' of both frame
 	set_x_y_z(frame_x, frame_y, frame_z);
 	rotate_frame(frame_x, frame_y, frame_z, ptr_plane);
-	point_A[X] = frame_x[X] + point_get_coord(*ptr_plane->ptr_coordinates, X);
-	point_A[Y] = frame_x[Y] + point_get_coord(*ptr_plane->ptr_coordinates, Y);
-	point_A[Z] = frame_x[Z] + point_get_coord(*ptr_plane->ptr_coordinates, Z);
-	point_B[X] = frame_y[X] + point_get_coord(*ptr_plane->ptr_coordinates, X);
-	point_B[Y] = frame_y[Y] + point_get_coord(*ptr_plane->ptr_coordinates, Y);
-	point_B[Z] = frame_y[Z] + point_get_coord(*ptr_plane->ptr_coordinates, Z);
+	point_A[X] = frame_x[X] + point3_get(*ptr_plane->ptr_coordinates, X);
+	point_A[Y] = frame_x[Y] + point3_get(*ptr_plane->ptr_coordinates, Y);
+	point_A[Z] = frame_x[Z] + point3_get(*ptr_plane->ptr_coordinates, Z);
+	point_B[X] = frame_y[X] + point3_get(*ptr_plane->ptr_coordinates, X);
+	point_B[Y] = frame_y[Y] + point3_get(*ptr_plane->ptr_coordinates, Y);
+	point_B[Z] = frame_y[Z] + point3_get(*ptr_plane->ptr_coordinates, Z);
 	calc_coef(ptr_plane, point_B, point_A);
 }
 
 void	calc_coef(t_object *ptr_plane, double point_A[3], double point_B[3])
 {
 
+	(void) ptr_plane;
+	(void) point_A;
+	(void) point_B;
 	return ;
 }
 
@@ -55,7 +58,7 @@ void	rotate_frame(double frame_x[3], double frame_y[3],
 	double	plane_direction_no_y[3];
 	double	norm_plane_direction_no_y;
 
-	theta = -(M_PI - acos(vector_get_coord(*ptr_plane->object_attr.plane.ptr_direction, Y)));
+	theta = -(M_PI - acos(vec3_get(*ptr_plane->object_attr.plane.ptr_direction, Y)));
 	if (fabs(theta - 0) < 1e-5)
 	{
 		set_rotation_matrix(r, theta, X);
@@ -63,13 +66,13 @@ void	rotate_frame(double frame_x[3], double frame_y[3],
 		rotate_double3(frame_y, r);
 		rotate_double3(frame_z, r);
 	}
-	plane_direction_no_y[X] = vector_get_coord(*ptr_plane->object_attr.plane.ptr_direction, X);
+	plane_direction_no_y[X] = vec3_get(*ptr_plane->object_attr.plane.ptr_direction, X);
 	plane_direction_no_y[Y] = 0;
-	plane_direction_no_y[Z] = vector_get_coord(*ptr_plane->object_attr.plane.ptr_direction, Z);
-	norm_plane_direction_no_y = vector_norm(*ptr_plane->object_attr.plane.ptr_direction);
+	plane_direction_no_y[Z] = vec3_get(*ptr_plane->object_attr.plane.ptr_direction, Z);
+	norm_plane_direction_no_y = vector_norm3(*ptr_plane->object_attr.plane.ptr_direction);
 	if (fabs(norm_plane_direction_no_y - 0) > 1e-5)
 	{
-		theta = acos(vector_get_coord(*ptr_plane->object_attr.plane.ptr_direction, Z) / norm_plane_direction_no_y);
+		theta = acos(vec3_get(*ptr_plane->object_attr.plane.ptr_direction, Z) / norm_plane_direction_no_y);
 		if (plane_direction_no_y[X] < 0)
 			theta = 2 * M_PI - theta;
 		set_rotation_matrix(r, theta, Y);

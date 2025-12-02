@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:11:32 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/25 10:11:54 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 16:09:10 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_rays(t_ray **ptr_array_rays, size_t nb_rays)
 	{
 		if ((*ptr_array_rays)[i].direction != NULL)
 		{
-			free_matrix((*ptr_array_rays)[i].direction);
+			free((*ptr_array_rays)[i].direction);
 			(*ptr_array_rays)[i].direction = NULL;
 		}
 		i++;

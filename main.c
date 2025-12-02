@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	int			ret;
 	char		*str_err_msg;
 	t_mlx		mlx;
-	// t_ray		*array_ray;
+	t_ray		*array_ray;
 
 	//vector_test();
 	str_err_msg = NULL;

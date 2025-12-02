@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:19:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 16:39:31 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 16:06:01 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minirt.h"
 #include "ray.h"
 #include "graphics.h"
-#include "vector.h"
+#include "vec3.h"
 #include "render.h"
 
 int	render(t_vector objects, t_ray **ptr_array_ray, t_mlx mlx)

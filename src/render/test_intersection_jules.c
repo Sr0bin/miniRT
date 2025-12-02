@@ -6,15 +6,15 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 10:53:13 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 16:38:57 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 16:12:47 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vectors.h"
 #include "minirt.h"
-#include "point.h"
+#include "point3.h"
 #include "ray.h"
-#include "vector.h"
+#include "vec3.h"
 #include "render.h"
 #include <math.h>
 
@@ -117,12 +117,12 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 	double f[3];
 	double delta;
 
-	d[X] = vector_get_coord(*ray.direction, X);
-	d[Y] = vector_get_coord(*ray.direction, Y);
-	d[Z] = vector_get_coord(*ray.direction, Z);
-	f[X] = point_get_coord(*ray.start, X) - point_get_coord(*sphere.ptr_coordinates, X);
-	f[Y] = point_get_coord(*ray.start, Y) - point_get_coord(*sphere.ptr_coordinates, Y);
-	f[Z] = point_get_coord(*ray.start, Z) - point_get_coord(*sphere.ptr_coordinates, Z);
+	d[X] = vec3_get(*ray.direction, X);
+	d[Y] = vec3_get(*ray.direction, Y);
+	d[Z] = vec3_get(*ray.direction, Z);
+	f[X] = point3_get(*ray.origin, X) - point3_get(*sphere.ptr_coordinates, X);
+	f[Y] = point3_get(*ray.origin, Y) - point3_get(*sphere.ptr_coordinates, Y);
+	f[Z] = point3_get(*ray.origin, Z) - point3_get(*sphere.ptr_coordinates, Z);
 	a = my_dot_product(d, d);
 	b = 2 * my_dot_product(d, f);
 	c = my_dot_product(f, f) - (sphere.object_attr.sphere.diameter / 2) * (sphere.object_attr.sphere.diameter / 2);
@@ -141,9 +141,9 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 		double t = (-b) / (2 * a);
 		if (t > 0)
 		{
-			intersect_point[X] = point_get_coord(*ray.start, X) + t * vector_get_coord(*ray.direction, X);
-			intersect_point[Y] = point_get_coord(*ray.start, Y) + t * vector_get_coord(*ray.direction, Y);
-			intersect_point[Z] = point_get_coord(*ray.start, Z) + t * vector_get_coord(*ray.direction, Z);
+			intersect_point[X] = point3_get(*ray.origin, X) + t * vec3_get(*ray.direction, X);
+			intersect_point[Y] = point3_get(*ray.origin, Y) + t * vec3_get(*ray.direction, Y);
+			intersect_point[Z] = point3_get(*ray.origin, Z) + t * vec3_get(*ray.direction, Z);
 			return (TRUE);
 		}
 		else
@@ -157,31 +157,31 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 		{
 			if (t1 < t2)
 			{
-				intersect_point[X] = point_get_coord(*ray.start, X) + t1 * vector_get_coord(*ray.direction, X);
-				intersect_point[Y] = point_get_coord(*ray.start, Y) + t1 * vector_get_coord(*ray.direction, Y);
-				intersect_point[Z] = point_get_coord(*ray.start, Z) + t1 * vector_get_coord(*ray.direction, Z);
+				intersect_point[X] = point3_get(*ray.origin, X) + t1 * vec3_get(*ray.direction, X);
+				intersect_point[Y] = point3_get(*ray.origin, Y) + t1 * vec3_get(*ray.direction, Y);
+				intersect_point[Z] = point3_get(*ray.origin, Z) + t1 * vec3_get(*ray.direction, Z);
 				return (TRUE);
 			}
 			else
 			{
-				intersect_point[X] = point_get_coord(*ray.start, X) + t2 * vector_get_coord(*ray.direction, X);
-				intersect_point[Y] = point_get_coord(*ray.start, Y) + t2 * vector_get_coord(*ray.direction, Y);
-				intersect_point[Z] = point_get_coord(*ray.start, Z) + t2 * vector_get_coord(*ray.direction, Z);
+				intersect_point[X] = point3_get(*ray.origin, X) + t2 * vec3_get(*ray.direction, X);
+				intersect_point[Y] = point3_get(*ray.origin, Y) + t2 * vec3_get(*ray.direction, Y);
+				intersect_point[Z] = point3_get(*ray.origin, Z) + t2 * vec3_get(*ray.direction, Z);
 				return (TRUE);
 			}
 		}
 		else if (t1 > 0)
 		{
-			intersect_point[X] = point_get_coord(*ray.start, X) + t1 * vector_get_coord(*ray.direction, X);
-			intersect_point[Y] = point_get_coord(*ray.start, Y) + t1 * vector_get_coord(*ray.direction, Y);
-			intersect_point[Z] = point_get_coord(*ray.start, Z) + t1 * vector_get_coord(*ray.direction, Z);
+			intersect_point[X] = point3_get(*ray.origin, X) + t1 * vec3_get(*ray.direction, X);
+			intersect_point[Y] = point3_get(*ray.origin, Y) + t1 * vec3_get(*ray.direction, Y);
+			intersect_point[Z] = point3_get(*ray.origin, Z) + t1 * vec3_get(*ray.direction, Z);
 			return (TRUE);
 		}
 		else
 		{
-			intersect_point[X] = point_get_coord(*ray.start, X) + t2 * vector_get_coord(*ray.direction, X);
-			intersect_point[Y] = point_get_coord(*ray.start, Y) + t2 * vector_get_coord(*ray.direction, Y);
-			intersect_point[Z] = point_get_coord(*ray.start, Z) + t2 * vector_get_coord(*ray.direction, Z);
+			intersect_point[X] = point3_get(*ray.origin, X) + t2 * vec3_get(*ray.direction, X);
+			intersect_point[Y] = point3_get(*ray.origin, Y) + t2 * vec3_get(*ray.direction, Y);
+			intersect_point[Z] = point3_get(*ray.origin, Z) + t2 * vec3_get(*ray.direction, Z);
 			return (TRUE);
 		}
 	}
