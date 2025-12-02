@@ -6,13 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 21:59:06 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/01 22:13:57 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:14:20 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECT3_H
 # define VECT3_H
-# define AXIS_THREE 4
 # include "matrix.h"
 
 typedef struct s_vec3

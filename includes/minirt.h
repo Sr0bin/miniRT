@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/01 22:00:51 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:14:20 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 # undef SUCCESS
 # undef FAILURE
+
+# define AXIS_THREE 4
+# define AXIS_FOUR 5
 
 enum e_status
 {

@@ -6,10 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:45:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/01 22:14:48 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:39:21 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "vec3.h"
 
 double	dot_product3(t_vec3 a, t_vec3 b)

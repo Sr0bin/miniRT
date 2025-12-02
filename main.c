@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 18:30:52 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:38:57 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "mlx_setup.h"
 #include "parsing.h"
 #include "printing.h"
-#include "vector.h"
+#include "vec3.h"
 #include "object.h"
 
 void	vector_test(void);
@@ -73,9 +73,9 @@ void	vector_test(void)
 	print_vector(a);
 	print_vector(b);
 	print_delimitor();
-	printf("Norm a:%f\n", vector_norm(*a));
+	printf("Norm a:%f\n", vector_norm3(*a));
 	print_delimitor();
-	printf("Dot Product :%f\n", dot_product(*a,*b));
+	printf("Dot Product :%f\n", dot_product3(*a,*b));
 	// print_vector(cross_product(*a, *b));
 	// print_vector(reflection_vector(*a, *b));
 }

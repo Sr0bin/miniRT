@@ -6,14 +6,13 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:00:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/01 22:15:28 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:14:30 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VEC4_H
 # define VEC4_H
 # include "minirt.h"
-# define AXIS_FOUR 5
 typedef struct s_vec4
 {
 	double	x;
