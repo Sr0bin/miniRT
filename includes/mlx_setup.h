@@ -17,5 +17,6 @@
 
 int		mlx_setup(t_mlx *ptr_mlx);
 void	mlx_free_all(t_mlx *ptr_mlx);
+void	mlx_start(t_mlx *ptr_mlx);
 
 #endif

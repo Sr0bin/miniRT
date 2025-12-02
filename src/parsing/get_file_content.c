@@ -58,7 +58,7 @@ static int	get_each_line(int fd, t_vector *ptr_file_content)
 		if (ret != SUCCESS)
 			return (gnl_failure(ret));
 		if (line.content != NULL
-			&& (line.content[0] != '\n' && line.content[1] != '\0'))
+			&& ((line.content[0] != '#') && (line.content[0] != '\n' && line.content[1] != '\0')))
 		{
 			ret = ft_vector_add_single(ptr_file_content, &line);
 			if (ret != SUCCESS)

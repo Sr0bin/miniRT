@@ -43,6 +43,7 @@ int		fill_obj_sphere(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
 int		fill_obj_plane(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
+void	fill_plane_coef(t_object *ptr_plane);
 int		fill_obj_cylinder(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
 int		fill_colors(t_rgba *ptr_rgba, const char *str,

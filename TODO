@@ -1,0 +1,2 @@
+- check that height, diameter, length, etc are positive value
+- implement get_next_occurence function to avoid 0,,,,,0,,,,0 being considered valid input for coordinates or color

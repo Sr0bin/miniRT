@@ -52,8 +52,8 @@ enum e_bool
 typedef struct s_rgba
 {
 	uint8_t	red;
-	uint8_t	green;
 	uint8_t	blue;
+	uint8_t	green;
 	uint8_t	alpha;
 }	t_rgba;
 
@@ -108,6 +108,10 @@ typedef struct s_plane
 {
 	t_vec3	*ptr_direction;
 	t_color	color;
+	double	a;
+	double	b;
+	double	c;
+	double	d;
 }	t_plane;
 
 typedef struct s_cylinder

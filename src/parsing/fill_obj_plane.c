@@ -43,6 +43,7 @@ int	fill_obj_plane(t_object *ptr_obj_tmp, char **elements,
 		free_point3(ptr_obj_tmp->ptr_coordinates);
 		return (fail_add_msg("Plane direction:\n", ret, ptr_str_err_msg));
 	}
+	//fill_plane_coef(&ptr_obj_tmp);
 	return (SUCCESS);
 }
 
