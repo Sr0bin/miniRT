@@ -101,8 +101,8 @@ void	vector_test(void)
 
 	a = vec3_alloc(-1, -1, 0);
 	b = vec3_alloc(0, 1, 0);
-	print_vector(a);
-	print_vector(b);
+	print_vector(*a);
+	print_vector(*b);
 	print_delimitor();
 	printf("Norm a:%f\n", vec3_norm(*a));
 	print_delimitor();

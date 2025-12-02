@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:33 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 11:06:33 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 19:07:56 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		print_objects(t_vector objects);
 void	print_delimitor(void);
 void	print_color(t_color color);
 void	print_ray(t_ray ray);
-void	print_vector(t_vec3 *vector);
+void	print_vector(t_vec3 vector);
 void	print_mlx_stats(t_mlx mlx);
 
 #endif

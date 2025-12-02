@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:46:08 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/02 18:35:32 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 19:07:13 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
 	t_point3	(*canvas_point_arrays);
 
 	nb_rays = WINDOW_WIDTH * WINDOW_HEIGHT;
-	canvas_point_arrays = malloc(nb_rays * sizeof(double [3]));
+	canvas_point_arrays = malloc(nb_rays * sizeof(t_point3));
 	if (canvas_point_arrays == NULL)
 		return (FAILURE_MALLOC);
 	fill_canvas_point_arrays_distance_variation(canvas_point_arrays,
@@ -82,13 +82,11 @@ static int	create_ray_content(t_ray *array_rays,
 			if (array_rays[y_i * WINDOW_WIDTH + x_i].origin == NULL)
 				return (FAILURE_MALLOC);
 			array_rays[y_i * WINDOW_WIDTH + x_i].direction
-				= vec3_alloc(
+				= vec3_set_all(
 					canvas_point_arrays[y_i * WINDOW_WIDTH + x_i].x,
 					canvas_point_arrays[y_i * WINDOW_WIDTH + x_i].y,
 					canvas_point_arrays[y_i * WINDOW_WIDTH + x_i].z
 					);
-			if (array_rays[y_i * WINDOW_WIDTH + x_i].direction == NULL)
-				return (FAILURE_MALLOC);
 			y_i++;
 		}
 		x_i++;

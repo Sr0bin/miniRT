@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:49:37 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/27 18:58:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 19:07:42 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_color(t_color color)
 		color.rgba.alpha);
 }
 
-void	print_vector(t_vec3 *vector)
+void	print_vector(t_vec3 vector)
 {
 	(void) vector;
 	print_delimitor();
