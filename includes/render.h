@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:56:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/02 18:28:44 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/03 20:10:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int		render(t_vector objects, t_ray **ptr_array_ray, t_mlx mlx);
 int		prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
-			t_object camera);
+			t_object *camera);
 void	free_rays(t_ray **ptr_array_rays, size_t nb_rays);
 void	fill_canvas_point_arrays_distance_variation(
 			t_point3 (*canvas_point_arrays), double horizontal_fov);

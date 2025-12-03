@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:19:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/02 16:06:01 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/03 20:10:50 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	render(t_vector objects, t_ray **ptr_array_ray, t_mlx mlx)
 	int	ret;
 
 	ret = prepare_rays(ptr_array_ray, 90,
-			((t_object *)objects.data)[OBJ_CAMERA]);
+			&((t_object *)objects.data)[OBJ_CAMERA]);
 	/*
 	for (int i = 0; i < WINDOW_WIDTH * WINDOW_HEIGHT; i++)
 	{
