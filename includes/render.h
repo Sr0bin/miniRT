@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:56:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/01 13:41:58 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/03 14:42:58 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,11 @@ void	set_rotation_matrix(double rotation_matrix[3][3], double theta, int axis);
 
 int		test_intersection_jules(t_ray *ray_array, size_t nb_rays,
 			t_color *pixel_array, t_vector objects);
+double	my_dot_product(double v1[3], double v2[3]);
+double	my_norm_from_vec(double v[3]);
+int		check_intersect_sphere(t_ray ray, t_object sphere,
+			double intersect_point[3]);
+int		check_intersect_plane(t_ray ray, t_object sphere,
+			double intersect_point[3]);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:07:47 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 13:31:38 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/03 14:56:33 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,11 @@ int	print_plane(t_object obj)
 		obj.object_attr.plane.ptr_direction->index[0][0],
 		obj.object_attr.plane.ptr_direction->index[1][0],
 		obj.object_attr.plane.ptr_direction->index[2][0]);
+	printf("plane coef : a = %f, b = %f, c = %f, d = %f\n",
+		obj.object_attr.plane.a,
+		obj.object_attr.plane.b,
+		obj.object_attr.plane.c,
+		obj.object_attr.plane.d);
 	printf("plane RGB : %i, %i, %i\n",
 		obj.object_attr.plane.color.rgba.red,
 		obj.object_attr.plane.color.rgba.green,

@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/12/01 18:10:58 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/03 14:43:17 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,10 @@ RENDER_FILES = render.c \
 			   rotate_double3.c \
 			   set_rotation_matrix.c \
 			   test_intersection_jules.c \
+			   check_intersect_plane.c \
+			   check_intersect_sphere.c \
+			   my_dot_product.c \
+			   my_norm_from_vec.c \
 
 VECTOR_DIR = vector
 VECTOR_FILES = vector_core.c vector_operations.c
