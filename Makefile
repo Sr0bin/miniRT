@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/12/03 14:43:17 by jweber           ###   ########.fr        #
+#    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
+#    Updated: 2025/12/03 17:15:00 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ MLX_SETUP_DIR = mlx_setup
 MLX_SETUP_FILES = mlx_setup.c \
 				  mlx_start.c \
 				  mlx_free_all.c \
+
 
 PARSING_DIR = parsing
 PARSING_FILES = parsing.c \
@@ -70,21 +71,46 @@ RENDER_FILES = render.c \
 			   my_dot_product.c \
 			   my_norm_from_vec.c \
 
-VECTOR_DIR = vector
-VECTOR_FILES = vector_core.c vector_operations.c
+VEC3_DIR = vec3
+VEC3_FILES = vec3_core.c vec3_operations.c
 
-POINT_DIR = point
-POINT_FILES = point_core.c
+VEC4_DIR = vec4
+VEC4_FILES = vec4_core.c vec4_operations.c
+
+POINT3_DIR = point3
+POINT3_FILES = point3_core.c point3_operations.c
+
+POINT4_DIR = point4
+POINT4_FILES = point4_core.c point4_operations.c
+
+MAT3_DIR = mat3
+MAT3_FILES = mat3_core.c mat3_elem.c mat3_operations.c
+
+MAT4_DIR = mat4
+MAT4_FILES = mat4_core.c mat4_elem.c mat4_operations.c
 
 RAY_DIR = ray
 RAY_FILES = ray_core.c
+
+INTERSECTION_DIR = intersection
+INTERSECTION_FILES = intersection.c
+
+SCN_OBJ_DIR = scene_objects
+SCN_OBJ_FILES = search_object.c scene_core.c
+
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
 			   $(addprefix $(MLX_SETUP_DIR)/,$(MLX_SETUP_FILES)) \
 			   $(addprefix $(MATRIX_DIR)/,$(MATRIX_FILES)) \
-			   $(addprefix $(VECTOR_DIR)/,$(VECTOR_FILES)) \
-			   $(addprefix $(POINT_DIR)/,$(POINT_FILES)) \
+			   $(addprefix $(VEC3_DIR)/,$(VEC3_FILES)) \
+			   $(addprefix $(VEC4_DIR)/,$(VEC4_FILES)) \
+			   $(addprefix $(POINT3_DIR)/,$(POINT3_FILES)) \
+			   $(addprefix $(POINT4_DIR)/,$(POINT4_FILES)) \
+			   $(addprefix $(MAT3_DIR)/,$(MAT3_FILES)) \
+			   $(addprefix $(MAT4_DIR)/,$(MAT4_FILES)) \
 			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
+			   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES)) \
+			   $(addprefix $(SCN_OBJ_DIR)/,$(SCN_OBJ_FILES)) \
 			   $(addprefix $(RENDER_DIR)/, $(RENDER_FILES)) \
 
 
@@ -162,11 +188,17 @@ $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 
 $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR)\
-	$(OBJ_DIR)/$(SOURCES_DIR)/$(VECTOR_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(VEC3_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(VEC4_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MLX_SETUP_DIR)\
-	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT3_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT4_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(MAT3_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(MAT4_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(SCN_OBJ_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RENDER_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -186,13 +218,31 @@ $(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR):
 $(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR):
 	mkdir -p $@
 
-$(OBJ_DIR)/$(SOURCES_DIR)/$(VECTOR_DIR):
+$(OBJ_DIR)/$(SOURCES_DIR)/$(VEC3_DIR):
 	mkdir -p $@
 
-$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT_DIR):
+$(OBJ_DIR)/$(SOURCES_DIR)/$(VEC4_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT3_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(POINT4_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(MAT3_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(MAT4_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(SCN_OBJ_DIR):
 	mkdir -p $@
 
 git_init:

@@ -15,7 +15,7 @@
 #include "render.h"
 
 void	fill_canvas_point_arrays_distance_variation(
-			double (*canvas_point_arrays)[3], double horizontal_fov)
+			t_point3 (*canvas_point_arrays), double horizontal_fov)
 {
 	size_t	x_i;
 	size_t	y_i;
@@ -32,15 +32,15 @@ void	fill_canvas_point_arrays_distance_variation(
 		y_i = 0;
 		while (y_i < WINDOW_HEIGHT)
 		{
-			canvas_point_arrays[y_i * WINDOW_WIDTH + x_i][0] = 1;
-			canvas_point_arrays[y_i * WINDOW_WIDTH + x_i][1]
+			(canvas_point_arrays[y_i * WINDOW_WIDTH + x_i]).x = 1;
+			canvas_point_arrays[y_i * WINDOW_WIDTH + x_i].y
 				= vertical_range / 2.0 - (double)y_i * step;
-			canvas_point_arrays[y_i * WINDOW_WIDTH + x_i][2]
+			canvas_point_arrays[y_i * WINDOW_WIDTH + x_i].z
 				= horizontal_range / 2.0 - (double)x_i * step;
 			y_i++;
 		}
 		x_i++;
 	}
-	printf("%f\n", canvas_point_arrays[0][X]);
+	printf("%f\n", canvas_point_arrays[0].x);
 	return ;
 }

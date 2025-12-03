@@ -6,11 +6,11 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:06:18 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:07:07 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 18:30:37 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "vec3.h"
 #include "minirt.h"
 #include <math.h>
 
@@ -22,9 +22,7 @@ int	is_normed(t_vec3 vec);
 */
 int	is_normed(t_vec3 vec)
 {
-	if (fabs(sqrt(vec.index[0][0] * vec.index[0][0]
-		+ vec.index[1][0] * vec.index[1][0]
-		+ vec.index[2][0] * vec.index[2][0]) - 1) > 1e-8)
+	if (fabs(vec3_norm(vec)) - 1 > 1e-5)
 		return (FALSE);
 	else
 		return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/01 18:11:46 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/03 15:23:17 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ int		fill_colors(t_rgba *ptr_rgba, const char *str,
 			char **ptr_str_err_msg);
 int		init_msg_wrong_color_value(char **splitted_colors, int color_i,
 			char **ptr_str_err_msg);
-int		fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo,
+int		fill_coordinates(t_point3 *ptr_to_ptr_coo, const char *coo,
 			char **ptr_str_err_msg);
-int		fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
+int		fill_direction(t_vec3 *ptr_to_ptr_direction, const char *direction,
 			char **ptr_str_err_msg);
+// void	free_obj_vector(t_vector *ptr_vec);
 void	free_obj_vector(t_vector **ptr_to_ptr_vec, char **ptr_str_err_msg);
 int		init_msg_atof_failed(char **ptr_str_err_msg,
 			int ret, char *input);

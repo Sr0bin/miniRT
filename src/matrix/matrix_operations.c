@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/28 15:01:09 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/01 21:22:05 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static double	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
 	size_t	k;
 	double	sum;
 
-	if (a == NULL | b == NULL)
+	if (a == NULL || b == NULL)
 		return (nan(""));
 	sum = 0;
 	k = 0;

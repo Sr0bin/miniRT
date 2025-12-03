@@ -6,13 +6,15 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:37:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/03 15:03:09 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/03 17:30:51 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "point3.h"
 #include "ray.h"
 #include "render.h"
+#include "vec3.h"
 #include <stdio.h>
 
 // function check if a ray intersect with a plane
@@ -22,40 +24,29 @@
 //			(for smaller 't' of course)
 //	- FALSE : if it does not intersect with a sphere
 int	check_intersect_plane(t_ray ray, t_object plane,
-		double intersect_point[3])
+		t_point3 *ptr_intersect_point)
 {
-	double	t;
-	double	denom;
-	double	d[3];
-	double	p[3];
+	double		t;
+	double		denom;
+	t_vec3		d;
+	t_point3	p;
 
-	d[X] = vector_get_coord(*ray.direction, X);
-	d[Y] = vector_get_coord(*ray.direction, Y);
-	d[Z] = vector_get_coord(*ray.direction, Z);
-	p[X] = point_get_coord(*ray.start, X);
-	p[Y] = point_get_coord(*ray.start, Y);
-	p[Z] = point_get_coord(*ray.start, Z);
-	// algo here 
-	/*
-	printf("plane.object_attr.plane.a = %f\n", plane.object_attr.plane.a);
-	printf("plane.object_attr.plane.b = %f\n", plane.object_attr.plane.b);
-	printf("plane.object_attr.plane.c = %f\n", plane.object_attr.plane.c);
-	printf("plane.object_attr.plane.d = %f\n", plane.object_attr.plane.d);
-	*/
-	denom = plane.object_attr.plane.a * d[X]
-		+ plane.object_attr.plane.b * d[Y]
-		+ plane.object_attr.plane.c * d[Z];
+	d = ray.direction;
+	p = *ray.origin;
+	denom = plane.object_attr.plane.a * d.x
+		+ plane.object_attr.plane.b * d.y
+		+ plane.object_attr.plane.c * d.z;
 	if (fabs(denom - 0) < 1e-5)
 		return (FALSE);
 	t = (-plane.object_attr.plane.d
-			- plane.object_attr.plane.a * p[X]
-			- plane.object_attr.plane.b * p[Y]
-			- plane.object_attr.plane.c * p[Z])
+			- plane.object_attr.plane.a * p.x
+			- plane.object_attr.plane.b * p.y
+			- plane.object_attr.plane.c * p.z)
 		/ denom;
 	if (t < 0)
 		return (FALSE);
-	intersect_point[X] = p[X] + t * d[X];
-	intersect_point[Y] = p[Y] + t * d[Y];
-	intersect_point[Z] = p[Z] + t * d[Z];
+	ptr_intersect_point->x = p.x + t * d.x;
+	ptr_intersect_point->y = p.z + t * d.y;
+	ptr_intersect_point->z = p.z + t * d.z;
 	return (TRUE);
 }

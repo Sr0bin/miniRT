@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/01 10:57:04 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/03 15:20:30 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 # define MINIRT_H
 
 # include "ft_vectors.h"
-# include "vector.h"
-# include "point.h"
+# include "vec3.h"
+# include "point3.h"
 # include <stdint.h>
 
 # undef SUCCESS
 # undef FAILURE
+
+# define AXIS_THREE 4
+# define AXIS_FOUR 5
 
 enum e_status
 {
@@ -67,7 +70,7 @@ typedef union u_color
  *	for the correct number of each type
  *	(only one allowed for each in mandatory part)
 */
-enum	e_obj_type
+typedef enum	e_obj_type
 {
 	OBJ_AMBIENT = 0,
 	OBJ_CAMERA = 1,
@@ -75,7 +78,7 @@ enum	e_obj_type
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER,
-};
+}	t_obj_type;
 
 typedef struct s_ambient
 {
@@ -85,7 +88,7 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
-	t_vec3	*ptr_direction;
+	t_vec3	ptr_direction;
 	double	fov;
 }			t_camera;
 
@@ -103,7 +106,7 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_vec3	*ptr_direction;
+	t_vec3	ptr_direction;
 	t_color	color;
 	double	a;
 	double	b;
@@ -113,7 +116,7 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_vec3	*ptr_direction;
+	t_vec3	ptr_direction;
 	double	diameter;
 	double	height;
 	t_color	color;
@@ -131,17 +134,17 @@ typedef union u_object_attr
 
 typedef	struct s_object
 {
-	int				type;
-	t_point			*ptr_coordinates;
+	t_obj_type		type;
+	t_point3		ptr_coordinates;
 	t_object_attr	object_attr;
-}			t_object;
+}		t_object;
 
-typedef struct s_tmp_struct
+typedef struct s_scene
 {
-	t_object	ambiant_lightings_arr;
-	t_object	cameras_arr;
+	t_object	ambient_light;
+	t_object	camera;
 	t_vector	lights_arr;
 	t_vector	objects;
-}	t_tmp_struct;
+}	t_scene;
 
 #endif // !PARSING_H

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 13:49:54 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:09:00 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/03 15:23:17 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include "matrix.h"
 #include "minirt.h"
 #include "parsing.h"
-#include "vector.h"
+#include "vec3.h"
 
-int			fill_direction(t_vec3 **ptr_to_ptr_direction,
-				const char *direction, char **ptr_str_err_msg);
-static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
+// int			fill_direction(t_vec3 *ptr_to_ptr_direction,
+// 				const char *direction, char **ptr_str_err_msg);
+static int	fill_from_splitted_direction(t_vec3 *ptr_to_ptr_direction,
 				char **splitted_direction, char **ptr_str_err_msg);
 static int	direction_wrong_nb_args(char **ptr_str_err_msg,
 				const char *direction_str);
 static int	not_normed(char **ptr_str_err_msg, const char *direction_str);
 
-int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
+int	fill_direction(t_vec3 *ptr_to_ptr_direction, const char *direction,
 		char **ptr_str_err_msg)
 {
 	char	**splitted_direction;
@@ -45,9 +45,9 @@ int	fill_direction(t_vec3 **ptr_to_ptr_direction, const char *direction,
 	ft_split_free(splitted_direction);
 	if (ret != 0)
 		return (ret);
-	if (is_normed(**ptr_to_ptr_direction) == FALSE)
+	if (is_normed(*ptr_to_ptr_direction) == FALSE)
 	{
-		free_matrix(*ptr_to_ptr_direction);
+		// free_matrix(*ptr_to_ptr_direction);
 		return (not_normed(ptr_str_err_msg, direction));
 	}
 	if (ret != 0)
@@ -74,7 +74,7 @@ static int	direction_wrong_nb_args(char **ptr_str_err_msg,
 	return (FAILURE_PARSE_PERSONNALIZED);
 }
 
-static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
+static int	fill_from_splitted_direction(t_vec3 *ptr_to_ptr_direction,
 				char **splitted_direction, char **ptr_str_err_msg)
 {
 	double	tmp_x;
@@ -94,9 +94,10 @@ static int	fill_from_splitted_direction(t_vec3 **ptr_to_ptr_direction,
 	if (ret != 0)
 		return (init_msg_atof_failed(ptr_str_err_msg, ret,
 				splitted_direction[2]));
-	*ptr_to_ptr_direction = create_vector(tmp_x, tmp_y, tmp_z);
-	if (*ptr_to_ptr_direction == NULL)
-		return (FAILURE_MALLOC);
+	*ptr_to_ptr_direction = vec3_set_all(tmp_x, tmp_y, tmp_z);
+	// *ptr_to_ptr_direction = vec3_alloc(tmp_x, tmp_y, tmp_z);
+	// if (*ptr_to_ptr_direction == NULL)
+	// 	return (FAILURE_MALLOC);
 	return (SUCCESS);
 }
 

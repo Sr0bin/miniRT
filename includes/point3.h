@@ -6,21 +6,24 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:36:37 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/23 19:09:50 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/03 14:48:52 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-# define POINT_H
+#ifndef POINT3_H
+# define POINT3_H
 # include "matrix.h"
-# include "vector.h"
+# include "vec3.h"
 
-typedef struct s_matrix	t_point;
+typedef t_vec3 t_point3;
 
-t_point	*create_point(double x, double y, double z);
-double	point_get_coord(t_point point, size_t i);
-t_point	*offset_point(t_point *point, t_vec3 *vector);
-t_vec3	*vector_from_point(t_point *point);
-t_vec3	*vector_points(t_point *a, t_point *b);
-void	*free_point(t_point *point);
+t_point3	*point3_alloc(double x, double y, double z);
+double	point3_get(t_point3 point, t_axis axis);
+void	point3_set(t_point3 *point, t_axis axis, double value);
+t_point3	point3_set_all(double x, double y, double z);
+t_point3	offset_point3(t_point3 point, t_vec3 vector);
+t_vec3	*vec3_alloc_from_point3(t_point3 *point);
+t_vec3	vect3_from_point3(t_point3 a, t_point3 b);
+double	points_distance(t_point3 a, t_point3 b);
+void	*free_point3(t_point3 *point);
 #endif

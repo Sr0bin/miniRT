@@ -5,21 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 10:53:13 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/03 14:50:18 by jweber           ###   ########.fr       */
+/*   Created: 2025/12/03 17:24:27 by jweber            #+#    #+#             */
+/*   Updated: 2025/12/03 17:33:28 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vectors.h"
 #include "minirt.h"
-#include "point.h"
+#include "point3.h"
 #include "ray.h"
-#include "vector.h"
+#include "vec3.h"
 #include "render.h"
 #include <math.h>
 
 int		check_intersect_sphere(t_ray ray, t_object sphere,
-			double intersect_point[3]);
+			t_point3 *intersect_point);
 void	set_pixel_color(t_ray ray, t_color *ptr_pixel, t_vector objects);
 
 int	test_intersection_jules(t_ray *ray_array, size_t nb_rays,
@@ -39,7 +39,7 @@ int	test_intersection_jules(t_ray *ray_array, size_t nb_rays,
 
 typedef struct s_intersect
 {
-	double		intersect_point[3];
+	t_point3		intersect_point;
 	t_object	*ptr_obj;
 	double		distance;
 } t_intersect;
@@ -50,42 +50,35 @@ void	set_pixel_color(t_ray ray, t_color *ptr_pixel, t_vector objects)
 	t_object	*obj_array;
 	t_intersect	intersect_data;
 	double		distance_tmp;
-	double		intersect_point_tmp[3];
+	t_point3	intersect_point_tmp;
 	int			ret;
 
 	obj_array = objects.data;
 	intersect_data.ptr_obj = NULL;
-	intersect_data.intersect_point[0] = 0;
-	intersect_data.intersect_point[1] = 0;
-	intersect_data.intersect_point[2] = 0;
+	intersect_data.intersect_point = point3_set_all(0,0,0);
 	intersect_data.distance = 0;
 	obj_i = 3;
 	while (obj_i < objects.size)
 	{
-		intersect_point_tmp[0] = 0;
-		intersect_point_tmp[1] = 0;
-		intersect_point_tmp[2] = 0;
+		intersect_point_tmp = point3_set_all(0,0,0);
 		if (obj_array[obj_i].type == OBJ_SPHERE)
 		{
-			ret = check_intersect_sphere(ray, obj_array[obj_i], intersect_point_tmp);
+			ret = check_intersect_sphere(ray, obj_array[obj_i], &intersect_point_tmp);
 			if (ret == TRUE)
 			{
 				if (intersect_data.ptr_obj == NULL)
 				{
-					intersect_data.intersect_point[0] = intersect_point_tmp[0];
-					intersect_data.intersect_point[1] = intersect_point_tmp[1];
-					intersect_data.intersect_point[2] = intersect_point_tmp[2];
-					intersect_data.distance = my_norm_from_vec(intersect_data.intersect_point);
+					intersect_data.intersect_point = intersect_point_tmp;
+					// intersect_data.distance = my_norm_from_vec(intersect_data.intersect_point);
+					intersect_data.distance = vec3_norm(intersect_data.intersect_point);
 					intersect_data.ptr_obj = obj_array + obj_i;
 				}
 				else
 				{
-					distance_tmp = my_norm_from_vec(intersect_point_tmp);
+					distance_tmp = vec3_norm(intersect_point_tmp);
 					if (distance_tmp < intersect_data.distance)
 					{
-						intersect_data.intersect_point[0] = intersect_point_tmp[0];
-						intersect_data.intersect_point[1] = intersect_point_tmp[1];
-						intersect_data.intersect_point[2] = intersect_point_tmp[2];
+						intersect_data.intersect_point = intersect_point_tmp;
 						intersect_data.distance = distance_tmp;
 						intersect_data.ptr_obj = obj_array + obj_i;
 					}
@@ -94,25 +87,21 @@ void	set_pixel_color(t_ray ray, t_color *ptr_pixel, t_vector objects)
 		}
 		else if (obj_array[obj_i].type == OBJ_PLANE)
 		{
-			ret = check_intersect_plane(ray, obj_array[obj_i], intersect_point_tmp);
+			ret = check_intersect_plane(ray, obj_array[obj_i], &intersect_point_tmp);
 			if (ret == TRUE)
 			{
 				if (intersect_data.ptr_obj == NULL)
 				{
-					intersect_data.intersect_point[0] = intersect_point_tmp[0];
-					intersect_data.intersect_point[1] = intersect_point_tmp[1];
-					intersect_data.intersect_point[2] = intersect_point_tmp[2];
-					intersect_data.distance = my_norm_from_vec(intersect_data.intersect_point);
+					intersect_data.intersect_point = intersect_point_tmp;
+					intersect_data.distance = vec3_norm(intersect_data.intersect_point);
 					intersect_data.ptr_obj = obj_array + obj_i;
 				}
 				else
 				{
-					distance_tmp = my_norm_from_vec(intersect_point_tmp);
+					distance_tmp = vec3_norm(intersect_point_tmp);
 					if (distance_tmp < intersect_data.distance)
 					{
-						intersect_data.intersect_point[0] = intersect_point_tmp[0];
-						intersect_data.intersect_point[1] = intersect_point_tmp[1];
-						intersect_data.intersect_point[2] = intersect_point_tmp[2];
+						intersect_data.intersect_point = intersect_point_tmp;
 						intersect_data.distance = distance_tmp;
 						intersect_data.ptr_obj = obj_array + obj_i;
 					}

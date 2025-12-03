@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:05:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/28 15:01:29 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:13:01 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b);
 
 void	print_matrix(t_matrix_const *matrix);
 #endif
-
