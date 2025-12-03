@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:41:38 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 11:20:20 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/01 22:30:03 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	fill_obj_camera(t_object *ptr_obj_tmp, char **elements,
 			elements[2], ptr_str_err_msg);
 	if (ret != 0)
 	{
-		free_matrix(ptr_obj_tmp->ptr_coordinates);
+		free_point3(ptr_obj_tmp->ptr_coordinates);
 		return (fail_add_msg("Camera direction:\n", ret, ptr_str_err_msg));
 	}
 	return (ret);

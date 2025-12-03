@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:55:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:03:58 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 04:01:44 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "minirt.h"
 #include "parsing.h"
 
-static int	fill_from_splitted_coo(t_point **ptr_to_ptr_coo,
+static int	fill_from_splitted_coo(t_point3 **ptr_to_ptr_coo,
 				char **splitted_coo, char **ptr_str_err_msg);
 static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 				const char *coo_str);
 
-int	fill_coordinates(t_point **ptr_to_ptr_coo, const char *coo,
+int	fill_coordinates(t_point3 **ptr_to_ptr_coo, const char *coo,
 		char **ptr_str_err_msg)
 {
 	char	**splitted_coo;
@@ -59,7 +59,7 @@ static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 	return (FAILURE_PARSE_PERSONNALIZED);
 }
 
-static int	fill_from_splitted_coo(t_point **ptr_to_ptr_coo,
+static int	fill_from_splitted_coo(t_point3 **ptr_to_ptr_coo,
 				char **splitted_coo, char **ptr_str_err_msg)
 {
 	double	tmp_x;
@@ -76,7 +76,7 @@ static int	fill_from_splitted_coo(t_point **ptr_to_ptr_coo,
 	ret = ft_atof_safe(splitted_coo[2], &tmp_z);
 	if (ret != SUCCESS)
 		return (init_msg_atof_failed(ptr_str_err_msg, ret, splitted_coo[2]));
-	*ptr_to_ptr_coo = create_point(tmp_x, tmp_y, tmp_z);
+	*ptr_to_ptr_coo = point3_alloc(tmp_x, tmp_y, tmp_z);
 	if (*ptr_to_ptr_coo == NULL)
 		return (FAILURE_MALLOC);
 	return (SUCCESS);

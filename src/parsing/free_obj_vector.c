@@ -6,13 +6,13 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:38:06 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 13:30:04 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/01 22:30:03 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "point.h"
-#include "vector.h"
+#include "point3.h"
+#include "vec3.h"
 
 void	free_obj_vector(t_vector *ptr_vec);
 
@@ -26,13 +26,13 @@ void	free_obj_vector(t_vector *ptr_vec)
 	{
 		ptr_obj = &((t_object *)ptr_vec->data)[i];
 		if (ptr_obj->type != OBJ_AMBIENT)
-			free_point(ptr_obj->ptr_coordinates);
+			free_point3(ptr_obj->ptr_coordinates);
 		if (ptr_obj->type == OBJ_PLANE)
-			free_vector(ptr_obj->object_attr.plane.ptr_direction);
+			free_vec3(ptr_obj->object_attr.plane.ptr_direction);
 		if (ptr_obj->type == OBJ_CAMERA)
-			free_vector(ptr_obj->object_attr.camera.ptr_direction);
+			free_vec3(ptr_obj->object_attr.camera.ptr_direction);
 		if (ptr_obj->type == OBJ_CYLINDER)
-			free_vector(ptr_obj->object_attr.cylinder.ptr_direction);
+			free_vec3(ptr_obj->object_attr.cylinder.ptr_direction);
 		i++;
 	}
 	free(ptr_vec->data);

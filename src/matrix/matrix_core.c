@@ -6,13 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/10/27 18:56:05 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/02 14:13:01 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 #include "ft_standard.h"
-
 
 /*
  * create_matrix: Creates a row*col size matrix, returns NULL in case of 
