@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:46:08 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/02 19:07:13 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:26:14 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include "render.h"
 
 static int	create_rays(t_ray **ptr_array_rays, size_t nb_rays,
-				t_point3 (*canvas_point_arrays), t_point3 **ptr_ptr_cam_point);
+				t_point3 (*canvas_point_arrays), t_point3 *ptr_ptr_cam_point);
 static int	create_ray_content(t_ray *array_rays,
-				t_point3 (*canvas_point_arrays), t_point3 **ptr_ptr_cam_point);
+				t_point3 (*canvas_point_arrays), t_point3 *ptr_ptr_cam_point);
 
 int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
 		t_object camera)
@@ -40,7 +40,7 @@ int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
 	normalize_canvas_point_array(canvas_point_arrays, nb_rays);
 	printf("%f\n", canvas_point_arrays->x);
 	rotate_canvas_point_array(canvas_point_arrays, nb_rays,
-		*camera.object_attr.camera.ptr_direction);
+		camera.object_attr.camera.ptr_direction);
 	if (create_rays(ptr_array_rays, nb_rays,
 			canvas_point_arrays, &camera.ptr_coordinates) != SUCCESS)
 	{
@@ -52,7 +52,7 @@ int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
 }
 
 static int	create_rays(t_ray **ptr_array_rays, size_t nb_rays,
-				t_point3 (*canvas_point_arrays), t_point3 **ptr_ptr_cam_point)
+				t_point3 (*canvas_point_arrays), t_point3 *ptr_ptr_cam_point)
 {
 	*ptr_array_rays = ft_calloc(nb_rays, sizeof(t_ray));
 	if (ptr_array_rays == NULL)
@@ -67,7 +67,7 @@ static int	create_rays(t_ray **ptr_array_rays, size_t nb_rays,
 }
 
 static int	create_ray_content(t_ray *array_rays,
-				t_point3 (*canvas_point_arrays), t_point3 **ptr_ptr_cam_point)
+				t_point3 (*canvas_point_arrays), t_point3 *ptr_ptr_cam_point)
 {
 	size_t	x_i;
 	size_t	y_i;
@@ -78,7 +78,7 @@ static int	create_ray_content(t_ray *array_rays,
 		y_i = 0;
 		while (y_i < WINDOW_HEIGHT)
 		{
-			array_rays[y_i * WINDOW_WIDTH + x_i].origin = *ptr_ptr_cam_point;
+			array_rays[y_i * WINDOW_WIDTH + x_i].origin = ptr_ptr_cam_point;
 			if (array_rays[y_i * WINDOW_WIDTH + x_i].origin == NULL)
 				return (FAILURE_MALLOC);
 			array_rays[y_i * WINDOW_WIDTH + x_i].direction

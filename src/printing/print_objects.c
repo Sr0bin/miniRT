@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:07:47 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/27 18:58:44 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:25:53 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ int	print_camera(t_object obj)
 {
 	printf("camera : \n");
 	printf("camera coordinates : %f, %f, %f\n",
-		point3_get(*obj.ptr_coordinates, X),
-		point3_get(*obj.ptr_coordinates, Y),
-		point3_get(*obj.ptr_coordinates, Z));
+		point3_get(obj.ptr_coordinates, X),
+		point3_get(obj.ptr_coordinates, Y),
+		point3_get(obj.ptr_coordinates, Z));
 	printf("camera direction : %f, %f, %f\n",
-		vec3_get(*obj.object_attr.camera.ptr_direction, X),
-		vec3_get(*obj.object_attr.camera.ptr_direction, Y),
-		vec3_get(*obj.object_attr.camera.ptr_direction, Z));
+		vec3_get(obj.object_attr.camera.ptr_direction, X),
+		vec3_get(obj.object_attr.camera.ptr_direction, Y),
+		vec3_get(obj.object_attr.camera.ptr_direction, Z));
 	printf("camera fov : %f\n", obj.object_attr.camera.fov);
 	printf("\n");
 	return (0);
@@ -81,9 +81,9 @@ int	print_light(t_object obj)
 {
 	printf("light\n");
 	printf("light coordinates : %f, %f, %f\n",
-		point3_get(*obj.ptr_coordinates, X),
-		point3_get(*obj.ptr_coordinates, Y),
-		point3_get(*obj.ptr_coordinates, Z));
+		point3_get(obj.ptr_coordinates, X),
+		point3_get(obj.ptr_coordinates, Y),
+		point3_get(obj.ptr_coordinates, Z));
 	printf("light brightness ration : %f\n",
 		obj.object_attr.light.brightness);
 	printf("light RGB : %i, %i, %i\n",
@@ -98,9 +98,9 @@ int	print_sphere(t_object obj)
 {
 	printf("sphere : \n");
 	printf("sphere coordinates : %f, %f, %f\n",
-		point3_get(*obj.ptr_coordinates, X),
-		point3_get(*obj.ptr_coordinates, Y),
-		point3_get(*obj.ptr_coordinates, Z));
+		point3_get(obj.ptr_coordinates, X),
+		point3_get(obj.ptr_coordinates, Y),
+		point3_get(obj.ptr_coordinates, Z));
 	printf("sphere diameter : %f\n", obj.object_attr.sphere.diameter);
 	printf("sphere RGB : %i, %i, %i\n",
 		obj.object_attr.sphere.color.rgba.red,
@@ -113,13 +113,13 @@ int	print_sphere(t_object obj)
 int	print_plane(t_object obj)
 {
 	printf("plane coordinates : %f, %f, %f\n",
-		point3_get(*obj.ptr_coordinates, X),
-		point3_get(*obj.ptr_coordinates, Y),
-		point3_get(*obj.ptr_coordinates, Z));
+		point3_get(obj.ptr_coordinates, X),
+		point3_get(obj.ptr_coordinates, Y),
+		point3_get(obj.ptr_coordinates, Z));
 	printf("plane direction : %f, %f, %f\n",
-		vec3_get(*obj.object_attr.plane.ptr_direction, X),
-		vec3_get(*obj.object_attr.plane.ptr_direction, Y),
-		vec3_get(*obj.object_attr.plane.ptr_direction, Z));
+		vec3_get(obj.object_attr.plane.ptr_direction, X),
+		vec3_get(obj.object_attr.plane.ptr_direction, Y),
+		vec3_get(obj.object_attr.plane.ptr_direction, Z));
 	printf("plane RGB : %i, %i, %i\n",
 		obj.object_attr.plane.color.rgba.red,
 		obj.object_attr.plane.color.rgba.green,
@@ -134,9 +134,9 @@ int	print_cylinder(t_object obj)
 	printf("cylinder diameter : %f\n", obj.object_attr.cylinder.diameter);
 	printf("cylinder height : %f\n", obj.object_attr.cylinder.height);
 	printf("cylinder direction : %f, %f, %f\n",
-		vec3_get(*obj.object_attr.cylinder.ptr_direction, X),
-		vec3_get(*obj.object_attr.cylinder.ptr_direction, Y),
-		vec3_get(*obj.object_attr.cylinder.ptr_direction, Z));
+		vec3_get(obj.object_attr.cylinder.ptr_direction, X),
+		vec3_get(obj.object_attr.cylinder.ptr_direction, Y),
+		vec3_get(obj.object_attr.cylinder.ptr_direction, Z));
 	printf("cylinder RGB : %i, %i, %i\n",
 		obj.object_attr.cylinder.color.rgba.red,
 		obj.object_attr.cylinder.color.rgba.green,

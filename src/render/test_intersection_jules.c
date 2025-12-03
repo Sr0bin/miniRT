@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 10:53:13 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/02 19:23:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:08:50 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 	double delta;
 
 	d = ray.direction;
-	f = vec3_subtract(*ray.origin, *sphere.ptr_coordinates);
+	f = vec3_subtract(*ray.origin, sphere.ptr_coordinates);
 	a = dot_product3(d, d);
 	b = 2 * dot_product3(d, f);
 	c = dot_product3(f, f) - (sphere.object_attr.sphere.diameter / 2) * (sphere.object_attr.sphere.diameter / 2);
