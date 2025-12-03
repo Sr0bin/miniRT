@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 13:07:47 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/03 15:25:53 by rorollin         ###   ########.fr       */
+/*   Created: 2025/12/03 17:23:49 by jweber            #+#    #+#             */
+/*   Updated: 2025/12/03 17:23:54 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,11 @@ int	print_plane(t_object obj)
 		vec3_get(obj.object_attr.plane.ptr_direction, X),
 		vec3_get(obj.object_attr.plane.ptr_direction, Y),
 		vec3_get(obj.object_attr.plane.ptr_direction, Z));
+	printf("plane coef : a = %f, b = %f, c = %f, d = %f\n",
+		obj.object_attr.plane.a,
+		obj.object_attr.plane.b,
+		obj.object_attr.plane.c,
+		obj.object_attr.plane.d);
 	printf("plane RGB : %i, %i, %i\n",
 		obj.object_attr.plane.color.rgba.red,
 		obj.object_attr.plane.color.rgba.green,

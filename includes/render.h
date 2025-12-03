@@ -35,5 +35,11 @@ void	set_rotation_matrix(t_mat3 *rotation_matrix, double theta, int axis);
 
 int		test_intersection_jules(t_ray *ray_array, size_t nb_rays,
 			t_color *pixel_array, t_vector objects);
+double	my_dot_product(double v1[3], double v2[3]);
+double	my_norm_from_vec(double v[3]);
+int		check_intersect_sphere(t_ray ray, t_object sphere,
+			t_point3 *intersect_point);
+int		check_intersect_plane(t_ray ray, t_object plane,
+			t_point3 *ptr_intersect_point);
 
 #endif

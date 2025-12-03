@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/29 16:46:22 by jweber            #+#    #+#              #
-#    Updated: 2025/12/02 16:01:29 by rorollin         ###   ########lyon.fr    #
+#    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
+#    Updated: 2025/12/03 17:15:00 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,10 @@ RENDER_FILES = render.c \
 			   rotate_double3.c \
 			   set_rotation_matrix.c \
 			   test_intersection_jules.c \
+			   check_intersect_plane.c \
+			   check_intersect_sphere.c \
+			   my_dot_product.c \
+			   my_norm_from_vec.c \
 
 VEC3_DIR = vec3
 VEC3_FILES = vec3_core.c vec3_operations.c
