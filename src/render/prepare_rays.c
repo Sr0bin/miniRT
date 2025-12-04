@@ -23,10 +23,10 @@ static int	create_ray_content(t_ray *array_rays,
 				t_point3 (*canvas_point_arrays), t_point3 *ptr_ptr_cam_point);
 
 int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
-		t_object *camera)
+		t_object *ptr_camera)
 {
-	size_t	nb_rays;
-	t_point3	(*canvas_point_arrays);
+	size_t		nb_rays;
+	t_point3	*canvas_point_arrays;
 
 	nb_rays = WINDOW_WIDTH * WINDOW_HEIGHT;
 	canvas_point_arrays = malloc(nb_rays * sizeof(t_point3));
@@ -40,9 +40,9 @@ int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
 	normalize_canvas_point_array(canvas_point_arrays, nb_rays);
 	printf("%f\n", canvas_point_arrays->x);
 	rotate_canvas_point_array(canvas_point_arrays, nb_rays,
-		camera->object_attr.camera.ptr_direction);
+		ptr_camera->object_attr.camera.ptr_direction);
 	if (create_rays(ptr_array_rays, nb_rays,
-			canvas_point_arrays, &camera->ptr_coordinates) != SUCCESS)
+			canvas_point_arrays, &ptr_camera->ptr_coordinates) != SUCCESS)
 	{
 		free(canvas_point_arrays);
 		return (FAILURE_MALLOC);
@@ -82,11 +82,7 @@ static int	create_ray_content(t_ray *array_rays,
 			if (array_rays[y_i * WINDOW_WIDTH + x_i].origin == NULL)
 				return (FAILURE_MALLOC);
 			array_rays[y_i * WINDOW_WIDTH + x_i].direction
-				= vec3_set_all(
-					canvas_point_arrays[y_i * WINDOW_WIDTH + x_i].x,
-					canvas_point_arrays[y_i * WINDOW_WIDTH + x_i].y,
-					canvas_point_arrays[y_i * WINDOW_WIDTH + x_i].z
-					);
+				= canvas_point_arrays[y_i * WINDOW_WIDTH + x_i];
 			y_i++;
 		}
 		x_i++;
