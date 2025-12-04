@@ -20,28 +20,21 @@
 //			(for smaller 't' of course)
 //	- FALSE : if it does not intersect with a sphere
 int	check_intersect_sphere(t_ray ray, t_object sphere,
-		t_point3 *intersect_point)
+		t_intersect *ptr_intersect_data_tmp)
 {
-	double a;
-	double b;
-	double c;
-	t_vec3 d;
-	t_vec3 f;
-	double delta;
+	double	a;
+	double	b;
+	double	c;
+	t_vec3	d;
+	t_vec3	f;
+	double	delta;
 
 	d = ray.direction;
-	f = vec3_subtract(*ray.origin, sphere.ptr_coordinates);
+	f = vec3_subtract(*ray.origin, sphere.coordinates);
 	a = dot_product3(d, d);
 	b = 2 * dot_product3(d, f);
 	c = dot_product3(f, f) - (sphere.object_attr.sphere.diameter / 2) * (sphere.object_attr.sphere.diameter / 2);
 	delta = b * b - 4 * a * c;
-	/*
-	printf("\n");
-	printf("a = %f\n", a);
-	printf("b = %f\n", b);
-	printf("c = %f\n", c);
-	printf("delta = %f\n", delta);
-	*/
 	if (delta < 0)
 		return (FALSE);
 	else if (fabs(delta - 0) < 1e-5)
@@ -49,7 +42,7 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 		double t = (-b) / (2 * a);
 		if (t > 0)
 		{
-			*intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t));
+			ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t));
 			return (TRUE);
 		}
 		else
@@ -63,23 +56,27 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 		{
 			if (t1 < t2)
 			{
-				*intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t1));
+				ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t1));
+				ptr_intersect_data_tmp->distance = t1;
 				return (TRUE);
 			}
 			else
 			{
-				*intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t2));
+				ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t2));
+				ptr_intersect_data_tmp->distance = t2;
 				return (TRUE);
 			}
 		}
 		else if (t1 > 0)
 		{
-			*intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t1));
+			ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t1));
+			ptr_intersect_data_tmp->distance = t1;
 			return (TRUE);
 		}
 		else
 		{
-			*intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t2));
+			ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.origin, vec3_scale(ray.direction, t2));
+			ptr_intersect_data_tmp->distance = t2;
 			return (TRUE);
 		}
 	}

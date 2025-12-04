@@ -42,7 +42,7 @@ int	fill_obj_sphere(t_object *ptr_obj_tmp, char **elements,
 			elements[3], ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Sphere colors:\n", ret, ptr_str_err_msg));
-	ret = fill_coordinates(&ptr_obj_tmp->ptr_coordinates, elements[1],
+	ret = fill_coordinates(&ptr_obj_tmp->coordinates, elements[1],
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Sphere coordinates:\n", ret, ptr_str_err_msg));

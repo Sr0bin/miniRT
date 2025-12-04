@@ -37,8 +37,8 @@ t_object	*iter_object(t_vector *ptr_objects, int (f)(t_object *))
 t_object	*search_object(t_vector *ptr_objects, t_obj_type type, size_t n)
 {
 	t_object	*object;
-	size_t	i;
-	size_t	count;
+	size_t		i;
+	size_t		count;
 
 	object = ptr_objects->data;
 	i = 0;

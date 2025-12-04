@@ -88,7 +88,7 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
-	t_vec3	ptr_direction;
+	t_vec3	direction;
 	double	fov;
 }			t_camera;
 
@@ -106,7 +106,7 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_vec3	ptr_direction;
+	t_vec3	direction;
 	t_color	color;
 	double	a;
 	double	b;
@@ -116,7 +116,7 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_vec3	ptr_direction;
+	t_vec3	direction;
 	double	diameter;
 	double	height;
 	t_color	color;
@@ -135,7 +135,7 @@ typedef union u_object_attr
 typedef	struct s_object
 {
 	t_obj_type		type;
-	t_point3		ptr_coordinates;
+	t_point3		coordinates;
 	t_object_attr	object_attr;
 }		t_object;
 

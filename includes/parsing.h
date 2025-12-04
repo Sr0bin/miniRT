@@ -24,7 +24,7 @@ typedef struct s_line
 	size_t	line_nbr;
 }		t_line;
 
-int		parsing(int argc, char **argv, t_vector *ptr_objects,
+int		parsing(int argc, char **argv, t_scene *ptr_scene,
 			char **ptr_str_err_msg);
 int		check_args(int argc, char **argv);
 int		get_file_content(char *filename, t_vector *ptr_file_content);

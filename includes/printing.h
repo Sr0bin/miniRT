@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:33 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/02 19:07:56 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/04 13:44:08 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "graphics.h"
 
 int		print_error(int error, char *str);
-int		print_objects(t_vector objects);
+int		print_objects(t_scene *ptr_scene);
 void	print_delimitor(void);
 void	print_color(t_color color);
 void	print_ray(t_ray ray);

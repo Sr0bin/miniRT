@@ -33,11 +33,11 @@ int	fill_obj_camera(t_object *ptr_obj_tmp, char **elements,
 			ptr_str_err_msg);
 	if (ret != 0)
 		return (fail_add_msg("Camera FOV:\n", ret, ptr_str_err_msg));
-	ret = fill_coordinates(&ptr_obj_tmp->ptr_coordinates, elements[1],
+	ret = fill_coordinates(&ptr_obj_tmp->coordinates, elements[1],
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Camera coordinates:\n", ret, ptr_str_err_msg));
-	ret = fill_direction(&ptr_obj_tmp->object_attr.camera.ptr_direction,
+	ret = fill_direction(&ptr_obj_tmp->object_attr.camera.direction,
 			elements[2], ptr_str_err_msg);
 	if (ret != 0)
 	// {

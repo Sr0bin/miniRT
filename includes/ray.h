@@ -17,10 +17,10 @@
 typedef struct s_ray
 {
 	t_point3	*origin;
-	t_vec3	direction;
-	t_color	color;	
+	t_vec3		direction;
+	t_color		color;	
 	t_point3	last_hit;
-	double	distance_last_hit;
+	double		distance_last_hit;
 }	t_ray;
 
 t_ray	*create_ray(t_point3 *origin, t_vec3 direction);

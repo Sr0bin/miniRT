@@ -42,7 +42,7 @@ int	fill_obj_light(t_object *ptr_obj_tmp, char **elements,
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Light colors:\n", ret, ptr_str_err_msg));
-	ret = fill_coordinates(&ptr_obj_tmp->ptr_coordinates, elements[1],
+	ret = fill_coordinates(&ptr_obj_tmp->coordinates, elements[1],
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Light coordinates:\n", ret, ptr_str_err_msg));

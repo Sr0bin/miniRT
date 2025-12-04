@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:37:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/03 17:30:51 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/04 14:11:47 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 //			(for smaller 't' of course)
 //	- FALSE : if it does not intersect with a sphere
 int	check_intersect_plane(t_ray ray, t_object plane,
-		t_point3 *ptr_intersect_point)
+		t_intersect *ptr_intersect_data_tmp)
 {
 	double		t;
 	double		denom;
@@ -45,8 +45,9 @@ int	check_intersect_plane(t_ray ray, t_object plane,
 		/ denom;
 	if (t < 0)
 		return (FALSE);
-	ptr_intersect_point->x = p.x + t * d.x;
-	ptr_intersect_point->y = p.z + t * d.y;
-	ptr_intersect_point->z = p.z + t * d.z;
+	ptr_intersect_data_tmp->distance = t;
+	ptr_intersect_data_tmp->intersect_point.x = p.x + t * d.x;
+	ptr_intersect_data_tmp->intersect_point.y = p.y + t * d.y;
+	ptr_intersect_data_tmp->intersect_point.z = p.z + t * d.z;
 	return (TRUE);
 }

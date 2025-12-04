@@ -17,9 +17,10 @@
 #include "parsing.h"
 #include "object.h"
 
-int	parsing(int argc, char **argv, t_vector *ptr_objects,
+int	parsing(int argc, char **argv, t_scene *ptr_scene,
 		char **ptr_str_err_msg)
 {
+	t_vector	objects;
 	int			ret;
 	t_vector	file_content;
 
@@ -29,14 +30,20 @@ int	parsing(int argc, char **argv, t_vector *ptr_objects,
 	ret = get_file_content(argv[1], &file_content);
 	if (ret != 0)
 		return (ret);
-	ret = parse_file_content(file_content, ptr_objects, ptr_str_err_msg);
+	ret = parse_file_content(file_content, &objects, ptr_str_err_msg);
 	ft_vector_free(&file_content);
 	if (ret != 0)
 		return (ret);
-	ret = check_objects(ptr_objects);
+	ret = check_objects(&objects);
 	if (ret != 0)
 	{
-		ft_vector_free(ptr_objects);
+		ft_vector_free(&objects);
+		return (ret);
+	}
+	ret = scene_init(ptr_scene, &objects);
+	ft_vector_free(&objects);
+	if (ret != SUCCESS)
+	{
 		return (ret);
 	}
 	return (SUCCESS);

@@ -42,17 +42,14 @@ int	fill_obj_cylinder(t_object *ptr_obj_tmp, char **elem,
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Cylinder colors:\n", ret, ptr_str_err_msg));
-	ret = fill_coordinates(&ptr_obj_tmp->ptr_coordinates, elem[1],
+	ret = fill_coordinates(&ptr_obj_tmp->coordinates, elem[1],
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Cylinder coordinates:\n", ret, ptr_str_err_msg));
-	ret = fill_direction(&ptr_obj_tmp->object_attr.cylinder.ptr_direction,
+	ret = fill_direction(&ptr_obj_tmp->object_attr.cylinder.direction,
 			elem[2], ptr_str_err_msg);
 	if (ret != SUCCESS)
-	// {
-	// 	free_point3(ptr_obj_tmp->ptr_coordinates);
 		return (fail_add_msg("Cylinder coordinates:\n", ret, ptr_str_err_msg));
-	// }
 	return (SUCCESS);
 }
 

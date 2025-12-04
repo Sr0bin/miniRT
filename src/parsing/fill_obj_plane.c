@@ -20,11 +20,11 @@ int	fill_obj_plane(t_object *ptr_obj_tmp, char **elements,
 			elements[3], ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Plane colors:\n", ret, ptr_str_err_msg));
-	ret = fill_coordinates(&ptr_obj_tmp->ptr_coordinates, elements[1],
+	ret = fill_coordinates(&ptr_obj_tmp->coordinates, elements[1],
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Plane coordinates:\n", ret, ptr_str_err_msg));
-	ret = fill_direction(&ptr_obj_tmp->object_attr.plane.ptr_direction,
+	ret = fill_direction(&ptr_obj_tmp->object_attr.plane.direction,
 			elements[2], ptr_str_err_msg);
 	if (ret != SUCCESS)
 	{
