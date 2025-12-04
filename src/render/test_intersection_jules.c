@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:24:27 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/04 20:22:53 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/05 00:08:17 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ static t_vec3	sphere_normal(t_intersect *intersect_data, t_object *sphere)
 {
 	t_vec3	normal;
 
-	normal = vect3_from_point3(intersect_data->intersect_point, sphere->coordinates);
+	// normal = vect3_from_point3(intersect_data->intersect_point, sphere->coordinates);
+	normal = vect3_from_point3( sphere->coordinates, intersect_data->intersect_point);
 	normalize_vec3(&normal);
 	return (normal);
 }
@@ -201,7 +202,7 @@ void	update_intersect_color(t_intersect	*intersect_data, t_scene *ptr_scene)
 	//belek : si il n'y a pas de hit, mettre la backround color
 	if (intersect_data->ptr_obj != NULL)
 	{
-		// intersect_data->crnt_color = object_ambient_color(intersect_data->ptr_obj, *ptr_scene);
+		intersect_data->crnt_color = object_ambient_color(intersect_data->ptr_obj, *ptr_scene);
 		intersect_data->crnt_color = color_add(intersect_data->crnt_color, 
 				object_sum_direct_light(intersect_data, ptr_scene));
 		// if (intersect_data->ptr_obj->type == OBJ_SPHERE)
