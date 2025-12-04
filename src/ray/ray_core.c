@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:43:02 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 19:08:26 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:05:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_ray	*create_ray(t_point3 *origin, t_vec3 direction)
 	t_ray *ray;
 
 	ray = ft_calloc(sizeof(t_ray), 1);
-	ray->origin = origin;
+	ray->ptr_origin = origin;
 	ray->direction = direction;
 	ray->color.color = 0;
 	ray->last_hit = (t_point3) {0};

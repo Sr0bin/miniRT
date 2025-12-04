@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:46:08 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/03 20:11:22 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:05:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ static int	create_ray_content(t_ray *array_rays,
 		y_i = 0;
 		while (y_i < WINDOW_HEIGHT)
 		{
-			array_rays[y_i * WINDOW_WIDTH + x_i].origin = ptr_cam_point;
-			if (array_rays[y_i * WINDOW_WIDTH + x_i].origin == NULL)
+			array_rays[y_i * WINDOW_WIDTH + x_i].ptr_origin = ptr_cam_point;
+			if (array_rays[y_i * WINDOW_WIDTH + x_i].ptr_origin == NULL)
 				return (FAILURE_MALLOC);
 			array_rays[y_i * WINDOW_WIDTH + x_i].direction
 				= canvas_point_arrays[y_i * WINDOW_WIDTH + x_i];

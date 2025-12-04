@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:37:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/04 14:11:47 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/04 16:05:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_intersect_plane(t_ray ray, t_object plane,
 	t_point3	p;
 
 	d = ray.direction;
-	p = *ray.origin;
+	p = *ray.ptr_origin;
 	denom = plane.object_attr.plane.a * d.x
 		+ plane.object_attr.plane.b * d.y
 		+ plane.object_attr.plane.c * d.z;
