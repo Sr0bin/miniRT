@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:37:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/04 16:05:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/04 18:35:38 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "point3.h"
 #include "ray.h"
 #include "render.h"
+#include "intersection.h"
 #include "vec3.h"
 #include <stdio.h>
 

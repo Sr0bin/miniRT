@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/03 17:15:00 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/04 18:03:16 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,8 +66,6 @@ RENDER_FILES = render.c \
 			   rotate_double3.c \
 			   set_rotation_matrix.c \
 			   test_intersection_jules.c \
-			   check_intersect_plane.c \
-			   check_intersect_sphere.c \
 			   my_dot_product.c \
 			   my_norm_from_vec.c \
 
@@ -93,7 +91,7 @@ RAY_DIR = ray
 RAY_FILES = ray_core.c
 
 INTERSECTION_DIR = intersection
-INTERSECTION_FILES = intersection.c
+INTERSECTION_FILES = intersection.c check_intersect_sphere.c check_intersect_plane.c
 
 SCN_OBJ_DIR = scene_objects
 SCN_OBJ_FILES = search_object.c scene_core.c
