@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:37:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/04 17:02:16 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:16:44 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 		return (update_intersect_sphere(ptr_intersect_data_tmp, ray, poly.t1));
 	if (poly.t2 > 0)
 		return (update_intersect_sphere(ptr_intersect_data_tmp, ray, poly.t2));
+	ptr_intersect_data_tmp->ptr_obj = NULL;
 	return (FALSE);
 }
