@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:23:49 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/04 13:46:04 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/05 15:07:30 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ int	print_sphere(t_object obj);
 int	print_plane(t_object obj);
 int	print_cylinder(t_object obj);
 
+int	print_object(t_object obj)
+{
+	if (obj.type == OBJ_SPHERE)
+		print_sphere(obj);
+	if (obj.type == OBJ_PLANE)
+		print_plane(obj);
+	if (obj.type == OBJ_CYLINDER)
+		print_cylinder(obj);
+	return (0);
+}
 int	print_objects(t_scene *ptr_scene)
 {
 	size_t		i;
@@ -33,7 +43,7 @@ int	print_objects(t_scene *ptr_scene)
 	i = 0;
 	while (i < ptr_scene->lights_arr.size)
 	{
-		obj = ((t_object *)ptr_scene->objects.data)[i];
+		obj = ((t_object *)ptr_scene->lights_arr.data)[i];
 		print_light(obj);
 		i++;
 	}
@@ -41,12 +51,7 @@ int	print_objects(t_scene *ptr_scene)
 	while (i < ptr_scene->objects.size)
 	{
 		obj = ((t_object *)ptr_scene->objects.data)[i];
-		if (obj.type == OBJ_SPHERE)
-			print_sphere(obj);
-		if (obj.type == OBJ_PLANE)
-			print_plane(obj);
-		if (obj.type == OBJ_CYLINDER)
-			print_cylinder(obj);
+		print_object(obj);
 		i++;
 	}
 	return (0);
