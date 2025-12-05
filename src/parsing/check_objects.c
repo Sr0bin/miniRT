@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:32:48 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/26 14:58:59 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:58:09 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ static int	check_correct_mandatory_obj(t_vector *ptr_objects)
 	}
 	if (nb_ambient != 1)
 		return (FAILURE_PARSE_WRONG_NB_AMBIENT);
-	if (nb_light != 1)
-		return (FAILURE_PARSE_WRONG_NB_LIGHT);
+	// todo check to remove that
+	// if (nb_light != 1)
+	// 	return (FAILURE_PARSE_WRONG_NB_LIGHT);
 	if (nb_camera != 1)
 		return (FAILURE_PARSE_WRONG_NB_CAMERA);
 	return (SUCCESS);

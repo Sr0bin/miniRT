@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/04 20:01:06 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/05 14:50:46 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,15 @@ int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *intersect_da
 int	update_intersect_all_object(t_ray ray, t_object *obj_array, size_t count, t_intersect *intersect_data);
 void	update_closest_intersect(t_intersect *intersect_data, t_intersect *intersect_data_tmp);
 void	update_intersect_color(t_intersect	*intersect_data, t_scene *ptr_scene);
+void	offset_intersect_point(t_intersect *intersect_data);
 t_color	object_ambient_color(t_object *obj, t_scene scene);
 t_color	multiply_color_coeff(t_color first, t_color second, double coeff);
 t_color	object_direct_light(t_intersect	*intersect_data, t_scene *scene, t_object *light);
 t_color	object_sum_direct_light(t_intersect *intersect_data, t_scene *scene);
 t_color	color_add(t_color a, t_color b);
+t_vec3	object_normal(t_object *obj, t_point3 point);
+t_vec3	intersect_normal(t_intersect *intersect_data);
+t_vec3	sphere_normal(t_object *obj, t_point3 hit);
+t_vec3	plane_normal(t_object *obj, t_point3 hit);
 #endif
 

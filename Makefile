@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/04 18:03:16 by rorollin         ###   ########.fr        #
+#    Updated: 2025/12/05 15:59:34 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ RENDER_FILES = render.c \
 			   test_intersection_jules.c \
 			   my_dot_product.c \
 			   my_norm_from_vec.c \
+			   color_operations.c \
 
 VEC3_DIR = vec3
 VEC3_FILES = vec3_core.c vec3_operations.c
@@ -91,10 +92,11 @@ RAY_DIR = ray
 RAY_FILES = ray_core.c
 
 INTERSECTION_DIR = intersection
-INTERSECTION_FILES = intersection.c check_intersect_sphere.c check_intersect_plane.c
+INTERSECTION_FILES = intersection.c check_intersect_sphere.c check_intersect_plane.c\
+					 intersect_operations.c
 
 SCN_OBJ_DIR = scene_objects
-SCN_OBJ_FILES = search_object.c scene_core.c
+SCN_OBJ_FILES = search_object.c scene_core.c object_normal.c
 
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
@@ -165,7 +167,7 @@ CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsig
 CFLAGS_DEBUG_NO_CASE_ALIGN = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wmissing-prototypes \
 -Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
 -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
--Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
+-Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11 -O3
 
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3
 

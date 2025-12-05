@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:45:42 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/04 13:37:15 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/05 15:00:02 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "object.h"
 #include "vec3.h"
 #include "parsing.h"
+#include "printing.h"
 
 static int	obj_fill_type_vec(t_vector *to_fill, t_vector *ptr_objects, t_obj_type type);
 static void	free_vector_scene(t_vector *vector);
@@ -61,6 +62,11 @@ static int	obj_fill_type_vec(t_vector *to_fill, t_vector *ptr_objects, t_obj_typ
 	crnt_obj = search_object(ptr_objects, type, count); 
 	while (crnt_obj != NULL)
 	{
+		if (crnt_obj->type == OBJ_LIGHT)
+		{
+			printf("infill\n");
+			print_object(*crnt_obj);
+		}
 		ret = ft_vector_add_single(to_fill, crnt_obj);
 		if (ret != SUCCESS)
 			return (FAILURE_MALLOC);

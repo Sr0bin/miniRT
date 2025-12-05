@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:45:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 18:30:33 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:08:25 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,7 @@
 
 double	dot_product3(t_vec3 a, t_vec3 b)
 {
-	t_axis	axis;
-	double sum;
-
-	axis = X;
-	sum = 0;
-	while (axis < AXIS_THREE)
-	{
-		sum += vec3_get(a, axis) * vec3_get(b, axis);
-		axis++;
-	}
-	return (sum);
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
 double	vec3_norm(t_vec3 a)
