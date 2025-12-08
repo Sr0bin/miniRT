@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:24:27 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/05 16:16:38 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:02:43 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,33 @@ static double	coeff_direct_light(t_intersect	*intersect_data, t_object *light)
 	t_vec3	light_dir;
 
 	normal = intersect_normal(intersect_data);
-	// light_dir = vect3_from_point3(light->coordinates, intersect_data->intersect_point);
 	light_dir = vect3_from_point3(intersect_data->intersect_point, light->coordinates);
 	temp = dot_product3(normal, light_dir); 
-	temp /= vec3_norm(normal) * vec3_norm(light_dir);
-	if (temp < 0)
+	temp = temp / (vec3_norm(normal) * vec3_norm(light_dir));
+	if (temp <= 0)
 		return (0);
-	return (temp*light->object_attr.light.brightness);
+	return (temp * light->object_attr.light.brightness);
+}
+
+static double	coeff_specular_light(t_intersect *intersect_data, t_object *light)
+{
+	double	coeff;
+	t_vec3	light_dir;
+	t_vec3	reflection;
+	t_vec3	visibility;
+	t_vec3	normal;
+
+	light_dir = vect3_from_point3(intersect_data->intersect_point, light->coordinates);
+	normal = intersect_normal(intersect_data); 
+	reflection = reflection_vector3(light_dir, normal);
+	visibility = vec3_scale(intersect_data->ray->direction, -1);
+	coeff = dot_product3(reflection, visibility);
+	if (coeff <= 0)
+		return (0);
+	coeff = coeff /  ((vec3_norm(reflection) * vec3_norm(visibility)));
+	//TODO: make it on a per object basis
+	coeff = pow(coeff, 10);
+	return (coeff);
 }
 
 t_color	object_direct_light(t_intersect	*intersect_data, t_scene *scene, t_object *light)
@@ -87,9 +107,8 @@ t_color	object_direct_light(t_intersect	*intersect_data, t_scene *scene, t_objec
 
 	inter = (t_intersect) {0};
 	offset_point = offset_point3(intersect_data->intersect_point,
-		vec3_scale(intersect_normal(intersect_data), 0.001));
+		vec3_scale(intersect_normal(intersect_data), 0.0001));
 	temp_ray.ptr_origin = &offset_point;
-	// offset_intersect_point(intersect_data);
 	light_dir = vect3_from_point3(offset_point, light->coordinates);
 	temp_ray.direction = light_dir;
 	normalize_vec3(&temp_ray.direction);
@@ -98,12 +117,11 @@ t_color	object_direct_light(t_intersect	*intersect_data, t_scene *scene, t_objec
 	if (inter.ptr_obj != NULL && inter.distance < vec3_norm(light_dir))
 		return ((t_color) {0});
 	coeff = coeff_direct_light(intersect_data, light); 
-	// coeff = 1;
-	// return (*object_color(light));
+	coeff += coeff_specular_light(intersect_data, light);
 	return (multiply_color_coeff(*object_color(intersect_data->ptr_obj), light->object_attr.light.color, coeff));
 }
 
-t_color	object_sum_direct_light(t_intersect *intersect_data, t_scene *scene)
+t_color	object_sum_lights(t_intersect *intersect_data, t_scene *scene)
 {
 	t_color		temp;
 	t_object	*crnt_light;

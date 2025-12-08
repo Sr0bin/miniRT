@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/03 15:20:30 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:07:04 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ enum e_bool
 
 typedef struct s_rgba
 {
-	uint8_t	red;
 	uint8_t	blue;
 	uint8_t	green;
+	uint8_t	red;
 	uint8_t	alpha;
 }	t_rgba;
 

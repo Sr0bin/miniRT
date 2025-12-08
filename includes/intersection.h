@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/05 14:50:46 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:28:07 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_intersect
 	t_object	*ptr_obj;
 	double		distance;
 	t_color		crnt_color;
+	t_ray		*ray;
 }		t_intersect;
 
 typedef struct s_polynomial
@@ -49,11 +50,11 @@ void	offset_intersect_point(t_intersect *intersect_data);
 t_color	object_ambient_color(t_object *obj, t_scene scene);
 t_color	multiply_color_coeff(t_color first, t_color second, double coeff);
 t_color	object_direct_light(t_intersect	*intersect_data, t_scene *scene, t_object *light);
-t_color	object_sum_direct_light(t_intersect *intersect_data, t_scene *scene);
+t_color	object_sum_lights(t_intersect *intersect_data, t_scene *scene);
 t_color	color_add(t_color a, t_color b);
-t_vec3	object_normal(t_object *obj, t_point3 point);
+t_vec3	object_normal(t_object *obj, t_intersect *intersect_data);
 t_vec3	intersect_normal(t_intersect *intersect_data);
 t_vec3	sphere_normal(t_object *obj, t_point3 hit);
-t_vec3	plane_normal(t_object *obj, t_point3 hit);
+t_vec3	plane_normal(t_object *obj, t_intersect *intersect_data);
 #endif
 

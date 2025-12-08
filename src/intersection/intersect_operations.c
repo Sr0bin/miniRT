@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:24:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/05 15:55:24 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:28:07 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *intersect_da
 	int		ret;
 
 	intersect_data_tmp.ptr_obj = obj;
+	intersect_data_tmp.ray = &ray;
 	if (obj->type == OBJ_SPHERE)
 	{
 		ret = check_intersect_sphere(ray, *obj, &intersect_data_tmp);
@@ -70,7 +71,7 @@ void	update_intersect_color(t_intersect	*intersect_data, t_scene *ptr_scene)
 	{
 		intersect_data->crnt_color = object_ambient_color(intersect_data->ptr_obj, *ptr_scene);
 		intersect_data->crnt_color = color_add(intersect_data->crnt_color, 
-				object_sum_direct_light(intersect_data, ptr_scene));
+				object_sum_lights(intersect_data, ptr_scene));
 		// intersect_data->crnt_color = object_sum_direct_light(intersect_data, ptr_scene);
 	}
 }
