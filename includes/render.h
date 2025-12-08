@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 13:32:33 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/04 16:53:37 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:10:44 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "mlx_setup.h"
 
 # define M_PI 3.14159265358979323846/* pi */
+# define GLOBAL_SPECULAR 100
 
 int		render(t_scene *ptr_scene, t_ray **ptr_array_ray, t_mlx mlx);
 int		prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
@@ -35,7 +36,7 @@ void	rotate_double3(double arr[3], double r[3][3]);
 void	set_rotation_matrix(t_mat3 *rotation_matrix, double theta, int axis);
 
 
-int		test_intersection_jules(t_ray *ray_array, size_t nb_rays,
+int		fill_screen(t_ray *ray_array, size_t nb_rays,
 			t_color *pixel_array, t_scene *ptr_scene);
 double	my_dot_product(double v1[3], double v2[3]);
 double	my_norm_from_vec(double v[3]);

@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/05 15:59:34 by rorollin         ###   ########.fr        #
+#    Updated: 2025/12/08 17:24:45 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ RENDER_FILES = render.c \
 			   my_dot_product.c \
 			   my_norm_from_vec.c \
 			   color_operations.c \
+			   light_coeff.c \
 
 VEC3_DIR = vec3
 VEC3_FILES = vec3_core.c vec3_operations.c
@@ -96,7 +97,10 @@ INTERSECTION_FILES = intersection.c check_intersect_sphere.c check_intersect_pla
 					 intersect_operations.c
 
 SCN_OBJ_DIR = scene_objects
-SCN_OBJ_FILES = search_object.c scene_core.c object_normal.c
+SCN_OBJ_FILES = search_object.c scene_core.c
+
+OBJECT_DIR = object
+OBJ_FILES = object_normal.c object_color.c
 
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
@@ -111,6 +115,7 @@ SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
 			   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES)) \
 			   $(addprefix $(SCN_OBJ_DIR)/,$(SCN_OBJ_FILES)) \
+			   $(addprefix $(OBJECT_DIR)/,$(OBJ_FILES)) \
 			   $(addprefix $(RENDER_DIR)/, $(RENDER_FILES)) \
 
 
@@ -199,6 +204,7 @@ $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(SCN_OBJ_DIR)\
+	$(OBJ_DIR)/$(SOURCES_DIR)/$(OBJECT_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(RENDER_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -243,6 +249,9 @@ $(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(SCN_OBJ_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/$(SOURCES_DIR)/$(OBJECT_DIR):
 	mkdir -p $@
 
 git_init:

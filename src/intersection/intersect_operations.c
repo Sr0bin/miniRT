@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:24:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/08 14:28:07 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:22:47 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@
 #include "vec3.h"
 #include "render.h"
 #include "intersection.h"
+#include "object.h"
+#include "color.h"
 #include <math.h>
 #include <stdio.h>
 
-void	update_closest_intersect(t_intersect *intersect_data, t_intersect *intersect_data_tmp)
+void	update_closest_intersect(t_intersect *ptr_intersect, t_intersect *ptr_intersect_tmp)
 {
-	if (intersect_data->ptr_obj == NULL)
-		*intersect_data = *intersect_data_tmp;
-	else if (intersect_data_tmp->distance < intersect_data->distance)
-			*intersect_data = *intersect_data_tmp;
+	if (ptr_intersect->ptr_obj == NULL)
+		*ptr_intersect = *ptr_intersect_tmp;
+	else if (ptr_intersect_tmp->distance < ptr_intersect->distance)
+			*ptr_intersect = *ptr_intersect_tmp;
 }
 
-int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *intersect_data)
+int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *ptr_intersect)
 {
 	t_intersect	intersect_data_tmp;
 	int		ret;
@@ -40,7 +42,7 @@ int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *intersect_da
 		ret = check_intersect_sphere(ray, *obj, &intersect_data_tmp);
 		if (ret == TRUE)
 		{
-			update_closest_intersect(intersect_data, &intersect_data_tmp);
+			update_closest_intersect(ptr_intersect, &intersect_data_tmp);
 			return (TRUE);
 		}
 	}
@@ -49,7 +51,7 @@ int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *intersect_da
 		ret = check_intersect_plane(ray, *obj, &intersect_data_tmp);
 		if (ret == TRUE)
 		{
-			update_closest_intersect(intersect_data, &intersect_data_tmp);
+			update_closest_intersect(ptr_intersect, &intersect_data_tmp);
 			return (TRUE);
 		}
 	}
@@ -64,20 +66,19 @@ void	offset_intersect_point(t_intersect *intersect_data)
 
 }
 
-void	update_intersect_color(t_intersect	*intersect_data, t_scene *ptr_scene)
+void	update_intersect_color(t_intersect	*ptr_intersect, t_scene *ptr_scene)
 {
 	//belek : si il n'y a pas de hit, mettre la backround color
-	if (intersect_data->ptr_obj != NULL)
+	if (ptr_intersect->ptr_obj != NULL)
 	{
-		intersect_data->crnt_color = object_ambient_color(intersect_data->ptr_obj, *ptr_scene);
-		intersect_data->crnt_color = color_add(intersect_data->crnt_color, 
-				object_sum_lights(intersect_data, ptr_scene));
-		// intersect_data->crnt_color = object_sum_direct_light(intersect_data, ptr_scene);
+		ptr_intersect->crnt_color = object_ambient_color(ptr_intersect->ptr_obj, *ptr_scene);
+		ptr_intersect->crnt_color = color_add(ptr_intersect->crnt_color, 
+				object_sum_lights(ptr_intersect, ptr_scene));
 	}
 }
 
 int	update_intersect_all_object(t_ray ray, t_object *obj_array, 
-	size_t count, t_intersect *intersect_data)
+	size_t count, t_intersect *ptr_intersect)
 {
 	size_t		obj_i;
 	int	hit;
@@ -87,7 +88,7 @@ int	update_intersect_all_object(t_ray ray, t_object *obj_array,
 	hit = 0;
 	while (obj_i < count)
 	{
-		hit |= update_intersect_object(ray, &obj_array[obj_i], intersect_data);
+		hit |= update_intersect_object(ray, &obj_array[obj_i], ptr_intersect);
 		obj_i++;
 	}
 	return (hit);

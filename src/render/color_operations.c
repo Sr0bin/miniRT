@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:26:57 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/08 14:58:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:22:33 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "vec3.h"
 #include "render.h"
 #include "intersection.h"
+#include "color.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -47,8 +48,8 @@ static uint8_t	add_color_component(uint8_t	first, uint8_t second, double coeff)
 	if (((first * second) / UINT8_MAX) * coeff >= UINT8_MAX)
 		return (UINT8_MAX);
 	return (((uint8_t) (((first * second) / UINT8_MAX) * coeff)));
-
 }
+
 t_color	multiply_color_coeff(t_color first, t_color second, double coeff)
 {
 	t_color	temp;
@@ -63,5 +64,25 @@ t_color	multiply_color_coeff(t_color first, t_color second, double coeff)
 	temp_rgba.green = add_color_component(first_rgba.green, second_rgba.green, coeff);
 	temp_rgba.blue = add_color_component(first_rgba.blue, second_rgba.blue, coeff);
 	temp.rgba = temp_rgba;
+	return (temp);
+}
+
+t_color	dim_color(t_color color, double coeff)
+{
+	t_color	temp;
+
+
+	if (color.rgba.red * coeff > UINT8_MAX)
+		color.rgba.red = UINT8_MAX;
+	else
+		temp.rgba.red   = (uint8_t) (color.rgba.red * coeff);
+	if (color.rgba.green * coeff > UINT8_MAX)
+		color.rgba.green = UINT8_MAX;
+	else
+		temp.rgba.green   = (uint8_t) (color.rgba.green * coeff);
+	if (color.rgba.blue * coeff > UINT8_MAX)
+		color.rgba.blue = UINT8_MAX;
+	else
+		temp.rgba.blue   = (uint8_t) (color.rgba.blue * coeff);
 	return (temp);
 }
