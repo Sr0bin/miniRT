@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:37:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/04 20:16:44 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:48:27 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@
 
 int	solve_polynomial(t_polynomial *poly, double a, double b, double c)
 {
-	poly->a = a;
-	poly->b = b;
-	poly->c = c;
-	poly->delta = (poly->b * poly->b) - (4 * poly->a * poly->c);
-	if (poly->delta < 0)
+	t_polynomial temp;
+	temp.a = a;
+	temp.b = b;
+	temp.c = c;
+	temp.delta = (temp.b * temp.b) - (4 * temp.a * temp.c);
+	if (temp.delta < 0)
 		return (0);
-	if (fabs(poly->delta - 0) < 1e-5)
+	if (fabs(temp.delta - 0) < 1e-5)
 	{
-		poly->t0 = (-b) / (2 * a);
+		temp.t0 = (-b) / (2 * a);
+		*poly = temp;
 		return (1);
 	}
-	poly->t1 = (-b - sqrt(poly->delta)) / (2 * a);
-	poly->t2 = (-b + sqrt(poly->delta)) / (2 * a);
+	temp.t1 = (-b - sqrt(temp.delta)) / (2 * a);
+	temp.t2 = (-b + sqrt(temp.delta)) / (2 * a);
+	*poly = temp;
 	return (2);
 }
 
@@ -51,11 +54,13 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 	t_polynomial	poly;
 	int	ret;
 	t_vec3	origin_center;
+	double	radius;
 
 	origin_center = vec3_subtract(*ray.ptr_origin, sphere.coordinates);
+	radius = sphere.object_attr.sphere.diameter / 2;
 	ret = solve_polynomial(&poly, dot_product3(ray.direction, ray.direction),
 	2 * dot_product3(ray.direction, origin_center),
-	dot_product3(origin_center, origin_center) - (sphere.object_attr.sphere.diameter / 2) * (sphere.object_attr.sphere.diameter / 2));
+	dot_product3(origin_center, origin_center) - ((radius) * (radius)));
 	if (ret == 0)
 		return (FALSE);
 	if (ret == 1)

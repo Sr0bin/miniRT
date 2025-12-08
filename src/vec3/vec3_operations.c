@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:45:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/05 16:08:25 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:44:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,51 +20,17 @@ double	dot_product3(t_vec3 a, t_vec3 b)
 
 double	vec3_norm(t_vec3 a)
 {
-	t_axis	axis;
-	double	sum;
-
-	axis = X;
-	sum = 0;
-	while (axis < AXIS_THREE)
-	{
-		sum += pow(vec3_get(a, axis), 2);
-		axis++;
-	}
-	return (sqrt(sum));
+	return (sqrt((a.x * a.x) + (a.y * a.y) + (a.z * a.z)));
 }
 
 t_vec3	vec3_add(t_vec3 a, t_vec3 b)
 {
-	t_vec3	temp_vec;
-	t_axis	axis;
-	double	temp_value;
-
-	axis = X;
-	temp_value = 0;
-	while (axis < AXIS_THREE)
-	{
-		temp_value = vec3_get(a, axis) + vec3_get(b, axis);
-		vec3_set(&temp_vec, axis, temp_value);
-		axis++;
-	}
-	return (temp_vec);
+	return (vec3_set_all(a.x + b.x, a.y + b.y, a.z + b.z));
 }
 
 t_vec3	vec3_subtract(t_vec3 a, t_vec3 b)
 {
-	t_vec3	temp_vec;
-	t_axis	axis;
-	double	temp_value;
-
-	axis = X;
-	temp_value = 0;
-	while (axis < AXIS_THREE)
-	{
-		temp_value = vec3_get(a, axis) - vec3_get(b, axis);
-		vec3_set(&temp_vec, axis, temp_value);
-		axis++;
-	}
-	return (temp_vec);
+	return (vec3_set_all(a.x - b.x, a.y - b.y, a.z - b.z));
 }
 /*
 * WARNING : Normal needs to be normalized
