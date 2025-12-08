@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:24:27 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/08 15:02:43 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:27:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,29 @@ static double	coeff_specular_light(t_intersect *intersect_data, t_object *light)
 		return (0);
 	coeff = coeff /  ((vec3_norm(reflection) * vec3_norm(visibility)));
 	//TODO: make it on a per object basis
-	coeff = pow(coeff, 10);
+	coeff = pow(coeff, 100);
 	return (coeff);
 }
 
+static t_color	dim_color(t_color color, double coeff)
+{
+	t_color	temp;
+
+
+	if (color.rgba.red * coeff > UINT8_MAX)
+		color.rgba.red = UINT8_MAX;
+	else
+		temp.rgba.red   = (uint8_t) (color.rgba.red * coeff);
+	if (color.rgba.green * coeff > UINT8_MAX)
+		color.rgba.green = UINT8_MAX;
+	else
+		temp.rgba.green   = (uint8_t) (color.rgba.green * coeff);
+	if (color.rgba.blue * coeff > UINT8_MAX)
+		color.rgba.blue = UINT8_MAX;
+	else
+		temp.rgba.blue   = (uint8_t) (color.rgba.blue * coeff);
+	return (temp);
+}
 t_color	object_direct_light(t_intersect	*intersect_data, t_scene *scene, t_object *light)
 {
 	double	coeff;
@@ -104,6 +123,7 @@ t_color	object_direct_light(t_intersect	*intersect_data, t_scene *scene, t_objec
 	t_vec3	light_dir;
 	t_point3	offset_point;
 	t_intersect	inter;
+	t_color	direct_light;
 
 	inter = (t_intersect) {0};
 	offset_point = offset_point3(intersect_data->intersect_point,
@@ -117,8 +137,9 @@ t_color	object_direct_light(t_intersect	*intersect_data, t_scene *scene, t_objec
 	if (inter.ptr_obj != NULL && inter.distance < vec3_norm(light_dir))
 		return ((t_color) {0});
 	coeff = coeff_direct_light(intersect_data, light); 
-	coeff += coeff_specular_light(intersect_data, light);
-	return (multiply_color_coeff(*object_color(intersect_data->ptr_obj), light->object_attr.light.color, coeff));
+	direct_light = multiply_color_coeff(*object_color(intersect_data->ptr_obj), light->object_attr.light.color, coeff);
+	coeff = coeff_specular_light(intersect_data, light);
+	return (color_add(direct_light, dim_color(light->object_attr.light.color, coeff)));
 }
 
 t_color	object_sum_lights(t_intersect *intersect_data, t_scene *scene)
