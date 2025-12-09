@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/08 15:07:04 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:35:16 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef union u_object_attr
 	t_cylinder	cylinder;
 }	t_object_attr;
 
-typedef	struct s_object
+typedef struct s_object
 {
 	t_obj_type		type;
 	t_point3		coordinates;

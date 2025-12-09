@@ -6,34 +6,13 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:37:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/08 15:48:27 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:06:32 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "intersection.h"
 #include "render.h"
-
-int	solve_polynomial(t_polynomial *poly, double a, double b, double c)
-{
-	t_polynomial temp;
-	temp.a = a;
-	temp.b = b;
-	temp.c = c;
-	temp.delta = (temp.b * temp.b) - (4 * temp.a * temp.c);
-	if (temp.delta < 0)
-		return (0);
-	if (fabs(temp.delta - 0) < 1e-5)
-	{
-		temp.t0 = (-b) / (2 * a);
-		*poly = temp;
-		return (1);
-	}
-	temp.t1 = (-b - sqrt(temp.delta)) / (2 * a);
-	temp.t2 = (-b + sqrt(temp.delta)) / (2 * a);
-	*poly = temp;
-	return (2);
-}
 
 static int update_intersect_sphere(t_intersect *ptr_intersect_data, t_ray ray, double t)
 {
