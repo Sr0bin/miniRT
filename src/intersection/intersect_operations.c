@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect_operation.c                              :+:      :+:    :+:   */
+/*   intersect_operations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:24:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/08 17:22:47 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/10 12:58:40 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	update_closest_intersect(t_intersect *ptr_intersect, t_intersect *ptr_inter
 	if (ptr_intersect->ptr_obj == NULL)
 		*ptr_intersect = *ptr_intersect_tmp;
 	else if (ptr_intersect_tmp->distance < ptr_intersect->distance)
-			*ptr_intersect = *ptr_intersect_tmp;
+		*ptr_intersect = *ptr_intersect_tmp;
 }
 
-int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *ptr_intersect)
+int	update_intersect_object(t_ray ray, t_object	*obj, t_intersect *ptr_intersect)
 {
 	t_intersect	intersect_data_tmp;
-	int		ret;
+	int			ret;
 
 	intersect_data_tmp.ptr_obj = obj;
 	intersect_data_tmp.ray = &ray;
@@ -49,6 +49,15 @@ int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *ptr_intersec
 	else if (obj->type == OBJ_PLANE)
 	{
 		ret = check_intersect_plane(ray, *obj, &intersect_data_tmp);
+		if (ret == TRUE)
+		{
+			update_closest_intersect(ptr_intersect, &intersect_data_tmp);
+			return (TRUE);
+		}
+	}
+	else if (obj->type == OBJ_CYLINDER)
+	{
+		ret = check_intersect_cylinder(ray, *obj, &intersect_data_tmp);
 		if (ret == TRUE)
 		{
 			update_closest_intersect(ptr_intersect, &intersect_data_tmp);

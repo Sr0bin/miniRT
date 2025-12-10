@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/08 17:22:33 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/10 12:57:00 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define INTERSECTION_H
 # include "minirt.h"
 # include "ray.h"
+#include "vec3.h"
 
 typedef struct s_intersect
 {
@@ -22,6 +23,7 @@ typedef struct s_intersect
 	double		distance;
 	t_color		crnt_color;
 	t_ray		*ray;
+	t_vec3		normal;
 }		t_intersect;
 
 typedef struct s_polynomial
@@ -42,6 +44,8 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 		t_intersect *ptr_intersect_data_tmp);
 int		check_intersect_plane(t_ray ray, t_object plane,
 			t_intersect *ptr_intersect_data_tmp);
+int	check_intersect_cylinder(t_ray ray, t_object cylinder,
+		t_intersect *ptr_intersect_data_tmp);
 int		update_intersect_object(t_ray ray, t_object	*obj, t_intersect *intersect_data);
 int	update_intersect_all_object(t_ray ray, t_object *obj_array, size_t count, t_intersect *intersect_data);
 void	update_closest_intersect(t_intersect *intersect_data, t_intersect *intersect_data_tmp);
