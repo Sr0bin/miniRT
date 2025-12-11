@@ -53,7 +53,6 @@ t_vec3	object_normal(t_object *obj, t_intersect *intersect_data)
 		return (plane_normal(obj, intersect_data));
 	if (obj->type == OBJ_CYLINDER)
 	{
-		printf("in intersect obj_cylinder\n");
 		return (intersect_data->normal);
 	}
 	return ((t_vec3){0});

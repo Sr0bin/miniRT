@@ -255,7 +255,6 @@ static int	get_r1(t_mat3 *r1, t_vec3 cyl_direction, double *ptr_angle)
 	return (0);
 }
 
-
 static int	get_r1_back(t_mat3 *r1, t_vec3 cyl_direction, double *ptr_angle)
 {
 	double			norm_cam_direction;
@@ -288,4 +287,3 @@ static int	get_r2_back(t_mat3 *r2, t_vec3 cam_direction, double *ptr_angle)
 	set_rotation_matrix(r2, angle, Y);
 	return (0);
 }
-

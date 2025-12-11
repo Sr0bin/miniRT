@@ -40,12 +40,12 @@ int	fill_screen(t_ray *ray_array, size_t nb_rays,
 
 t_color	object_single_light(t_intersect	*ptr_intersect, t_scene *ptr_scene, t_object *light)
 {
-	double	coeff;
-	t_ray	temp_ray;
-	t_vec3	light_dir;
+	double		coeff;
+	t_ray		temp_ray;
+	t_vec3		light_dir;
 	t_point3	offset_point;
 	t_intersect	inter;
-	t_color	direct_light;
+	t_color		direct_light;
 
 	inter = (t_intersect) {0};
 	offset_point = offset_point3(ptr_intersect->intersect_point,
@@ -55,6 +55,7 @@ t_color	object_single_light(t_intersect	*ptr_intersect, t_scene *ptr_scene, t_ob
 	temp_ray.direction = light_dir;
 	normalize_vec3(&temp_ray.direction);
 	update_intersect_all_object(temp_ray, ptr_scene->objects.data, ptr_scene->objects.size, &inter);
+	//if (inter.ptr_obj != NULL && fabs(inter.distance - vec3_norm(light_dir)) > 1e-5)
 	if (inter.ptr_obj != NULL && inter.distance < vec3_norm(light_dir))
 		return ((t_color) {0});
 	coeff = coeff_direct_light(ptr_intersect, light); 

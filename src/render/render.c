@@ -10,18 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vectors.h"
 #include "minirt.h"
 #include "ray.h"
 #include "graphics.h"
-#include "vec3.h"
 #include "render.h"
 
 int	render(t_scene *ptr_scene, t_ray **ptr_array_ray, t_mlx mlx)
 {
 	int	ret;
 
-	ret = prepare_rays(ptr_array_ray, ptr_scene->camera.object_attr.camera.fov, &ptr_scene->camera);
+	ret = prepare_rays(ptr_array_ray, ptr_scene->camera.object_attr.camera.fov,
+			&ptr_scene->camera);
 	if (ret != 0)
 		return (ret);
 	fill_screen(*ptr_array_ray, WINDOW_HEIGHT * WINDOW_WIDTH,
