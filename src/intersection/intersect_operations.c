@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:24:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/11 18:26:37 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/11 19:00:23 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	update_intersect_all_object(t_ray *ray, t_object *obj_array,
 	// intersect_data.ptr_obj = NULL;
 	obj_i = 0;
 	hit = 0;
-	ptr_intersect->ray = ray;
 	while (obj_i < count)
 	{
 		hit |= update_intersect_object(*ray, &obj_array[obj_i], ptr_intersect);

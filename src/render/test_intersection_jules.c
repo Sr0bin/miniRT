@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:24:27 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/09 18:26:36 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/11 20:48:51 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_color	object_single_light(t_intersect	*ptr_intersect, t_scene *ptr_scene, t_ob
 
 	inter = (t_intersect) {0};
 	offset_point = offset_point3(ptr_intersect->intersect_point,
-		vec3_scale(intersect_normal(ptr_intersect), 0.0000001));
+		vec3_scale(intersect_normal(ptr_intersect), 0.00000000001));
 	temp_ray.ptr_origin = &offset_point;
 	light_dir = vect3_from_point3(offset_point, light->coordinates);
 	temp_ray.direction = light_dir;

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:40:51 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/08 14:22:17 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/11 19:02:26 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_vec3	plane_normal(t_object *obj, t_intersect  *intersect_data)
 
 	plane = &obj->object_attr.plane;
 	normal = obj->object_attr.plane.direction;
-	if (dot_product3(intersect_data->ray->direction, plane->direction) > 0)
+	if (dot_product3(intersect_data->ray->direction, plane->direction) < 0)
 		return(normal);
 	return(vec3_scale(normal, -1));
 }
