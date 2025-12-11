@@ -34,11 +34,7 @@ int	prepare_rays(t_ray **ptr_array_rays, double horizontal_fov,
 		return (FAILURE_MALLOC);
 	fill_canvas_point_arrays_distance_variation(canvas_point_arrays,
 		horizontal_fov);
-	printf("%f\n", canvas_point_arrays[0].x);
-	printf("%f\n", canvas_point_arrays[0].y);
-	printf("%f\n", canvas_point_arrays[0].z);
 	normalize_canvas_point_array(canvas_point_arrays, nb_rays);
-	printf("%f\n", canvas_point_arrays->x);
 	rotate_canvas_point_array(canvas_point_arrays, nb_rays,
 		ptr_camera->object_attr.camera.direction);
 	if (create_rays(ptr_array_rays, nb_rays,

@@ -38,17 +38,16 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 	origin_center = vec3_subtract(*ray.ptr_origin, sphere.coordinates);
 	radius = sphere.object_attr.sphere.diameter / 2;
 	ret = solve_polynomial(&poly, dot_product3(ray.direction, ray.direction),
-	2 * dot_product3(ray.direction, origin_center),
-	dot_product3(origin_center, origin_center) - ((radius) * (radius)));
+			2 * dot_product3(ray.direction, origin_center),
+			dot_product3(origin_center, origin_center) - ((radius) * (radius)));
 	if (ret == 0)
 		return (FALSE);
-	if (ret == 1)
+	if (ret == 1 && poly.t0 > 0)
 		return (update_intersect_sphere(ptr_intersect_data_tmp, ray, poly.t0));
 	if (poly.t1 > 0 && poly.t2 > 0)
 	{
-		if (poly.t1 < poly.t2)
-			return (update_intersect_sphere(ptr_intersect_data_tmp, ray, poly.t1));
-		return (update_intersect_sphere(ptr_intersect_data_tmp, ray, poly.t2));
+		return (update_intersect_sphere(ptr_intersect_data_tmp,
+				ray, fmin(poly.t1, poly.t2)));
 	}
 	if (poly.t1 > 0)
 		return (update_intersect_sphere(ptr_intersect_data_tmp, ray, poly.t1));

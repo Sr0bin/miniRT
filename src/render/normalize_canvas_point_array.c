@@ -17,18 +17,11 @@ void	normalize_canvas_point_array(t_point3 (*canvas_point_array),
 			size_t	nb_rays)
 {
 	size_t	i;
-	// double	val;
 
 	i = 0;
 	while (i < nb_rays)
 	{
 		normalize_vec3(&canvas_point_array[i]);
-		// val = sqrt(canvas_point_array[i].x * canvas_point_array[i].x
-		// 		+ canvas_point_array[i][Y] * canvas_point_array[i][Y]
-		// 		+ canvas_point_array[i][Z] * canvas_point_array[i][Z]);
-		// canvas_point_array[i][X] /= val;
-		// canvas_point_array[i][Y] /= val;
-		// canvas_point_array[i][Z] /= val;
 		i++;
 	}
 }
