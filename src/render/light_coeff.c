@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:08:27 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/08 17:11:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/11 18:41:25 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ double	coeff_direct_light(t_intersect	*ptr_intersect, t_object *ptr_light)
 	return (temp * ptr_light->object_attr.light.brightness);
 }
 
-double	coeff_specular_light(t_intersect *ptr_intersect, t_object *ptr_light)
+double	coeff_specular_light(t_intersect *ptr_intersect, t_ray ray, t_object *ptr_light)
 {
 	double	coeff;
 	t_vec3	light_dir;
@@ -41,7 +41,7 @@ double	coeff_specular_light(t_intersect *ptr_intersect, t_object *ptr_light)
 	light_dir = vect3_from_point3(ptr_intersect->intersect_point, ptr_light->coordinates);
 	normal = intersect_normal(ptr_intersect); 
 	reflection = reflection_vector3(light_dir, normal);
-	visibility = vec3_scale(ptr_intersect->ray->direction, -1);
+	visibility = ray.direction;
 	coeff = dot_product3(reflection, visibility);
 	if (coeff <= 0)
 		return (0);

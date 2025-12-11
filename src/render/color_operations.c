@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:26:57 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/08 17:22:33 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/11 17:42:34 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,16 @@ t_color	dim_color(t_color color, double coeff)
 {
 	t_color	temp;
 
-
 	if (color.rgba.red * coeff > UINT8_MAX)
-		color.rgba.red = UINT8_MAX;
+		temp.rgba.red = UINT8_MAX;
 	else
 		temp.rgba.red   = (uint8_t) (color.rgba.red * coeff);
 	if (color.rgba.green * coeff > UINT8_MAX)
-		color.rgba.green = UINT8_MAX;
+		temp.rgba.green = UINT8_MAX;
 	else
 		temp.rgba.green   = (uint8_t) (color.rgba.green * coeff);
 	if (color.rgba.blue * coeff > UINT8_MAX)
-		color.rgba.blue = UINT8_MAX;
+		temp.rgba.blue = UINT8_MAX;
 	else
 		temp.rgba.blue   = (uint8_t) (color.rgba.blue * coeff);
 	return (temp);

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:24:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/10 12:58:40 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/11 18:26:37 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	update_intersect_object(t_ray ray, t_object	*obj, t_intersect *ptr_intersect
 	int			ret;
 
 	intersect_data_tmp.ptr_obj = obj;
-	intersect_data_tmp.ray = &ray;
 	if (obj->type == OBJ_SPHERE)
 	{
 		ret = check_intersect_sphere(ray, *obj, &intersect_data_tmp);
@@ -86,7 +85,7 @@ void	update_intersect_color(t_intersect	*ptr_intersect, t_scene *ptr_scene)
 	}
 }
 
-int	update_intersect_all_object(t_ray ray, t_object *obj_array, 
+int	update_intersect_all_object(t_ray *ray, t_object *obj_array, 
 	size_t count, t_intersect *ptr_intersect)
 {
 	size_t		obj_i;
@@ -95,9 +94,10 @@ int	update_intersect_all_object(t_ray ray, t_object *obj_array,
 	// intersect_data.ptr_obj = NULL;
 	obj_i = 0;
 	hit = 0;
+	ptr_intersect->ray = ray;
 	while (obj_i < count)
 	{
-		hit |= update_intersect_object(ray, &obj_array[obj_i], ptr_intersect);
+		hit |= update_intersect_object(*ray, &obj_array[obj_i], ptr_intersect);
 		obj_i++;
 	}
 	return (hit);

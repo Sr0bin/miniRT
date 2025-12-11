@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:24:27 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/08 17:22:04 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/11 18:50:09 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ t_color	object_single_light(t_intersect	*ptr_intersect, t_scene *ptr_scene, t_ob
 
 	inter = (t_intersect) {0};
 	offset_point = offset_point3(ptr_intersect->intersect_point,
-		vec3_scale(intersect_normal(ptr_intersect), 0.0001));
+		vec3_scale(intersect_normal(ptr_intersect), 0.0000001));
 	temp_ray.ptr_origin = &offset_point;
 	light_dir = vect3_from_point3(offset_point, light->coordinates);
 	temp_ray.direction = light_dir;
 	normalize_vec3(&temp_ray.direction);
-	update_intersect_all_object(temp_ray, ptr_scene->objects.data, ptr_scene->objects.size, &inter);
+	update_intersect_all_object(&temp_ray, ptr_scene->objects.data, ptr_scene->objects.size, &inter);
 	//if (inter.ptr_obj != NULL && fabs(inter.distance - vec3_norm(light_dir)) > 1e-5)
 	if (inter.ptr_obj != NULL && inter.distance < vec3_norm(light_dir))
 		return ((t_color) {0});
 	coeff = coeff_direct_light(ptr_intersect, light); 
 	direct_light = multiply_color_coeff(*object_color(ptr_intersect->ptr_obj), light->object_attr.light.color, coeff);
-	coeff = coeff_specular_light(ptr_intersect, light);
+	coeff = coeff_specular_light(ptr_intersect, *ptr_intersect->ray, light);
 	return (color_add(direct_light, dim_color(light->object_attr.light.color, coeff)));
 }
 
@@ -90,7 +90,8 @@ void	set_pixel_color(t_ray ray, t_color *ptr_pixel, t_scene *ptr_scene)
 	obj_array = ptr_scene->objects.data;
 	intersect_data = (t_intersect) {0};
 	intersect_data.crnt_color.color = 0;
-	update_intersect_all_object(ray, obj_array, ptr_scene->objects.size, &intersect_data);
+	update_intersect_all_object(&ray, obj_array, ptr_scene->objects.size, &intersect_data);
+	intersect_data.ray = &ray;
 	update_intersect_color(&intersect_data, ptr_scene);
 	ptr_pixel->color = intersect_data.crnt_color.color;
 	return ;

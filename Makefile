@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/10 12:56:16 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/11 18:44:37 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,9 @@ RAY_FILES = ray_core.c
 
 INTERSECTION_DIR = intersection
 INTERSECTION_FILES = intersection.c check_intersect_sphere.c check_intersect_plane.c\
-					 intersect_operations.c check_intersect_cylinder.c \
+					 intersect_operations.c \
+					check_intersect_cylinder.c \
+
 
 SCN_OBJ_DIR = scene_objects
 SCN_OBJ_FILES = search_object.c scene_core.c
@@ -174,9 +176,9 @@ CFLAGS_DEBUG_NO_CASE_ALIGN = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wco
 -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
 -Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11 -O3
 
-CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3
+CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3 
 
-CFLAGS = $(CFLAGS_DEBUG_NO_CASE_ALIGN)
+CFLAGS = $(CFLAGS_PROD)
 
 export CFLAGS
 
