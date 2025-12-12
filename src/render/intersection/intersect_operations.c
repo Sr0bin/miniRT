@@ -22,10 +22,12 @@
 #include <math.h>
 #include <stdio.h>
 
-static int	update_intersect_object(t_ray ray, t_object	*obj,
-				t_intersect *ptr_intersect);
-static void	update_closest_intersect(t_intersect *ptr_intersect,
-				t_intersect *ptr_intersect_tmp);
+static int		update_intersect_object(t_ray ray, t_object	*obj,
+					t_intersect *ptr_intersect);
+static void		update_closest_intersect(t_intersect *ptr_intersect,
+					t_intersect *ptr_intersect_tmp);
+static t_color	object_sum_lights(t_intersect *ptr_intersect,
+					t_scene *ptr_scene);
 
 int	update_intersect_all_object(t_ray *ray, t_object *obj_array,
 		size_t count, t_intersect *ptr_intersect)
@@ -80,22 +82,14 @@ static int	update_intersect_object(t_ray ray, t_object	*obj,
 	return (FALSE);
 }
 
-static void	update_closest_intersect(t_intersect *ptr_intersect, t_intersect *ptr_intersect_tmp)
+static void	update_closest_intersect(t_intersect *ptr_intersect, t_intersect
+				*ptr_intersect_tmp)
 {
 	if (ptr_intersect->ptr_obj == NULL)
 		*ptr_intersect = *ptr_intersect_tmp;
 	else if (ptr_intersect_tmp->distance < ptr_intersect->distance)
 		*ptr_intersect = *ptr_intersect_tmp;
 }
-
-/*
-void	offset_intersect_point(t_intersect *intersect_data)
-{
-	intersect_data->intersect_point = offset_point3(
-			intersect_data->intersect_point,
-			vec3_scale(intersect_normal(intersect_data), 0.001));
-}
-*/
 
 void	update_intersect_color(t_intersect	*ptr_intersect, t_scene *ptr_scene)
 {
@@ -108,3 +102,58 @@ void	update_intersect_color(t_intersect	*ptr_intersect, t_scene *ptr_scene)
 				object_sum_lights(ptr_intersect, ptr_scene));
 	}
 }
+
+static t_color	object_sum_lights(t_intersect *ptr_intersect, t_scene *ptr_scene)
+{
+	t_color		temp;
+	t_object	*crnt_light;
+	size_t		i;
+
+	i = 0;
+	temp.color = 0;
+	while (i < ptr_scene->lights_arr.size)
+	{
+		crnt_light = &((t_object *)ptr_scene->lights_arr.data)[i];
+		temp = color_add(temp, object_single_light(ptr_intersect,
+					ptr_scene, crnt_light));
+		i++;
+	}
+	return (temp);
+}
+
+t_color	object_single_light(t_intersect	*ptr_intersect,
+			t_scene *ptr_scene, t_object *light)
+{
+	double		coeff;
+	t_ray		temp_ray;
+	t_vec3		light_dir;
+	t_point3	offset_point;
+	t_intersect	inter;
+	t_color		direct_light;
+
+	inter = (t_intersect){0};
+	offset_point = offset_point3(ptr_intersect->intersect_point,
+			vec3_scale(intersect_normal(ptr_intersect), 0.00000000001));
+	temp_ray.ptr_origin = &offset_point;
+	light_dir = vect3_from_point3(offset_point, light->coordinates);
+	temp_ray.direction = light_dir;
+	normalize_vec3(&temp_ray.direction);
+	update_intersect_all_object(&temp_ray, ptr_scene->objects.data, ptr_scene->objects.size, &inter);
+	if (inter.ptr_obj != NULL && inter.distance < vec3_norm(light_dir))
+		return ((t_color){0});
+	coeff = coeff_direct_light(ptr_intersect, light); 
+	direct_light = multiply_color_coeff(*object_color(ptr_intersect->ptr_obj), light->object_attr.light.color, coeff);
+	coeff = coeff_specular_light(ptr_intersect, *ptr_intersect->ray, light);
+	return (color_add(direct_light, dim_color(light->object_attr.light.color, coeff)));
+}
+
+
+/*
+void	offset_intersect_point(t_intersect *intersect_data)
+{
+	intersect_data->intersect_point = offset_point3(
+			intersect_data->intersect_point,
+			vec3_scale(intersect_normal(intersect_data), 0.001));
+}
+*/
+

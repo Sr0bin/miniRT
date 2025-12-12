@@ -52,7 +52,6 @@ void	update_intersect_color(t_intersect	*intersect_data,
 			t_scene *ptr_scene);
 t_color	object_single_light(t_intersect	*intersect_data, t_scene *scene,
 			t_object *light);
-t_color	object_sum_lights(t_intersect *intersect_data, t_scene *scene);
 double	coeff_direct_light(t_intersect	*intersect_data, t_object *light);
 double	coeff_specular_light(t_intersect *ptr_intersect, t_ray ray,
 			t_object *ptr_light);
