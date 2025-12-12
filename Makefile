@@ -72,22 +72,24 @@ RENDER_FILES = render.c \
 			   color_operations.c \
 			   light_coeff.c \
 
-VEC3_DIR = utils/vec3
+ALGEBRA_DIR = algebra
+
+VEC3_DIR = $(ALGEBRA_DIR)/vec3
 VEC3_FILES = vec3_core.c vec3_operations.c
 
-VEC4_DIR = utils/vec4
+VEC4_DIR = $(ALGEBRA_DIR)/vec4
 VEC4_FILES = vec4_core.c vec4_operations.c
 
-POINT3_DIR = utils/point3
+POINT3_DIR = $(ALGEBRA_DIR)/point3
 POINT3_FILES = point3_core.c point3_operations.c
 
-POINT4_DIR = utils/point4
+POINT4_DIR = $(ALGEBRA_DIR)/point4
 POINT4_FILES = point4_core.c point4_operations.c
 
-MAT3_DIR = utils/mat3
+MAT3_DIR = $(ALGEBRA_DIR)/mat3
 MAT3_FILES = mat3_core.c mat3_elem.c mat3_operations.c
 
-MAT4_DIR = utils/mat4
+MAT4_DIR = $(ALGEBRA_DIR)/mat4
 MAT4_FILES = mat4_core.c mat4_elem.c mat4_operations.c
 
 RAY_DIR = $(RENDER_DIR)/ray
