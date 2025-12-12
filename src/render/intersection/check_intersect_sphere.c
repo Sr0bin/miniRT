@@ -6,17 +6,18 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:37:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/09 17:06:32 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:34:01 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "intersection.h"
-#include "render.h"
 
-static int update_intersect_sphere(t_intersect *ptr_intersect_data, t_ray ray, double t)
+static int	update_intersect_sphere(t_intersect *ptr_intersect_data,
+				t_ray ray, double t)
 {
-	ptr_intersect_data->intersect_point = vec3_add(*ray.ptr_origin, vec3_scale(ray.direction, t));
+	ptr_intersect_data->intersect_point = vec3_add(*ray.ptr_origin,
+			vec3_scale(ray.direction, t));
 	ptr_intersect_data->distance = t;
 	return (TRUE);
 }
@@ -31,9 +32,9 @@ int	check_intersect_sphere(t_ray ray, t_object sphere,
 		t_intersect *ptr_intersect_data_tmp)
 {
 	t_polynomial	poly;
-	int	ret;
-	t_vec3	origin_center;
-	double	radius;
+	int				ret;
+	t_vec3			origin_center;
+	double			radius;
 
 	origin_center = vec3_subtract(*ray.ptr_origin, sphere.coordinates);
 	radius = sphere.object_attr.sphere.diameter / 2;

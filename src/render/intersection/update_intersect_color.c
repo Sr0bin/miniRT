@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 10:53:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 10:55:47 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/12 11:34:47 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,3 @@ static t_color	object_sum_lights(t_intersect *ptr_intersect,
 	}
 	return (temp);
 }
-
