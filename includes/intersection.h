@@ -13,6 +13,7 @@
 #ifndef INTERSECTION_H
 # define INTERSECTION_H
 # include "minirt.h"
+#include "point3.h"
 # include "ray.h"
 #include "vec3.h"
 
@@ -25,6 +26,15 @@ typedef struct s_intersect
 	t_ray		*ray;
 	t_vec3		normal;
 }		t_intersect;
+
+typedef struct s_intersect_cylinder
+{
+	t_point3	origin_transformed;
+	t_point3	origin_transformed_no_x;
+	t_ray		ray_transformed;
+	t_ray		ray_transformed_no_x;
+	t_point3	intersect_point_transformed_no_x;
+}			t_intersect_cylinder;
 
 typedef struct s_polynomial
 {

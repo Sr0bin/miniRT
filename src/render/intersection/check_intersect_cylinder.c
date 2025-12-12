@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 11:03:16 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/10 13:57:01 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/12 14:23:59 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,145 +20,142 @@
 void		transform_ray(t_ray *ptr_dest_ray, t_ray src_ray, t_object cylinder);
 static int	get_r1(t_mat3 *r1, t_vec3 cyl_direction, double *ptr_angle);
 static int	get_r2(t_mat3 *r2, t_vec3 cam_direction, double *ptr_angle);
-void	get_normal_int(t_intersect *ptr_intersect_data, t_vec3 intersect_point_no_x, t_object cylinder);
-void	get_normal_ext(t_intersect *ptr_intersect_data, t_vec3 intersect_point_no_x, t_object cylinder);
+void		get_normal_int(t_intersect *ptr_intersect_data, t_vec3 intersect_point_no_x, t_object cylinder);
+void		get_normal_ext(t_intersect *ptr_intersect_data, t_vec3 intersect_point_no_x, t_object cylinder);
 static int	get_r1_back(t_mat3 *r1, t_vec3 cyl_direction, double *ptr_angle);
 static int	get_r2_back(t_mat3 *r2, t_vec3 cam_direction, double *ptr_angle);
+int			cylinder_one_positive_solutions(t_intersect_cylinder cyl_inter,
+				t_intersect *ptr_intersect_data_tmp, t_ray ray);
+int			cylinder_two_positive_solutions(t_polynomial poly, t_intersect_cylinder cyl_inter,
+				t_intersect *ptr_intersect_data_tmp, t_ray ray);
 
 int	check_intersect_cylinder(t_ray ray, t_object cylinder,
 		t_intersect *ptr_intersect_data_tmp)
 {
-	t_point3	ray_new_origin;
-	t_point3	ray_new_origin_no_x;
-	t_ray		ray_transformed;
-	t_ray		ray_transformed_no_x;
-	t_point3	intersect_point_no_x;
-	double		a;
-	double		b;
-	double		c;
-	double		delta;
+	t_intersect_cylinder	cyl_inter;
+	t_polynomial			poly;
+	double					t;
 
-	ray_transformed.ptr_origin = &ray_new_origin;
-	transform_ray(&ray_transformed, ray, cylinder);
-	ray_new_origin_no_x = ray_new_origin;
-	ray_new_origin_no_x.x = 0;
-	ray_transformed_no_x.ptr_origin = &ray_new_origin_no_x;
-	ray_transformed_no_x.direction = ray_transformed.direction;
-	ray_transformed_no_x.direction.x = 0;
-	a = dot_product3(ray_transformed_no_x.direction, ray_transformed_no_x.direction);
-	b = 2 * dot_product3(ray_transformed_no_x.direction, *ray_transformed_no_x.ptr_origin);
-	c = dot_product3(*ray_transformed_no_x.ptr_origin, *ray_transformed_no_x.ptr_origin)
-		- (cylinder.object_attr.cylinder.diameter / 2) * (cylinder.object_attr.cylinder.diameter / 2);
-	delta = b * b - 4 * a * c;
-	if (delta < 0)
+
+	cyl_inter.ray_transformed.ptr_origin = &cyl_inter.origin_transformed;
+	transform_ray(&cyl_inter.ray_transformed, ray, cylinder);
+	cyl_inter.origin_transformed_no_x = cyl_inter.origin_transformed;
+	cyl_inter.origin_transformed_no_x.x = 0;
+	cyl_inter.ray_transformed_no_x.ptr_origin = &cyl_inter.origin_transformed_no_x;
+	cyl_inter.ray_transformed_no_x.direction = cyl_inter.ray_transformed.direction;
+	cyl_inter.ray_transformed_no_x.direction.x = 0;
+	solve_polynomial(&poly, 
+		dot_product3(cyl_inter.ray_transformed_no_x.direction, cyl_inter.ray_transformed_no_x.direction),
+		2 * dot_product3(cyl_inter.ray_transformed_no_x.direction, *cyl_inter.ray_transformed_no_x.ptr_origin),
+		dot_product3(*cyl_inter.ray_transformed_no_x.ptr_origin, *cyl_inter.ray_transformed_no_x.ptr_origin)
+		- (cylinder.object_attr.cylinder.diameter / 2) * (cylinder.object_attr.cylinder.diameter / 2));
+	if (poly.delta < 0)
 		return (FALSE);
-	else if (delta > 0)
+	else if (poly.delta > 0)
 	{
-		double	t1 = (-b -sqrt(delta))/(2*a);
-		double	t2 = (-b +sqrt(delta))/(2*a);
-		double	x1;
-		double	x2;
-		if (t1 > 0 && t2 > 0)
+		if (poly.t1 > 0 && poly.t2 > 0)
 		{
-			x1 = (*ray_transformed.ptr_origin).x + t1 * ray_transformed.direction.x;
-			x2 = (*ray_transformed.ptr_origin).x + t2 * ray_transformed.direction.x;
-			if (-cylinder.object_attr.cylinder.height / 2 <= x1 && x1 <= cylinder.object_attr.cylinder.height / 2
-				&& -cylinder.object_attr.cylinder.height / 2 <= x2 && x2 <= cylinder.object_attr.cylinder.height / 2)
-			{
-				ptr_intersect_data_tmp->distance = fmin(t1, t2);
-				intersect_point_no_x = vec3_add(*ray_transformed_no_x.ptr_origin, vec3_scale(ray_transformed_no_x.direction, 
-							ptr_intersect_data_tmp->distance));
-				ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
-						vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
-				get_normal_ext(ptr_intersect_data_tmp, intersect_point_no_x, cylinder);
-				return (TRUE);
-			}
-			else if (-cylinder.object_attr.cylinder.height / 2 <= x1 && x1 <= cylinder.object_attr.cylinder.height / 2)
-			{
-				ptr_intersect_data_tmp->distance = t1;
-				intersect_point_no_x = vec3_add(*ray_transformed_no_x.ptr_origin, vec3_scale(ray_transformed_no_x.direction, 
-							ptr_intersect_data_tmp->distance));
-				ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
-						vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
-				if (fabs(ptr_intersect_data_tmp->distance - fmin(t1,t2)) < 1e-5)
-					get_normal_ext(ptr_intersect_data_tmp, intersect_point_no_x, cylinder);
-				else
-					get_normal_int(ptr_intersect_data_tmp, intersect_point_no_x, cylinder);
-				return (TRUE);
-			}
-			else if (-cylinder.object_attr.cylinder.height / 2 <= x2 && x2 <= cylinder.object_attr.cylinder.height / 2)
-			{
-				ptr_intersect_data_tmp->distance = t2;
-				intersect_point_no_x = vec3_add(*ray_transformed_no_x.ptr_origin, vec3_scale(ray_transformed_no_x.direction, 
-							ptr_intersect_data_tmp->distance));
-				ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
-						vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
-				if (fabs(ptr_intersect_data_tmp->distance - fmin(t1,t2)) < 1e-5)
-					get_normal_ext(ptr_intersect_data_tmp, intersect_point_no_x, cylinder);
-				else
-					get_normal_int(ptr_intersect_data_tmp, intersect_point_no_x, cylinder);
-				return (TRUE);
-			}
-			else
-				return (FALSE);
+			return (cylinder_two_positive_solutions(poly, cyl_inter, ptr_intersect_data_tmp, ray));
 		}
-		else if (t1 > 0)
+		else if (poly.t1 > 0)
 		{
-			x1 = (*ray_transformed.ptr_origin).x + t1 * ray_transformed.direction.x;
-			if (-cylinder.object_attr.cylinder.height / 2 <= x1 && x1 <= cylinder.object_attr.cylinder.height / 2)
-			{
-				ptr_intersect_data_tmp->distance = t1;
-				intersect_point_no_x = vec3_add(*ray_transformed_no_x.ptr_origin, vec3_scale(ray_transformed_no_x.direction, 
-							ptr_intersect_data_tmp->distance));
-				ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
-						vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
-				get_normal_int(ptr_intersect_data_tmp, intersect_point_no_x, cylinder);
-				return (TRUE);
-			}
-			else
-				return (FALSE);
+			ptr_intersect_data_tmp->distance = poly.t1;
+			return (cylinder_one_positive_solutions(cyl_inter, ptr_intersect_data_tmp, ray));
 		}
-		else if (t2 > 0)
+		else if (poly.t2 > 0)
 		{
-			x2 = (*ray_transformed.ptr_origin).x + t2 * ray_transformed.direction.x;
-			if (-cylinder.object_attr.cylinder.height / 2 <= x2 && x2 <= cylinder.object_attr.cylinder.height / 2)
-			{
-				ptr_intersect_data_tmp->distance = t2;
-				intersect_point_no_x = vec3_add(*ray_transformed_no_x.ptr_origin, vec3_scale(ray_transformed_no_x.direction, 
-							ptr_intersect_data_tmp->distance));
-				ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
-						vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
-				get_normal_int(ptr_intersect_data_tmp, intersect_point_no_x, cylinder);
-				return (TRUE);
-			}
-			else
-				return (FALSE);
+			ptr_intersect_data_tmp->distance = poly.t2;
+			return (cylinder_one_positive_solutions(cyl_inter, ptr_intersect_data_tmp, ray));
 		}
 		else
 			return (FALSE);
 	}
 	else
 	{
-		double	t = -b / (2 * a);
-		double	x;
+		t = -poly.b / (2 * poly.a);
 		if (t > 0)
 		{
-			x = (*ray_transformed.ptr_origin).x + t * ray_transformed.direction.x; 
-			if (-cylinder.object_attr.cylinder.height / 2 <= x && x <= cylinder.object_attr.cylinder.height / 2)
-			{
-				ptr_intersect_data_tmp->distance = t;
-				intersect_point_no_x = vec3_add(*ray_transformed_no_x.ptr_origin, vec3_scale(ray_transformed_no_x.direction, 
-							ptr_intersect_data_tmp->distance));
-				ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
-						vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
-				get_normal_ext(ptr_intersect_data_tmp, intersect_point_no_x, cylinder);
-				return (TRUE);
-			}
-			else
-				return (FALSE);
+			ptr_intersect_data_tmp->distance = t;
+			return (cylinder_one_positive_solutions(cyl_inter, ptr_intersect_data_tmp, ray));
 		}
 		return (FALSE);
 	}
+}
+
+int	cylinder_two_positive_solutions(t_polynomial poly, t_intersect_cylinder cyl_inter,
+			t_intersect *ptr_intersect_data_tmp, t_ray ray)
+{
+	double		x1;
+	double		x2;
+	t_object	cylinder;
+
+	cylinder = *ptr_intersect_data_tmp->ptr_obj;
+	x1 = cyl_inter.ray_transformed.ptr_origin->x + poly.t1 * cyl_inter.ray_transformed.direction.x;
+	x2 = cyl_inter.ray_transformed.ptr_origin->x + poly.t2 * cyl_inter.ray_transformed.direction.x;
+	if (-cylinder.object_attr.cylinder.height / 2 <= x1 && x1 <= cylinder.object_attr.cylinder.height / 2
+		&& -cylinder.object_attr.cylinder.height / 2 <= x2 && x2 <= cylinder.object_attr.cylinder.height / 2)
+	{
+		ptr_intersect_data_tmp->distance = fmin(poly.t1, poly.t2);
+		ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
+				vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
+		cyl_inter.intersect_point_transformed_no_x = vec3_add(*cyl_inter.ray_transformed_no_x.ptr_origin, vec3_scale(cyl_inter.ray_transformed_no_x.direction, ptr_intersect_data_tmp->distance));
+		get_normal_ext(ptr_intersect_data_tmp, cyl_inter.intersect_point_transformed_no_x, cylinder);
+		return (TRUE);
+	}
+	else if (-cylinder.object_attr.cylinder.height / 2 <= x1 && x1 <= cylinder.object_attr.cylinder.height / 2)
+	{
+		ptr_intersect_data_tmp->distance = poly.t1;
+		ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
+				vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
+		cyl_inter.intersect_point_transformed_no_x = vec3_add(*cyl_inter.ray_transformed_no_x.ptr_origin, vec3_scale(cyl_inter.ray_transformed_no_x.direction, ptr_intersect_data_tmp->distance));
+		if (fabs(ptr_intersect_data_tmp->distance - fmin(poly.t1,poly.t2)) < 1e-5)
+			get_normal_ext(ptr_intersect_data_tmp, cyl_inter.intersect_point_transformed_no_x, cylinder);
+		else
+			get_normal_int(ptr_intersect_data_tmp, cyl_inter.intersect_point_transformed_no_x, cylinder);
+		return (TRUE);
+	}
+	else if (-cylinder.object_attr.cylinder.height / 2 <= x2 && x2 <= cylinder.object_attr.cylinder.height / 2)
+	{
+		ptr_intersect_data_tmp->distance = poly.t2;
+		cyl_inter.intersect_point_transformed_no_x = vec3_add(*cyl_inter.ray_transformed_no_x.ptr_origin, vec3_scale(cyl_inter.ray_transformed_no_x.direction, ptr_intersect_data_tmp->distance));
+		ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
+				vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
+		if (fabs(ptr_intersect_data_tmp->distance - fmin(poly.t1,poly.t2)) < 1e-5)
+			get_normal_ext(ptr_intersect_data_tmp, cyl_inter.intersect_point_transformed_no_x, cylinder);
+		else
+			get_normal_int(ptr_intersect_data_tmp, cyl_inter.intersect_point_transformed_no_x, cylinder);
+		return (TRUE);
+	}
+	else
+		return (FALSE);
+}
+
+int	cylinder_one_positive_solutions(t_intersect_cylinder cyl_inter,
+			t_intersect *ptr_intersect_data_tmp, t_ray ray)
+{
+	double		x;
+	double 		t;
+	t_object	cylinder;
+
+	cylinder = *ptr_intersect_data_tmp->ptr_obj;
+	t = ptr_intersect_data_tmp->distance;
+	x = (*cyl_inter.ray_transformed.ptr_origin).x
+		+ t * cyl_inter.ray_transformed.direction.x;
+	if (-cylinder.object_attr.cylinder.height / 2 <= x
+		&& x <= cylinder.object_attr.cylinder.height / 2)
+	{
+		cyl_inter.intersect_point_transformed_no_x
+			= vec3_add(*cyl_inter.ray_transformed_no_x.ptr_origin,
+				vec3_scale(cyl_inter.ray_transformed_no_x.direction,
+					ptr_intersect_data_tmp->distance));
+		ptr_intersect_data_tmp->intersect_point = vec3_add(*ray.ptr_origin,
+				vec3_scale(ray.direction, ptr_intersect_data_tmp->distance));
+		get_normal_int(ptr_intersect_data_tmp,
+			cyl_inter.intersect_point_transformed_no_x, cylinder);
+		return (TRUE);
+	}
+	else
+		return (FALSE);
 }
 
 void	get_normal_ext(t_intersect *ptr_intersect_data, t_vec3 intersect_point_no_x, t_object cylinder)

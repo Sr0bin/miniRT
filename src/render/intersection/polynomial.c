@@ -20,6 +20,7 @@ int	solve_polynomial(t_polynomial *poly, double a, double b, double c)
 	temp.b = b;
 	temp.c = c;
 	temp.delta = (temp.b * temp.b) - (4 * temp.a * temp.c);
+	*poly = temp;
 	if (temp.delta < 0)
 		return (0);
 	if (fabs(temp.delta - 0) < 1e-5)
