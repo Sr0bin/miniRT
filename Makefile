@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/12 10:03:44 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/12 10:53:57 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,7 @@ INTERSECTION_FILES = intersection.c check_intersect_sphere.c check_intersect_pla
 					 polynomial.c \
 					 check_intersect_cylinder.c \
 					 object_single_light.c \
+					 update_intersect_color.c \
 
 
 SCN_OBJ_DIR = scene_objects
