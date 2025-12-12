@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:20:19 by rorollin          #+#    #+#             */
-/*   Updated: 2025/11/26 15:08:18 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:49:36 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_object	*n_object(t_vector *ptr_objects, size_t n)
 
 t_object	*iter_object(t_vector *ptr_objects, int (f)(t_object *))
 {
-	size_t	count;
-	t_object *objects;
+	size_t		count;
+	t_object	*objects;
 
 	count = 0;
 	objects = ptr_objects->data;
@@ -56,11 +56,12 @@ t_object	*search_object(t_vector *ptr_objects, t_obj_type type, size_t n)
 	return (NULL);
 }
 
-t_object	*search_object_group(t_vector *ptr_objects, t_obj_type type, size_t n)
+t_object	*search_object_group(t_vector *ptr_objects, t_obj_type type,
+				size_t n)
 {
 	t_object	*object;
-	size_t	i;
-	size_t	count;
+	size_t		i;
+	size_t		count;
 
 	object = ptr_objects->data;
 	i = 0;
