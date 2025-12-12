@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:32:27 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 14:33:16 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/12 15:03:36 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include "mat3.h"
 #include "render.h"
 
-int	get_r_world_to_tmp_frame(t_mat3 *r2, t_vec3 cam_direction, double *ptr_angle)
+int	get_r_world_to_tmp_frame(t_mat3 *r2,
+		t_vec3 cam_direction, double *ptr_angle)
 {
 	t_vec3			cam_direction_no_y;
 	double			norm_cam_direction_no_y;
 	double			angle;
 
-	cam_direction_no_y = vec3_set_all(vec3_get(cam_direction, X), 0, vec3_get(cam_direction, Z));
+	cam_direction_no_y = vec3_set_all(vec3_get(cam_direction, X), 0,
+			vec3_get(cam_direction, Z));
 	norm_cam_direction_no_y = vec3_norm(cam_direction_no_y);
 	if ((norm_cam_direction_no_y - 0) < 1e-5)
 		return (1);
@@ -33,7 +35,8 @@ int	get_r_world_to_tmp_frame(t_mat3 *r2, t_vec3 cam_direction, double *ptr_angle
 	return (0);
 }
 
-int	get_r_tmp_to_cylinder_frame(t_mat3 *r1, t_vec3 cyl_direction, double *ptr_angle)
+int	get_r_tmp_to_cylinder_frame(t_mat3 *r1,
+		t_vec3 cyl_direction, double *ptr_angle)
 {
 	double			norm_cam_direction;
 	double			angle;
@@ -49,7 +52,8 @@ int	get_r_tmp_to_cylinder_frame(t_mat3 *r1, t_vec3 cyl_direction, double *ptr_an
 	return (0);
 }
 
-int	get_r_cylinder_to_tmp_frame(t_mat3 *r1, t_vec3 cyl_direction, double *ptr_angle)
+int	get_r_cylinder_to_tmp_frame(t_mat3 *r1,
+		t_vec3 cyl_direction, double *ptr_angle)
 {
 	double			norm_cam_direction;
 	double			angle;
@@ -64,13 +68,15 @@ int	get_r_cylinder_to_tmp_frame(t_mat3 *r1, t_vec3 cyl_direction, double *ptr_an
 	return (0);
 }
 
-int	get_r_tmp_to_world_frame(t_mat3 *r2, t_vec3 cam_direction, double *ptr_angle)
+int	get_r_tmp_to_world_frame(t_mat3 *r2, t_vec3 cam_direction,
+		double *ptr_angle)
 {
 	t_vec3			cam_direction_no_y;
 	double			norm_cam_direction_no_y;
 	double			angle;
 
-	cam_direction_no_y = vec3_set_all(vec3_get(cam_direction, X), 0, vec3_get(cam_direction, Z));
+	cam_direction_no_y = vec3_set_all(vec3_get(cam_direction, X), 0,
+			vec3_get(cam_direction, Z));
 	norm_cam_direction_no_y = vec3_norm(cam_direction_no_y);
 	if ((norm_cam_direction_no_y - 0) < 1e-5)
 		return (1);
