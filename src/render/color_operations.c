@@ -6,22 +6,13 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:26:57 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/11 17:42:34 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 09:57:13 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "ft_vectors.h"
 #include "minirt.h"
-#include "point3.h"
-#include "ray.h"
-#include "vec3.h"
-#include "render.h"
-#include "intersection.h"
 #include "color.h"
-#include <math.h>
 #include <stdint.h>
-#include <stdio.h>
 
 t_color	color_add(t_color a, t_color b)
 {
