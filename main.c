@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/05 14:35:59 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:25:35 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	fflush(stdout);
 	mlx_start(&mlx);
 	mlx_free_all(&mlx);
-	free_rays(&array_ray, WINDOW_WIDTH * WINDOW_HEIGHT);
+	free_rays(&array_ray);
 	free_scene(&scene);
 	return (0);
 }

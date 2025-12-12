@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:46:08 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/04 16:05:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:25:45 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	create_rays(t_ray **ptr_array_rays, size_t nb_rays,
 	if (create_ray_content(*ptr_array_rays,
 			canvas_point_arrays, ptr_cam_point) != SUCCESS)
 	{
-		free_rays(ptr_array_rays, nb_rays);
+		free_rays(ptr_array_rays);
 		return (FAILURE_MALLOC);
 	}
 	return (SUCCESS);
