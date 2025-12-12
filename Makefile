@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/12 10:53:57 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/12 11:32:29 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ RAY_DIR = $(RENDER_DIR)/ray
 RAY_FILES = ray_core.c
 
 INTERSECTION_DIR = $(RENDER_DIR)/intersection
-INTERSECTION_FILES = intersection.c check_intersect_sphere.c check_intersect_plane.c\
+INTERSECTION_FILES = check_intersect_sphere.c check_intersect_plane.c\
 					 intersect_operations.c \
 					 polynomial.c \
 					 check_intersect_cylinder.c \

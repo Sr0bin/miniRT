@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 17:06:14 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/12 10:34:22 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/12 11:31:07 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	solve_polynomial(t_polynomial *poly, double a, double b, double c)
 {
-	t_polynomial temp;
+	t_polynomial	temp;
+
 	temp.a = a;
 	temp.b = b;
 	temp.c = c;

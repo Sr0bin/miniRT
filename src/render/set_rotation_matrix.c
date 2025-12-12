@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 13:41:49 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/02 18:28:29 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:30:21 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	set_rotation_matrix_x(t_mat3 *rotation_matrix, double theta)
 	rotation_matrix->index[2][0] = 0;
 	rotation_matrix->index[2][1] = sin(theta);
 	rotation_matrix->index[2][2] = cos(theta);
-
 }
 
 static void	set_rotation_matrix_y(t_mat3 *rotation_matrix, double theta)

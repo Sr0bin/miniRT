@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:43:02 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/12 11:18:16 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/12 11:30:42 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ray_destroy(t_ray	**ray)
 {
 	if (ray == NULL || *ray == NULL)
 		return (NULL);
-	**ray = (t_ray) {0};
+	**ray = (t_ray){0};
 	free(*ray);
 	*ray = NULL;
 	return (NULL);
