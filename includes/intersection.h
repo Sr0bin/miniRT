@@ -50,7 +50,6 @@ int		update_intersect_all_object(t_ray *ray, t_object *obj_array,
 			size_t count, t_intersect *intersect_data);
 void	update_intersect_color(t_intersect	*intersect_data,
 			t_scene *ptr_scene);
-void	offset_intersect_point(t_intersect *intersect_data);
 t_color	object_single_light(t_intersect	*intersect_data, t_scene *scene,
 			t_object *light);
 t_color	object_sum_lights(t_intersect *intersect_data, t_scene *scene);

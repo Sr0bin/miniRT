@@ -88,12 +88,14 @@ static void	update_closest_intersect(t_intersect *ptr_intersect, t_intersect *pt
 		*ptr_intersect = *ptr_intersect_tmp;
 }
 
+/*
 void	offset_intersect_point(t_intersect *intersect_data)
 {
 	intersect_data->intersect_point = offset_point3(
 			intersect_data->intersect_point,
 			vec3_scale(intersect_normal(intersect_data), 0.001));
 }
+*/
 
 void	update_intersect_color(t_intersect	*ptr_intersect, t_scene *ptr_scene)
 {
