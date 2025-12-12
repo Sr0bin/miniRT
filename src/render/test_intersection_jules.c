@@ -68,18 +68,18 @@ t_color	object_sum_lights(t_intersect *ptr_intersect, t_scene *ptr_scene)
 {
 	t_color		temp;
 	t_object	*crnt_light;
-	size_t	i;
+	size_t		i;
 
 	i = 0;
-	temp = (t_color) {0};
+	temp.color = 0;
 	while (i < ptr_scene->lights_arr.size)
 	{
 		crnt_light = &((t_object *)ptr_scene->lights_arr.data)[i];
-		temp = color_add(temp, object_single_light(ptr_intersect, ptr_scene, crnt_light));
+		temp = color_add(temp, object_single_light(ptr_intersect,
+					ptr_scene, crnt_light));
 		i++;
 	}
 	return (temp);
-
 }
 
 void	set_pixel_color(t_ray ray, t_color *ptr_pixel, t_scene *ptr_scene)
