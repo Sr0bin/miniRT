@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:38:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/02 18:32:41 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:27:24 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,13 @@ void	rotate_canvas_point_array(t_vec3 (*canvas_point_array),
 	ret = get_r1(&r1, direction, &angle);
 	if (ret == 0)
 	{
-		printf("rotation of %f rad (%f deg) around 'z' axis of 'camera'"
-			"frame (or 'temporary' frame)\n",
-			angle,
-			angle * 180 / M_PI);
 		rotate_all_points(canvas_point_array, nb_rays, r1);
 	}
-	else
-		printf("no rotation around 'z' of 'camera' frame\n"
-			"camera direction already in 'z' 'x' plane of 'world' frame\n");
 	ret = get_r2(&r2, direction, &angle);
 	if (ret == 0)
 	{
-		printf("rotation of %f rad (%f deg) around 'y' axis "
-			"of 'temporary' (or 'world' frame) frame\n",
-			angle,
-			angle * 180 / M_PI);
 		rotate_all_points(canvas_point_array, nb_rays, r2);
 	}
-	else
-		printf("no rotation around 'y' axis of 'temporary' frame\n");
 	return ;
 }
 
@@ -137,7 +124,8 @@ static int	get_r2(t_mat3 *r2, t_vec3 cam_direction, double *ptr_angle)
 	double			norm_cam_direction_no_y;
 	double			angle;
 
-	cam_direction_no_y = vec3_set_all(vec3_get(cam_direction, X), 0, vec3_get(cam_direction, Z));
+	cam_direction_no_y = vec3_set_all(vec3_get(cam_direction, X), 0,
+			vec3_get(cam_direction, Z));
 	norm_cam_direction_no_y = vec3_norm(cam_direction_no_y);
 	if ((norm_cam_direction_no_y - 0) < 1e-5)
 		return (1);
