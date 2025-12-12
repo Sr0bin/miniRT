@@ -6,11 +6,10 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:38:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 11:27:24 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/12 11:28:26 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "point3.h"
 #include "render.h"
 #include "vec3.h"
 #include <math.h>
