@@ -6,12 +6,13 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 14:13:01 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:46:27 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 #include "ft_standard.h"
+#include <math.h>
 
 /*
  * create_matrix: Creates a row*col size matrix, returns NULL in case of 
@@ -111,24 +112,5 @@ double	matrix_get_coord(t_matrix *matrix, size_t row, size_t col)
 
 void	matrix_set_value(t_matrix *matrix, size_t row, size_t col, double value)
 {
-	//TODO: check if row col is out of bounds
 	matrix->index[row][col] = value;
-}
-
-void	print_matrix(t_matrix_const *matrix)
-{
-	size_t	i;
-	size_t	j;
-	i = 0;
-	while (i < matrix->row_size || i == 0)
-	{
-		j = 0;
-		while (j < matrix->col_size || j == 0)
-		{
-			printf("%f ",matrix->index[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 }

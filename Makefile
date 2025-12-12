@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/12 11:32:29 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/12 11:43:47 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME = miniRT
 SOURCES_DIR = src
 
 MATRIX_DIR = matrix
-MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c
+MATRIX_FILES = matrix_core.c matrix_elem.c matrix_operations.c \
+			   scalar_matrix_new.c \
 
 MLX_SETUP_DIR = mlx_setup
 MLX_SETUP_FILES = mlx_setup.c \

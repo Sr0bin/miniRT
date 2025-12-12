@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:05:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 14:13:01 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:45:26 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 
 # include <stddef.h>
 # include <stdio.h>
-# include <math.h>
 
 /*
-	* Simple lib for matrix representation. It is represented as a double array of float.
-	* Each matrix is allocatedm and a new one is created when you do an operation.
-	* That ensures that no data is lost, and care must be taken to free everything in the
-	* end.
-	* Each operation on the matrices need to be done on the lib to ensure that
-	* no date corruption can occur, with no out of bound comportement.
-	* TODO : Check that errors are properly managed.
+ * Simple lib for matrix representation. It is represented as a 
+ * double array of float.
+ * Each matrix is allocatedm and a new one is created when you do an 
+ * operation.
+ * That ensures that no data is lost, and care must be taken to free 
+ * everything in the end.
+ * Each operation on the matrices need to be done on the lib to ensure that
+ * no date corruption can occur, with no out of bound comportement.
+ * TODO : Check that errors are properly managed.
 */
 
 typedef struct s_matrix
@@ -48,5 +49,4 @@ t_matrix	*scalar_matrix_new(t_matrix_const *matrix, double scalar);
 void		scalar_matrix(t_matrix *matrix, double scalar);
 t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b);
 
-void	print_matrix(t_matrix_const *matrix);
 #endif

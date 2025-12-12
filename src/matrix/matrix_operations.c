@@ -6,11 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:07:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/01 21:22:05 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:46:14 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
+#include <math.h>
 
 /*
 * add_matrix: Create a new matrix, the result of addition matrix A + B.
@@ -78,7 +79,8 @@ t_matrix	*substract_matrix(t_matrix_const *a, t_matrix_const *b)
 	return (substracted);
 }
 
-static double	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
+static double	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i,
+					size_t j)
 {
 	size_t	k;
 	double	sum;
@@ -96,7 +98,8 @@ static double	clc_sum(t_matrix_const *a, t_matrix_const *b, size_t i, size_t j)
 }
 
 /*
-* multiply_matrix: Create a new matrix, the result of multiplication matrix A * B.
+* multiply_matrix: Create a new matrix, the result of multiplication 
+* matrix A * B.
 * Matrices needs to be of compatible sizes.
 * Returns NULL in case of memory error during allocation.
 */
@@ -129,7 +132,8 @@ t_matrix	*multiply_matrix(t_matrix_const *a, t_matrix_const *b)
 }
 
 /*
-* scalar_matrix: Change the current matrix, the result of multiplication   scalar * A.
+* scalar_matrix: Change the current matrix, the result of multiplication
+* scalar * A.
 * Returns NULL in case of error.
 */
 
@@ -151,29 +155,4 @@ void	scalar_matrix(t_matrix *matrix, double scalar)
 		}
 		i++;
 	}
-}
-
-t_matrix	*scalar_matrix_new(t_matrix_const *matrix, double scalar)
-{
-	size_t		i;
-	size_t		j;
-	t_matrix	*scaled;
-
-	i = 0;
-	if (matrix == NULL)
-		return (NULL);
-	scaled = create_matrix(matrix->row_size, matrix->col_size);
-	if (scaled == NULL)
-		return (NULL);
-	while (i < matrix->row_size)
-	{
-		j = 0;
-		while (j < matrix->col_size)
-		{
-			scaled->index[i][j] = matrix->index[i][j] * scalar;
-			j++;
-		}
-		i++;
-	}
-	return (scaled);
 }
