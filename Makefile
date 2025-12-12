@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/12 11:43:47 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/12 14:45:43 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,11 @@ INTERSECTION_FILES = check_intersect_sphere.c check_intersect_plane.c\
 					 check_intersect_cylinder.c \
 					 object_single_light.c \
 					 update_intersect_color.c \
+					 cylinder_rotation_matrix.c \
+					 get_cylinder_normal.c \
+					 cylinder_one_positive_solution.c \
+					 cylinder_two_positive_solution.c \
+					 transform_ray.c \
 
 
 SCN_OBJ_DIR = scene_objects

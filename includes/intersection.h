@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/11 18:27:15 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:46:26 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,24 @@ t_vec3	object_normal(t_object *obj, t_intersect *intersect_data);
 t_vec3	intersect_normal(t_intersect *intersect_data);
 t_vec3	sphere_normal(t_object *obj, t_point3 hit);
 t_vec3	plane_normal(t_object *obj, t_intersect *intersect_data);
+
+void	transform_ray(t_ray *ptr_dest_ray, t_ray src_ray, t_object cylinder);
+int		cylinder_one_positive_solutions(t_intersect_cylinder cyl_inter,
+			t_intersect *ptr_intersect_data_tmp, t_ray ray);
+int		cylinder_two_positive_solutions(t_polynomial poly,
+			t_intersect_cylinder cyl_inter,
+			t_intersect *ptr_intersect_data_tmp, t_ray ray);
+void	get_cylinder_normal_int(t_intersect *ptr_intersect_data,
+			t_vec3 intersect_point_no_x, t_object cylinder);
+void	get_cylinder_normal_ext(t_intersect *ptr_intersect_data,
+			t_vec3 intersect_point_no_x, t_object cylinder);
+int		get_r_tmp_to_world_frame(t_mat3 *r2, t_vec3 cam_direction,
+			double *ptr_angle);
+int		get_r_cylinder_to_tmp_frame(t_mat3 *r1, t_vec3 cyl_direction,
+			double *ptr_angle);
+int		get_r_tmp_to_cylinder_frame(t_mat3 *r1, t_vec3 cyl_direction,
+			double *ptr_angle);
+int		get_r_world_to_tmp_frame(t_mat3 *r2, t_vec3 cam_direction,
+			double *ptr_angle);
 
 #endif
