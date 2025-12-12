@@ -89,10 +89,10 @@ MAT3_FILES = mat3_core.c mat3_elem.c mat3_operations.c
 MAT4_DIR = utils/mat4
 MAT4_FILES = mat4_core.c mat4_elem.c mat4_operations.c
 
-RAY_DIR = ray
+RAY_DIR = $(RENDER_DIR)/ray
 RAY_FILES = ray_core.c
 
-INTERSECTION_DIR = intersection
+INTERSECTION_DIR = $(RENDER_DIR)/intersection
 INTERSECTION_FILES = intersection.c check_intersect_sphere.c check_intersect_plane.c\
 					 intersect_operations.c \
 					 polynomial.c\
