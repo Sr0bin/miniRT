@@ -30,7 +30,7 @@ int	fill_obj_light(t_object *ptr_obj_tmp, char **elements,
 		|| elements[3] == NULL || elements[4] != NULL)
 	{
 		*ptr_str_err_msg = ft_strdup(MSG_LIGHT_WRONG_ARGUMENTS);
-		if (ptr_str_err_msg == NULL)
+		if (*ptr_str_err_msg == NULL)
 			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_PERSONNALIZED);
 	}
