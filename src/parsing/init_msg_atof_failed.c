@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:13:17 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/31 12:58:06 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 14:24:21 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int			init_msg_atof_failed(char **ptr_str_err_msg,
 static int	msg_atof_too_large_input(char **ptr_str_err_msg);
 static int	msg_atof_overflow_underflow(char **ptr_str_err_msg);
 static int	msg_atof_wrong_input(char **ptr_str_err_msg);
+
+/* to check
+ *	first ft_strndup fail : DONE -> OK !
+ *	ft_strdup fail : TO DO 
+*/
 
 int	init_msg_atof_failed(char **ptr_str_err_msg,
 		int ret, char *input)

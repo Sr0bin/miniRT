@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:10:23 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 13:16:55 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:28:36 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	append_line_nbr_content(t_line line, char **ptr_str_err_msg,
 static int	get_tmp_line(t_line line, char **ptr_tmp_line);
 
 /* to check
- *	ft_vector_init fail : TO DO ;
+ *	ft_vector_init fail : DONE -> OK !
  *	get_each_objects fail : TO DO ;
  *	check_object fail : TO DO ;
 */
@@ -53,6 +53,10 @@ int	parse_file_content(t_vector file_content, t_vector *ptr_objects,
 	return (ret);
 }
 
+/* to check
+ *	parse_each_line fail : TO DO
+*/
+
 static int	get_each_objects(t_vector file_content, t_vector *ptr_objects,
 				char **ptr_str_err_msg)
 {
@@ -70,6 +74,13 @@ static int	get_each_objects(t_vector file_content, t_vector *ptr_objects,
 	}
 	return (SUCCESS);
 }
+
+/* to check
+ *	ft_split fail : DONE -> OK !
+ *	fill_obj_content : TO DO ;
+ *	append_line_nbr_content fail : DONE -> OK !
+ *	ft_vector_add_single fail : DONE -> OK !
+*/
 
 static int	parse_each_line(t_line line_i, t_vector *ptr_objects,
 				char **ptr_str_err_msg)
@@ -97,6 +108,11 @@ static int	parse_each_line(t_line line_i, t_vector *ptr_objects,
 	return (SUCCESS);
 }
 
+/* to check
+ *	get_tmp_line fail : DONE -> OK !
+ *	ft_strjoin_free_second fail : DONE -> OK !
+*/
+
 int	append_line_nbr_content(t_line line, char **ptr_str_err_msg, int ret_val)
 {
 	char	*tmp_line;
@@ -114,6 +130,14 @@ int	append_line_nbr_content(t_line line, char **ptr_str_err_msg, int ret_val)
 		return (FAILURE_MALLOC);
 	return (ret_val);
 }
+
+/* to check
+ *	ft_strdup fail : DONE -> OK !
+ *	ft_itoa fail : DONE -> OK !
+ *	first ft_strjoin_free_first fail : DONE -> OK !
+ *	second ft_strjoin_free_first fail : DONE -> OK !
+ *	third ft_strjoin_free_first fail : DONE -> OK !
+*/
 
 static int	get_tmp_line(t_line line, char **ptr_tmp_line)
 {

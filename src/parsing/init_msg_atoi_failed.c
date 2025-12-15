@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:15:56 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 16:16:24 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 14:01:47 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,19 @@ static int	msg_atoi_wrong_input(char **ptr_str_err_msg);
 static int	msg_atoi_overflow_underflow(char **ptr_str_err_msg);
 static int	msg_atoi_too_large_input(char **ptr_str_err_msg);
 
+/* to check
+ *	first ft_strjoin_free_first fail : DONE -> OK !
+ *	second ft_strjoin_free_first fail : DONE -> OK !
+ *	msg_atoi_too_large_input fail : DONE -> OK !
+ *	msg_atoi_overflow_underflow fail : DONE -> OK !
+ *	msg_atoi_wrong_input fail : DONE -> OK !
+ *	third ft_strjoin_free_second fail : DONE -> OK !
+*/
+
 int	init_msg_atoi_failed(char **ptr_str_err_msg,
 		int ret, char *input)
 {
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
-	if (*ptr_str_err_msg == NULL)
-		return (FAILURE_MALLOC);
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, input);
@@ -49,6 +56,10 @@ int	init_msg_atoi_failed(char **ptr_str_err_msg,
 	return (FAILURE_PARSE_PERSONNALIZED);
 }
 
+/* to check
+ *	ft_strjoin_free_first fail : DONE -> OK !
+*/
+
 static int	msg_atoi_too_large_input(char **ptr_str_err_msg)
 {
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
@@ -59,6 +70,10 @@ static int	msg_atoi_too_large_input(char **ptr_str_err_msg)
 	return (FAILURE_PARSE_PERSONNALIZED);
 }
 
+/* to check
+ *	ft_strjoin_free_first fail : DONE -> OK !
+*/
+
 static int	msg_atoi_overflow_underflow(char **ptr_str_err_msg)
 {
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg,
@@ -68,6 +83,10 @@ static int	msg_atoi_overflow_underflow(char **ptr_str_err_msg)
 		return (FAILURE_MALLOC);
 	return (FAILURE_PARSE_PERSONNALIZED);
 }
+
+/* to check
+ *	ft_strjoin_free_first fail : DONE -> OK !
+*/
 
 static int	msg_atoi_wrong_input(char **ptr_str_err_msg)
 {

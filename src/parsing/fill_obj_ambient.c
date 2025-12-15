@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:40:28 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/31 12:54:24 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 14:06:35 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ static int	atof_failed(int ret, char *ratio_str,
 				char **ptr_str_err_msg);
 static int	wrong_ratio_value(char *ratio_str, char **ptr_str_err_msg);
 static int	ambient_color_failed(int ret, char **ptr_str_err_msg);
+
+/* to check
+ *	wrong nb elements : DONE -> OK !
+ *	ft_strdup fail : DONE -> OK !
+ *	ft_atof_safe fail : DONE -> OK !
+ *	wrong_object_ratio : DONE -> OK !
+ *	fill_colors fail : DONE -> OK !
+*/
 
 int	fill_obj_ambient(t_object *ptr_obj_tmp, char **elements,
 		char **ptr_str_err_msg)
@@ -38,8 +46,8 @@ int	fill_obj_ambient(t_object *ptr_obj_tmp, char **elements,
 	ret = ft_atof_safe(elements[1], &ptr_obj_tmp->object_attr.ambient.ratio);
 	if (ret != SUCCESS)
 		return (atof_failed(ret, elements[1], ptr_str_err_msg));
-	if (ptr_obj_tmp->object_attr.ambient.ratio <= 0
-		|| ptr_obj_tmp->object_attr.ambient.ratio >= 1)
+	if (ptr_obj_tmp->object_attr.ambient.ratio < 0
+		|| ptr_obj_tmp->object_attr.ambient.ratio > 1)
 		return (wrong_ratio_value(elements[1], ptr_str_err_msg));
 	ret = fill_colors(&ptr_obj_tmp->object_attr.ambient.color.rgba,
 			elements[2], ptr_str_err_msg);

@@ -6,15 +6,18 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:53:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 15:55:23 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 14:04:57 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "ft_string.h"
 
-int	init_msg_wrong_color_value(char **splitted_colors, int color_i,
-		char **ptr_str_err_msg);
+/* to check
+ *	first ft_strjoin_free_first fail : DONE -> OK !
+ *	second ft_strjoin_free_first fail : DONE -> OK !
+ *	third ft_strjoin_free_first fail : DONE -> OK !
+*/
 
 int	init_msg_wrong_color_value(char **splitted_colors, int color_i,
 		char **ptr_str_err_msg)

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 09:09:12 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/29 13:50:18 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:30:23 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int			fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 				char **ptr_str_err_msg);
 static int	fill_from_object_id(t_object *ptr_obj_tmp, char **elements,
 				char **ptr_str_err_msg);
+
+/* to check
+ *	ft_strdup fail : TO DO ;
+ *	fill_from_object_id fail : TO DO ;
+*/
 
 int	fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 		char **ptr_str_err_msg)
@@ -34,6 +39,15 @@ int	fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 	return (fill_from_object_id(ptr_obj_tmp,
 			elements, ptr_str_err_msg));
 }
+
+/* to check
+ *	fill_obj_ambient fail : TO DO ;
+ *	fill_obj_camera fail : TO DO ;
+ *	fill_obj_light fail : TO DO;
+ *	fill_obj_sphere fail : TO DO ;
+ *	fill_obj_plane fail : TO DO;
+ *	fill_obj_cylinder fail : TO DO ;
+*/
 
 static int	fill_from_object_id(t_object *ptr_obj_tmp, char **elements,
 		char **ptr_str_err_msg)
