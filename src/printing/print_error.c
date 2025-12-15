@@ -40,6 +40,10 @@ int	print_error(int error, char *str)
 		ft_putstr_fd(MSG_CAMERA_TOO_MUCH, 2);
 	else if (error == FAILURE_MLX)
 		ft_putstr_fd("MLX failed to init itself\n", 2);
+	else if (error == FAILURE_MALLOC)
+		ft_putstr_fd("Memory allocation failure\n", 2);
+	else if (error == FAILURE_READ)
+		ft_putstr_fd("read failure\n", 2);
 	free(str);
 	return (FAILURE);
 }

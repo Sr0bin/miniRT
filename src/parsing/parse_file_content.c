@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:10:23 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:26:24 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:16:55 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static int	parse_each_line(t_line line_i, t_vector *ptr_objects,
 static int	append_line_nbr_content(t_line line, char **ptr_str_err_msg,
 				int ret_val);
 static int	get_tmp_line(t_line line, char **ptr_tmp_line);
+
+/* to check
+ *	ft_vector_init fail : TO DO ;
+ *	get_each_objects fail : TO DO ;
+ *	check_object fail : TO DO ;
+*/
 
 int	parse_file_content(t_vector file_content, t_vector *ptr_objects,
 				char **ptr_str_err_msg)

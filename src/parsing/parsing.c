@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:27:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/25 12:46:44 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 13:16:03 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include "minirt.h"
 #include "parsing.h"
 #include "object.h"
+
+/* to check
+ *	check_args fail : DONE -> OK !
+ *	get_file_content fail : DONE -> OK !
+ *	parse_file_content fail : TO DO ;
+ *	scene_init fail : TO DO ;
+*/
 
 int	parsing(int argc, char **argv, t_scene *ptr_scene,
 		char **ptr_str_err_msg)

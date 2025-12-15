@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 09:58:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:38:17 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:51:20 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include "graphics.h"
 #include "mlx_setup.h"
 #include "mlx.h"
+
+/* to check
+ *	fail mlx_init : DONE -> OK!
+ *	fail mlx_new_window : DONE -> OK !
+ *	fail mlx_new_image : DONE -> OK !
+*/
+
 
 int	mlx_setup(t_mlx *ptr_mlx)
 {

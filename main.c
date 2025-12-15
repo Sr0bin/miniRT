@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:47:39 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:57:23 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 
 static int	mlx_setup_failed(int ret, t_scene *ptr_scene);
 static int	render_failed(int ret, t_scene *ptr_scene, t_mlx *ptr_mlx);
+
+/* to check :
+ *	parsing fail : TO DO ;
+ *	mlx_setup fail : DONE -> OK !
+ *	render fail : TO DO ;
+*/
 
 int	main(int argc, char **argv)
 {
