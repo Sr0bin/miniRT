@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:07:09 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 15:45:33 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:42:55 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,26 +72,7 @@ double	mat3_get_coord(const t_mat3 mat3, size_t row, size_t col)
 
 void	mat3_set_value(t_mat3 *mat3, size_t row, size_t col, double value)
 {
-	//TODO: check if row col is out of bounds
 	if (row > MAT3_SIZE || col > MAT3_SIZE)
-		return ; 
+		return ;
 	mat3->index[row][col] = value;
-}
-
-void	print_mat3(t_mat3_const *mat3)
-{
-	size_t	i;
-	size_t	j;
-	i = 0;
-	while (i < MAT3_SIZE || i == 0)
-	{
-		j = 0;
-		while (j < MAT3_SIZE || j == 0)
-		{
-			printf("%f ",mat3->index[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 }

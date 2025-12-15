@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:30:12 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:50:18 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,4 +132,12 @@ direction consists of 3 decimal values separated by exactly one comma, \
 its value must be normalized.\n\
 ex: 10,0,255\n"
 
+# define MSG_AMBIENT_TOO_MUCH "Wrong number of Ambient object: \
+ configuration file can only have one ambient object\n"
+
+# define MSG_LIGHT_TOO_MUCH "Wrong number of Light object: \
+ configuration file can only have one light object\n"
+
+# define MSG_CAMERA_TOO_MUCH "Wrong number of Camera object: \
+ configuration file can only have one camera object\n"
 #endif // !PARSING_H

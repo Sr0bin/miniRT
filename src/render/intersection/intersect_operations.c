@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:24:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/12 11:01:58 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:16:56 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,3 @@ static void	update_closest_intersect(t_intersect *ptr_intersect,
 	else if (ptr_intersect_tmp->distance < ptr_intersect->distance)
 		*ptr_intersect = *ptr_intersect_tmp;
 }
-
-/*
-void	offset_intersect_point(t_intersect *intersect_data)
-{
-	intersect_data->intersect_point = offset_point3(
-			intersect_data->intersect_point,
-			vec3_scale(intersect_normal(intersect_data), 0.001));
-}
-*/

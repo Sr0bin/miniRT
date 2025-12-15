@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/09 16:35:16 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 13:46:52 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 
 # define AXIS_THREE 4
 # define AXIS_FOUR 5
+// # define BACKGROUND_COLOR 0xecb5f5 // Purple Pastel
+# define BACKGROUND_COLOR 0x000000
+# define DEFAULT_LIGHT_COLOR 0xffffff
 
 enum e_status
 {
@@ -70,7 +73,7 @@ typedef union u_color
  *	for the correct number of each type
  *	(only one allowed for each in mandatory part)
 */
-typedef enum	e_obj_type
+typedef enum e_obj_type
 {
 	OBJ_AMBIENT = 0,
 	OBJ_CAMERA = 1,

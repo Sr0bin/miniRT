@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:22:23 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/03 14:48:52 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:38:50 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_vec3	*vec3_alloc_from_point3(t_point3 *point)
 	t_vec3	*vector;
 
 	vector = vec3_alloc(point3_get(*point, 0),
-						point3_get(*point, 1),
-						point3_get(*point, 2));
+			point3_get(*point, 1),
+			point3_get(*point, 2));
 	return (vector);
 }
 
-//TODO: rename the functions
+//todo:rename
 t_vec3	vect3_from_point3(t_point3 a, t_point3 b)
 {
 	return (vec3_subtract(b, a));

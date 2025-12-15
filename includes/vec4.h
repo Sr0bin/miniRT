@@ -6,13 +6,14 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:00:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 14:14:30 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:29:40 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VEC4_H
 # define VEC4_H
 # include "minirt.h"
+
 typedef struct s_vec4
 {
 	double	x;
@@ -36,4 +37,3 @@ double	vector_norm4(t_vec4 a);
 void	normalize_vec4(t_vec4	*vector);
 t_vec4	reflection_vector4(t_vec4 incident, t_vec4 normal);
 #endif
-

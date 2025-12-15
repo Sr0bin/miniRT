@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:41:06 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/04 16:05:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:26:09 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ typedef struct s_ray
 t_ray	*create_ray(t_point3 *origin, t_vec3 direction);
 void	*ray_destroy(t_ray	**ray);
 #endif
-

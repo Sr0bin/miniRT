@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 11:03:16 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 15:01:24 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:15:10 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,19 @@ int	check_intersect_cylinder(t_ray ray, t_object cylinder,
 	init_cyl_inter(&cyl_inter, cylinder, ray, &poly);
 	if (poly.delta < 0)
 		return (FALSE);
-	else if (poly.delta > 0)
+	if (poly.delta > 0)
 	{
 		return (cylinder_delta_positive(poly, cyl_inter,
 				ptr_intersect_data_tmp, ray));
 	}
-	else
+	t = -poly.b / (2 * poly.a);
+	if (t > 0)
 	{
-		t = -poly.b / (2 * poly.a);
-		if (t > 0)
-		{
-			ptr_intersect_data_tmp->distance = t;
-			return (cylinder_one_positive_solutions(cyl_inter,
-					ptr_intersect_data_tmp, ray));
-		}
-		return (FALSE);
+		ptr_intersect_data_tmp->distance = t;
+		return (cylinder_one_positive_solutions(cyl_inter,
+				ptr_intersect_data_tmp, ray));
 	}
+	return (FALSE);
 }
 
 static void	init_cyl_inter(t_intersect_cylinder *ptr_cyl_inter,
@@ -87,18 +84,17 @@ static int	cylinder_delta_positive(t_polynomial poly,
 	if (poly.t1 > 0 && poly.t2 > 0)
 		return (cylinder_two_positive_solutions(poly,
 				cyl_inter, ptr_intersect_data_tmp, ray));
-	else if (poly.t1 > 0)
+	if (poly.t1 > 0)
 	{
 		ptr_intersect_data_tmp->distance = poly.t1;
 		return (cylinder_one_positive_solutions(cyl_inter,
 				ptr_intersect_data_tmp, ray));
 	}
-	else if (poly.t2 > 0)
+	if (poly.t2 > 0)
 	{
 		ptr_intersect_data_tmp->distance = poly.t2;
 		return (cylinder_one_positive_solutions(cyl_inter,
 				ptr_intersect_data_tmp, ray));
 	}
-	else
-		return (FALSE);
+	return (FALSE);
 }

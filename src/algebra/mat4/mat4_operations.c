@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:49:40 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 15:56:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:43:23 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_mat4	add_mat4(t_mat4_const a, t_mat4_const b)
 {
 	size_t		i;
 	size_t		j;
-	t_mat4	added;
+	t_mat4		added;
 
 	i = 0;
 	while (i < MAT4_SIZE)
@@ -46,7 +46,7 @@ t_mat4	substract_mat4(t_mat4_const a, t_mat4_const b)
 {
 	size_t		i;
 	size_t		j;
-	t_mat4	substracted;
+	t_mat4		substracted;
 
 	i = 0;
 	while (i < MAT4_SIZE)
@@ -87,7 +87,7 @@ t_mat4	multiply_mat4(t_mat4_const a, t_mat4_const b)
 {
 	size_t		i;
 	size_t		j;
-	t_mat4	mult;
+	t_mat4		mult;
 
 	i = 0;
 	while (i < MAT4_SIZE)
@@ -104,7 +104,7 @@ t_mat4	multiply_mat4(t_mat4_const a, t_mat4_const b)
 }
 
 /*
-* scalar_mat4: Change the current mat4, the result of multiplication   scalar * A.
+* scalar_mat4: Change the current mat4, the result of multiplication scalar * A.
 */
 
 t_mat4	scalar_mat4(t_mat4_const mat4, double scalar)

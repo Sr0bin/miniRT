@@ -6,12 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 21:59:06 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 18:30:37 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:29:29 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECT3_H
-# define VECT3_H
+#ifndef VEC3_H
+# define VEC3_H
 # include "mat3.h"
 
 typedef struct s_vec3
