@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:43:09 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:20:13 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:30:12 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ Wrong number of arguments.\n\
 Light takes 4 arguments separated by spaces.\n\
 ex: L\t-40.0,50.0,0.0\t0.6\t10,0,255\n\
 1: light identifer\n\
-2: cooridnates of light point\n\
+2: coordinates of light point\n\
 3: light brightness ratio\n\
 4: light color (RGB)\n"
 

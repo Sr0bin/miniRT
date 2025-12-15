@@ -6,11 +6,10 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:41:38 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:29:14 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:29:53 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.h"
 #include "minirt.h"
 #include "parsing.h"
 #include "ft_standard.h"

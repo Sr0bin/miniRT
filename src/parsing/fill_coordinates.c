@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:55:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:20:32 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:33:02 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,38 @@ static int	fill_from_splitted_coo(t_point3 *ptr_coo,
 static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 				const char *coo_str);
 
-int	fill_coordinates(t_point3 *ptr_coo, const char *coo,
+int	fill_coordinates(t_point3 *ptr_coordinates, const char *coordinates_str,
 		char **ptr_str_err_msg)
 {
 	char	**splitted_coo;
 	int		ret;
 	int		consecutive_comma;
 
-	consecutive_comma = check_consecutive_comma(coo);
+	consecutive_comma = check_consecutive_comma(coordinates_str);
 	if (consecutive_comma == TRUE)
-		return (coordinates_wrong_nb_args(ptr_str_err_msg, coo));
-	splitted_coo = ft_split(coo, ",");
+		return (coordinates_wrong_nb_args(ptr_str_err_msg, coordinates_str));
+	splitted_coo = ft_split(coordinates_str, ",");
 	if (splitted_coo == NULL)
 		return (FAILURE_MALLOC);
 	if (splitted_coo[0] == NULL || splitted_coo [1] == NULL
 		|| splitted_coo [2] == NULL || splitted_coo[3] != NULL)
 	{
 		ft_split_free(splitted_coo);
-		return (coordinates_wrong_nb_args(ptr_str_err_msg, coo));
+		return (coordinates_wrong_nb_args(ptr_str_err_msg, coordinates_str));
 	}
-	ret = fill_from_splitted_coo(ptr_coo, splitted_coo, ptr_str_err_msg);
+	ret = fill_from_splitted_coo(ptr_coordinates,
+			splitted_coo, ptr_str_err_msg);
 	ft_split_free(splitted_coo);
 	return (ret);
 }
 
 static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
-				const char *coo_str)
+				const char *coordinates_str)
 {
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
-	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, coo_str);
+	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, coordinates_str);
 	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
 	*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "': ");
