@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:41:53 by jweber            #+#    #+#             */
-/*   Updated: 2025/10/28 19:01:35 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:27:03 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static int	get_each_line(int fd, t_vector *ptr_file_content)
 		line.content = get_next_line(fd, &ret);
 		if (ret != SUCCESS)
 			return (gnl_failure(ret));
-		if (line.content != NULL
-			&& ((line.content[0] != '#') && (line.content[0] != '\n' && line.content[1] != '\0')))
+		if (line.content != NULL && ((line.content[0] != '#')
+				&& (line.content[0] != '\n' && line.content[1] != '\0')))
 		{
 			ret = ft_vector_add_single(ptr_file_content, &line);
 			if (ret != SUCCESS)

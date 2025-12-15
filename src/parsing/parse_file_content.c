@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:10:23 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:30:44 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:26:24 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,6 @@ static int	parse_each_line(t_line line_i, t_vector *ptr_objects,
 	t_object	obj_tmp;
 
 	elements = ft_split(line_i.content, WHITE_SPACE);
-	//TODO: change whitesaces by only " " to split only on spaces (it thinkg
-	// it is ok to let splitting on whitespace -> to see with roro
-	// but think to trim '\n' at the end of ((char **)file_content.data)[i] !
-	// or no ?
 	if (elements == NULL)
 		return (FAILURE_MALLOC);
 	ret = fill_obj_content(&obj_tmp, elements, ptr_str_err_msg);
