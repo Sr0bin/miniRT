@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:29:01 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:01:39 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:22:26 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int	fill_colors(t_rgba *ptr_rgba, const char *str, char **ptr_str_err_msg)
 {
 	char	**splitted_colors;
 	int		ret;
+	int		consecutive_comma;
 
+	consecutive_comma = check_consecutive_comma(str);
+	if (consecutive_comma == TRUE)
+		return (colors_wrong_nb_args(ptr_str_err_msg, str));
 	splitted_colors = ft_split(str, ",");
 	if (splitted_colors == NULL)
 		return (FAILURE_MALLOC);

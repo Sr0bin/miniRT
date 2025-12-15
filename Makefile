@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/12 14:45:43 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/15 11:20:52 by jweber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ PARSING_FILES = parsing.c \
 				get_file_content.c \
 				parse_file_content.c \
 				check_objects.c \
+				check_consecutive_comma.c \
 				fill_obj_content.c \
 				fill_obj_ambient.c \
 				fill_obj_camera.c \

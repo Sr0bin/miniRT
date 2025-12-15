@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:55:22 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/03 15:04:59 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:20:32 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 #include "minirt.h"
 #include "parsing.h"
 
-static int	fill_from_splitted_coo(t_point3 *ptr_to_ptr_coo,
+static int	fill_from_splitted_coo(t_point3 *ptr_coo,
 				char **splitted_coo, char **ptr_str_err_msg);
 static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 				const char *coo_str);
 
-int	fill_coordinates(t_point3 *ptr_to_ptr_coo, const char *coo,
+int	fill_coordinates(t_point3 *ptr_coo, const char *coo,
 		char **ptr_str_err_msg)
 {
 	char	**splitted_coo;
 	int		ret;
+	int		consecutive_comma;
 
+	consecutive_comma = check_consecutive_comma(coo);
+	if (consecutive_comma == TRUE)
+		return (coordinates_wrong_nb_args(ptr_str_err_msg, coo));
 	splitted_coo = ft_split(coo, ",");
 	if (splitted_coo == NULL)
 		return (FAILURE_MALLOC);
@@ -35,7 +39,7 @@ int	fill_coordinates(t_point3 *ptr_to_ptr_coo, const char *coo,
 		ft_split_free(splitted_coo);
 		return (coordinates_wrong_nb_args(ptr_str_err_msg, coo));
 	}
-	ret = fill_from_splitted_coo(ptr_to_ptr_coo, splitted_coo, ptr_str_err_msg);
+	ret = fill_from_splitted_coo(ptr_coo, splitted_coo, ptr_str_err_msg);
 	ft_split_free(splitted_coo);
 	return (ret);
 }
@@ -59,7 +63,7 @@ static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 	return (FAILURE_PARSE_PERSONNALIZED);
 }
 
-static int	fill_from_splitted_coo(t_point3 *ptr_to_ptr_coo,
+static int	fill_from_splitted_coo(t_point3 *ptr_coo,
 				char **splitted_coo, char **ptr_str_err_msg)
 {
 	double	tmp_x;
@@ -76,9 +80,6 @@ static int	fill_from_splitted_coo(t_point3 *ptr_to_ptr_coo,
 	ret = ft_atof_safe(splitted_coo[2], &tmp_z);
 	if (ret != SUCCESS)
 		return (init_msg_atof_failed(ptr_str_err_msg, ret, splitted_coo[2]));
-	*ptr_to_ptr_coo = point3_set_all(tmp_x, tmp_y, tmp_z);
-	// *ptr_to_ptr_coo = point3_alloc(tmp_x, tmp_y, tmp_z);
-	// if (*ptr_to_ptr_coo == NULL)
-	// 	return (FAILURE_MALLOC);
+	*ptr_coo = point3_set_all(tmp_x, tmp_y, tmp_z);
 	return (SUCCESS);
 }

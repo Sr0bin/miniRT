@@ -34,7 +34,16 @@ int	parse_file_content(t_vector file_content, t_vector *ptr_objects,
 		return (FAILURE_MALLOC);
 	ret = get_each_objects(file_content, ptr_objects, ptr_str_err_msg);
 	if (ret != SUCCESS)
+	{
 		ft_vector_free(ptr_objects);
+		return (ret);
+	}
+	ret = check_objects(ptr_objects);
+	if (ret != 0)
+	{
+		ft_vector_free(ptr_objects);
+		return (ret);
+	}
 	return (ret);
 }
 

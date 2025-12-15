@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_normed.c                                        :+:      :+:    :+:   */
+/*   check_consecutive_comma.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 16:06:18 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:24:56 by jweber           ###   ########.fr       */
+/*   Created: 2025/12/15 11:19:20 by jweber            #+#    #+#             */
+/*   Updated: 2025/12/15 11:20:30 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include <stdlib.h>
 #include "minirt.h"
-#include <math.h>
 
-int	is_normed(t_vec3 vec);
-
-/* this function should:
- * return TRUE if a vec3/point is normalized
- * return FALSE if it it not normalized
-*/
-int	is_normed(t_vec3 vec)
+int	check_consecutive_comma(const char *str)
 {
-	if (fabs(vec3_norm(vec) - 1) > 1e-5)
-		return (FALSE);
-	else
-		return (TRUE);
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ',' && str[i + 1] == ',')
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
 }

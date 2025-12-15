@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 13:49:54 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/03 15:23:17 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:23:37 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ int	fill_direction(t_vec3 *ptr_to_ptr_direction, const char *direction,
 {
 	char	**splitted_direction;
 	int		ret;
+	int		consecutive_comma;
 
+	consecutive_comma = check_consecutive_comma(direction);
+	if (consecutive_comma == TRUE)
+		return (direction_wrong_nb_args(ptr_str_err_msg, direction));
 	splitted_direction = ft_split(direction, ",");
 	if (splitted_direction == NULL)
 		return (FAILURE_MALLOC);
