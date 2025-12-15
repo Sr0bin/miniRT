@@ -21,7 +21,6 @@
  *	fail mlx_new_image : DONE -> OK !
 */
 
-
 int	mlx_setup(t_mlx *ptr_mlx)
 {
 	ptr_mlx->mlx_ptr = mlx_init();

@@ -14,7 +14,7 @@
 #include "ft_io.h"
 #include "parsing.h"
 
-int	print_error(int error, char *str);
+static void	print_error_second_part(int error, char *str);
 
 int	print_error(int error, char *str)
 {
@@ -28,7 +28,15 @@ int	print_error(int error, char *str)
 	else if (error == FAILURE_PARSE_WRONG_OBJ_IDENTIFIER)
 		ft_putstr_fd("unknonw object identifier, "
 			"chose one between 'A, C, L, sp, pl, cy' \n", 2);
-	else if (error == FAILURE_PARSE_PERSONNALIZED && str != NULL)
+	else
+		print_error_second_part(error, str);
+	free(str);
+	return (FAILURE);
+}
+
+static void	print_error_second_part(int error, char *str)
+{
+	if (error == FAILURE_PARSE_PERSONNALIZED && str != NULL)
 		ft_putstr_fd(str, 2);
 	else if (error == FAILURE_OPEN)
 		ft_putstr_fd("could not open file\n", 2);
@@ -44,6 +52,4 @@ int	print_error(int error, char *str)
 		ft_putstr_fd("Memory allocation failure\n", 2);
 	else if (error == FAILURE_READ)
 		ft_putstr_fd("read failure\n", 2);
-	free(str);
-	return (FAILURE);
 }

@@ -53,7 +53,6 @@ int	fill_coordinates(t_point3 *ptr_coordinates, const char *coordinates_str,
 	return (ret);
 }
 
-
 static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 				const char *coordinates_str)
 {
