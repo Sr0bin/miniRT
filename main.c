@@ -6,22 +6,21 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:51 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 11:25:35 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:47:39 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vectors.h"
 #include "graphics.h"
 #include "minirt.h"
 #include "mlx_setup.h"
 #include "parsing.h"
 #include "printing.h"
-#include "vec3.h"
 #include "object.h"
 #include "render.h"
 #include <stdio.h>
 
-void	vector_test(void);
+static int	mlx_setup_failed(int ret, t_scene *ptr_scene);
+static int	render_failed(int ret, t_scene *ptr_scene, t_mlx *ptr_mlx);
 
 int	main(int argc, char **argv)
 {
@@ -38,24 +37,28 @@ int	main(int argc, char **argv)
 	print_objects(&scene);
 	ret = mlx_setup(&mlx);
 	if (ret != 0)
-	{
-		// print some error message !
-		free_scene(&scene);
-		return (ret);
-	}
-	print_mlx_stats(mlx);
+		return (mlx_setup_failed(ret, &scene));
 	ret = render(&scene, &array_ray, mlx);
 	if (ret != 0)
-	{
-		// print some error message !
-		free_scene(&scene);
-		mlx_free_all(&mlx);
-		return (1);
-	}
-	fflush(stdout);
+		return (render_failed(ret, &scene, &mlx));
 	mlx_start(&mlx);
 	mlx_free_all(&mlx);
 	free_rays(&array_ray);
 	free_scene(&scene);
 	return (0);
+}
+
+static int	mlx_setup_failed(int ret, t_scene *ptr_scene)
+{
+	print_error(ret, NULL);
+	free_scene(ptr_scene);
+	return (FAILURE);
+}
+
+static int	render_failed(int ret, t_scene *ptr_scene, t_mlx *ptr_mlx)
+{
+	print_error(ret, NULL);
+	free_scene(ptr_scene);
+	mlx_free_all(ptr_mlx);
+	return (FAILURE);
 }

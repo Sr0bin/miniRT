@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_standard.h"
-#include "ft_string.h"
 #include "ft_vectors.h"
 #include "minirt.h"
 #include "parsing.h"
@@ -34,12 +32,6 @@ int	parsing(int argc, char **argv, t_scene *ptr_scene,
 	ft_vector_free(&file_content);
 	if (ret != 0)
 		return (ret);
-	ret = check_objects(&objects);
-	if (ret != 0)
-	{
-		ft_vector_free(&objects);
-		return (ret);
-	}
 	ret = scene_init(ptr_scene, &objects);
 	ft_vector_free(&objects);
 	if (ret != SUCCESS)
@@ -48,4 +40,3 @@ int	parsing(int argc, char **argv, t_scene *ptr_scene,
 	}
 	return (SUCCESS);
 }
-

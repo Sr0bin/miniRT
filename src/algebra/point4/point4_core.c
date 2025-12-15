@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:29:02 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 04:02:24 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:47:21 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	point4_set(t_point4 *point, t_axis axis, double value)
 
 void	*free_point4(t_point4 *point)
 {
-	return (free_vec4(point));
+	free(point);
+	return (NULL);
 }

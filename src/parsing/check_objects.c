@@ -12,11 +12,12 @@
 
 #include "ft_vectors.h"
 #include "minirt.h"
-#include "printing.h"
 #include "parsing.h"
 
 static void	sort_objects(t_vector *ptr_objects);
 static int	check_correct_mandatory_obj(t_vector *ptr_objects);
+static void	increment_object_type(t_object object, int *ptr_nb_ambient,
+				int *ptr_nb_camera, int *ptr_nb_light);
 
 int	check_objects(t_vector *ptr_objects)
 {
@@ -42,22 +43,28 @@ static int	check_correct_mandatory_obj(t_vector *ptr_objects)
 	nb_light = 0;
 	while (i < ptr_objects->size)
 	{
-		if (((t_object *)ptr_objects->data)[i].type == OBJ_AMBIENT)
-			nb_ambient++;
-		if (((t_object *)ptr_objects->data)[i].type == OBJ_LIGHT)
-			nb_light++;
-		if (((t_object *)ptr_objects->data)[i].type == OBJ_CAMERA)
-			nb_camera++;
+		increment_object_type(((t_object *)ptr_objects->data)[i], &nb_ambient,
+			&nb_camera, &nb_light);
 		i++;
 	}
 	if (nb_ambient != 1)
 		return (FAILURE_PARSE_WRONG_NB_AMBIENT);
-	// todo check to remove that
-	// if (nb_light != 1)
-	// 	return (FAILURE_PARSE_WRONG_NB_LIGHT);
+	if (nb_light != 1)
+		return (FAILURE_PARSE_WRONG_NB_LIGHT);
 	if (nb_camera != 1)
 		return (FAILURE_PARSE_WRONG_NB_CAMERA);
 	return (SUCCESS);
+}
+
+static void	increment_object_type(t_object object, int *ptr_nb_ambient,
+				int *ptr_nb_camera, int *ptr_nb_light)
+{
+	if (object.type == OBJ_AMBIENT)
+		*ptr_nb_ambient += 1;
+	if (object.type == OBJ_LIGHT)
+		*ptr_nb_light += 1;
+	if (object.type == OBJ_CAMERA)
+		*ptr_nb_camera += 1;
 }
 
 static void	sort_objects(t_vector *ptr_objects)

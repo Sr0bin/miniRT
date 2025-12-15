@@ -31,6 +31,7 @@ PARSING_FILES = parsing.c \
 				get_file_content.c \
 				parse_file_content.c \
 				check_objects.c \
+				check_consecutive_comma.c \
 				fill_obj_content.c \
 				fill_obj_ambient.c \
 				fill_obj_camera.c \

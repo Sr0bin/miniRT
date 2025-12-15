@@ -30,6 +30,7 @@ int		check_args(int argc, char **argv);
 int		get_file_content(char *filename, t_vector *ptr_file_content);
 int		parse_file_content(t_vector file_content, t_vector *ptr_objects,
 			char **ptr_str_err_msg);
+int		check_consecutive_comma(const char *str);
 int		check_objects(t_vector *ptr_objects);
 int		fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 			char **ptr_str_err_msg);
@@ -85,7 +86,7 @@ Wrong number of arguments.\n\
 Light takes 4 arguments separated by spaces.\n\
 ex: L\t-40.0,50.0,0.0\t0.6\t10,0,255\n\
 1: light identifer\n\
-2: cooridnates of light point\n\
+2: coordinates of light point\n\
 3: light brightness ratio\n\
 4: light color (RGB)\n"
 

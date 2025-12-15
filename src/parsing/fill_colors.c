@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:29:01 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 16:01:39 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:34:40 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,24 @@ static int	fill_from_splitted_colors(t_rgba *ptr_rgba,
 int			get_color_i(char **splitted_colors, int color_i,
 				uint8_t *ptr_color, char **ptr_str_err_msg);
 
-int	fill_colors(t_rgba *ptr_rgba, const char *str, char **ptr_str_err_msg)
+int	fill_colors(t_rgba *ptr_rgba,
+		const char *colors_str, char **ptr_str_err_msg)
 {
 	char	**splitted_colors;
 	int		ret;
+	int		consecutive_comma;
 
-	splitted_colors = ft_split(str, ",");
+	consecutive_comma = check_consecutive_comma(colors_str);
+	if (consecutive_comma == TRUE)
+		return (colors_wrong_nb_args(ptr_str_err_msg, colors_str));
+	splitted_colors = ft_split(colors_str, ",");
 	if (splitted_colors == NULL)
 		return (FAILURE_MALLOC);
 	if (splitted_colors[0] == NULL || splitted_colors [1] == NULL
 		|| splitted_colors [2] == NULL || splitted_colors[3] != NULL)
 	{
 		ft_split_free(splitted_colors);
-		return (colors_wrong_nb_args(ptr_str_err_msg, str));
+		return (colors_wrong_nb_args(ptr_str_err_msg, colors_str));
 	}
 	ret = fill_from_splitted_colors(ptr_rgba, splitted_colors, ptr_str_err_msg);
 	ft_split_free(splitted_colors);
