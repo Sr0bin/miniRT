@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/15 13:36:29 by rorollin         ###   ########.fr        #
+#    Updated: 2025/12/15 13:40:45 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,30 @@ PARSING_FILES = parsing.c \
 				init_msg_atoi_failed.c \
 				init_msg_wrong_color_value.c \
 				is_normed.c \
+
+PARSING_FILES_BONUS = parsing.c \
+					get_file_content.c \
+					parse_file_content.c \
+					check_objects_bonus.c \
+					check_consecutive_comma.c \
+					fill_obj_content.c \
+					fill_obj_ambient.c \
+					fill_obj_camera.c \
+					fill_obj_light.c \
+					fill_obj_sphere.c \
+					fill_obj_plane.c \
+					fill_plane_coef.c \
+					fill_obj_cylinder.c \
+					fill_coordinates.c \
+					fill_colors.c \
+					fill_direction.c \
+					free_obj_vector.c \
+					check_args.c \
+					fail_add_msg.c \
+					init_msg_atof_failed.c \
+					init_msg_atoi_failed.c \
+					init_msg_wrong_color_value.c \
+					is_normed.c \
 
 PRINTING_DIR = printing
 PRINTING_FILES = print_error.c \
@@ -139,7 +163,7 @@ SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(OBJECT_DIR)/,$(OBJ_FILES)) \
 			   $(addprefix $(RENDER_DIR)/, $(RENDER_FILES)) \
 
-SOURCES_NAME_BONUS = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
+SOURCES_NAME_BONUS = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES_BONUS)) \
 				   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
 				   $(addprefix $(MLX_SETUP_DIR)/,$(MLX_SETUP_FILES)) \
 				   $(addprefix $(MATRIX_DIR)/,$(MATRIX_FILES)) \
