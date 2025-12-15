@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:19:31 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/08 17:01:47 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:08:06 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "ray.h"
 #include "graphics.h"
 #include "render.h"
+
+// Prepare_rays : Done OK!
 
 int	render(t_scene *ptr_scene, t_ray **ptr_array_ray, t_mlx mlx)
 {
