@@ -20,6 +20,14 @@ static int	fill_from_splitted_coo(t_point3 *ptr_coo,
 static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 				const char *coo_str);
 
+/* to check
+ *	check_consecutive_comma fail : DONE -> OK !
+ *	ft_split fail : DONE -> OK !
+ *	wrong nb splitted coo : DONE -> OK !
+ *	coordinates_wrong_nb_args fail : DONE -> OK !
+ *	fill_from_splitted_coo fail : DONE -> OK !
+*/
+
 int	fill_coordinates(t_point3 *ptr_coordinates, const char *coordinates_str,
 		char **ptr_str_err_msg)
 {
@@ -45,6 +53,7 @@ int	fill_coordinates(t_point3 *ptr_coordinates, const char *coordinates_str,
 	return (ret);
 }
 
+
 static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 				const char *coordinates_str)
 {
@@ -63,6 +72,10 @@ static int	coordinates_wrong_nb_args(char **ptr_str_err_msg,
 		return (FAILURE_MALLOC);
 	return (FAILURE_PARSE_PERSONNALIZED);
 }
+
+/* to check
+ *	all good no memory allocation
+*/
 
 static int	fill_from_splitted_coo(t_point3 *ptr_coo,
 				char **splitted_coo, char **ptr_str_err_msg)

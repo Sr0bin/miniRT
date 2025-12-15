@@ -41,12 +41,13 @@ int	fill_obj_content(t_object *ptr_obj_tmp, char **elements,
 }
 
 /* to check
- *	fill_obj_ambient fail : TO DO ;
- *	fill_obj_camera fail : TO DO ;
- *	fill_obj_light fail : TO DO;
+ *	fill_obj_ambient fail : DONE -> OK !
+ *	fill_obj_camera fail : DONE -> OK !
+ *	fill_obj_light fail : DONE -> OK !
  *	fill_obj_sphere fail : TO DO ;
- *	fill_obj_plane fail : TO DO;
+ *	fill_obj_plane fail : DONE -> OK !
  *	fill_obj_cylinder fail : TO DO ;
+ *	none of these case : DONE -> OK !
 */
 
 static int	fill_from_object_id(t_object *ptr_obj_tmp, char **elements,
@@ -66,7 +67,13 @@ static int	fill_from_object_id(t_object *ptr_obj_tmp, char **elements,
 		return (fill_obj_cylinder(ptr_obj_tmp, elements, ptr_str_err_msg));
 	else
 	{
-		*ptr_str_err_msg = ft_strdup("unexepected identifier : [IDENTIFIER]\n");
+		*ptr_str_err_msg = ft_strdup("unexepected identifier : '");
+		if (ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
+		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, elements[0]);
+		if (ptr_str_err_msg == NULL)
+			return (FAILURE_MALLOC);
+		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'\n");
 		if (ptr_str_err_msg == NULL)
 			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_PERSONNALIZED);

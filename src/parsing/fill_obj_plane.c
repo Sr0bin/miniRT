@@ -18,6 +18,14 @@ int			fill_obj_plane(t_object *ptr_obj_tmp, char **elements,
 				char **ptr_str_err_msg);
 static int	plane_wrong_nb_of_args(char **ptr_str_err_msg);
 
+/* to check
+ *	wrong nb args : DONE -> OK !
+*	plane_wrong_nb_of_args : DONE -> OK !
+*	fill_colors fail : DONE -> OK !
+*	fill_coordinates fail : DONE -> OK !
+*	fill direction fail : DONE -> OK !
+*/
+
 int	fill_obj_plane(t_object *ptr_obj_tmp, char **elements,
 		char **ptr_str_err_msg)
 {
@@ -48,7 +56,7 @@ int	fill_obj_plane(t_object *ptr_obj_tmp, char **elements,
 static int	plane_wrong_nb_of_args(char **ptr_str_err_msg)
 {
 	*ptr_str_err_msg = ft_strdup(MSG_PLANE_WRONG_ARGUMENTS);
-	if (ptr_str_err_msg == NULL)
+	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
 	return (FAILURE_PARSE_PERSONNALIZED);
 }

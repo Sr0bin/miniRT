@@ -22,12 +22,12 @@ static int	camera_wrong_nb_args(char **ptr_str_err_msg);
 /* to check
  *	wrong nb args : DONE -> OK !
  *	camera_wrong_nb_args fail : DONE -> OK !
- *	fill_camera_fov fail : TO DO;
- *	first fail_add_msg fail : TO DO ;
- *	fill_coordinates fail : TO DO;
- *	second fail_add_msg fail : TO DO ;
+ *	fill_camera_fov fail : DONE -> OK !
+ *	first fail_add_msg fail : DONE -> OK !
+ *	fill_coordinates fail : DONE -> OK !
+ *	second fail_add_msg fail : DONE -> OK !
  *	fill_direction fail : TO DO ;
- *	third fail_add_msg fail : TO DO ;
+ *	third fail_add_msg fail : DONE -> OK !
 */
 
 int	fill_obj_camera(t_object *ptr_obj_tmp, char **elements,
@@ -67,11 +67,11 @@ static int	camera_wrong_nb_args(char **ptr_str_err_msg)
 }
 
 /* to check
- *	ft_atof_safe fail : TO DO ;
- *	init_msg_atof_failed fail : TO DO ;
- *	first ft_strjoin_free_first fail : TO DO ;
- *	second ft_strjoin_free_first fail : TO DO;
- *	third ft_strjoin_free_first fail : TO DO;
+ *	ft_atof_safe fail : DONE -> OK !
+ *	init_msg_atof_failed fail : DONE -> OK !
+ *	first ft_strjoin_free_first fail : DONE -> OK !
+ *	second ft_strjoin_free_first fail : DONE -> OK !
+ *	third ft_strjoin_free_first fail : DONE -> OK !
 */
 
 static int	fill_camera_fov(char *elem, double *ptr_camera_fov,

@@ -22,6 +22,16 @@ static int	direction_wrong_nb_args(char **ptr_str_err_msg,
 				const char *direction_str);
 static int	not_normed(char **ptr_str_err_msg, const char *direction_str);
 
+/* to check 
+ *	check_consecutive_comma true : DONE -> OK !
+ *	direction_wrong_nb_args fail : DONE -> OK !
+ *	ft_split fail : DONE -> OK !
+ *	wrong nb split : DONE -> OK !
+ *	direction_wrong_nb_args fail : DONE -> OK !
+ *	fill_from_splitted_direction fail : DONE -> OK !
+ *	is_normed == FALSE : DONE -> OK !
+*/
+
 int	fill_direction(t_vec3 *ptr_direction, const char *direction,
 		char **ptr_str_err_msg)
 {

@@ -22,7 +22,12 @@ static int	msg_atof_wrong_input(char **ptr_str_err_msg);
 
 /* to check
  *	first ft_strndup fail : DONE -> OK !
- *	ft_strdup fail : TO DO 
+ *	ft_strdup fail : DONE -> OK !
+ *	first ft_strjoin_free_second : DONE -> OK !
+ *	msg_atof_too_large_input fail : DONE -> OK !
+ *	msg_atof_overflow_underflow : DONE -> OK !
+ *	msg_atof_wrong_input : DONE -> OK !
+ *	second ft_strjoin_free_second : DONE -> OK !
 */
 
 int	init_msg_atof_failed(char **ptr_str_err_msg,

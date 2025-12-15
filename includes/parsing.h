@@ -125,12 +125,12 @@ ex: 10,0,255\n"
 
 # define MSG_COORDINATES_WRONG_ARGUMENTS "wrong number of coordinates.\n\
 Coordinates consists of 3 decimal values separated by exactly one comma.\n\
-ex: 10,0,255\n"
+ex: -1.4,0,+25\n"
 
 # define MSG_DIRECTION_WRONG_ARGUMENTS "wrong number of direction.\n\
 direction consists of 3 decimal values separated by exactly one comma, \
 its value must be normalized.\n\
-ex: 10,0,255\n"
+ex: 0.22645540682891913,0.5661385170722978,-0.792593923901217\n"
 
 # define MSG_AMBIENT_TOO_MUCH "Wrong number of Ambient object: \
  configuration file can only have one ambient object\n"
@@ -140,4 +140,5 @@ ex: 10,0,255\n"
 
 # define MSG_CAMERA_TOO_MUCH "Wrong number of Camera object: \
  configuration file can only have one camera object\n"
+
 #endif // !PARSING_H

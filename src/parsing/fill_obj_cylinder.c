@@ -26,6 +26,14 @@ static int	fill_cyl_height(char **elems,
 static int	fill_cyl_diam(char **elems,
 				char **ptr_str_err_msg, t_object *ptr_obj_tmp);
 
+/* to check
+ *	wrong nb elems : DONE ->OK !
+ *	cylinder_wrong_nb_args :  DONE -> OK !
+ *	fill_colors fail : DONE -> OK !
+ *	fill_coordinates fail : DONE -> OK !
+ *	fill_direction fail : DONE -> OK !
+*/
+
 int	fill_obj_cylinder(t_object *ptr_obj_tmp, char **elem,
 		char **ptr_str_err_msg)
 {
@@ -56,7 +64,7 @@ int	fill_obj_cylinder(t_object *ptr_obj_tmp, char **elem,
 static int	cylinder_wrong_nb_args(char **ptr_str_err_msg)
 {
 	*ptr_str_err_msg = ft_strdup(MSG_CYLINDER_WRONG_ARGUMENTS);
-	if (ptr_str_err_msg == NULL)
+	if (*ptr_str_err_msg == NULL)
 		return (FAILURE_MALLOC);
 	return (FAILURE_PARSE_PERSONNALIZED);
 }

@@ -14,6 +14,10 @@
 #include "minirt.h"
 #include "parsing.h"
 
+/* to check
+ *	fail_add_msg fail : DONE -> OK !
+*/
+
 int	fail_add_msg(const char *msg, int ret, char **ptr_str_err_msg)
 {
 	if (ret == FAILURE_PARSE_PERSONNALIZED)

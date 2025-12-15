@@ -20,6 +20,14 @@ int			fill_obj_sphere(t_object *ptr_obj_tmp, char **elements,
 static int	fill_sphere_diameter(char *diamater_str, double *ptr_diamter,
 				char **ptr_str_err_msg);
 
+/* to check
+ *	wrong nb args : DONE -> OK !
+ *	strdup fail : DONE -> OK !
+ *	fill_sphere_diameter fail : DONE -> OK !
+ *	fille_colors fail : DONE -> OK !
+ *	fill_coordinates fail : DONE -> OK !
+*/
+
 int	fill_obj_sphere(t_object *ptr_obj_tmp, char **elements,
 		char **ptr_str_err_msg)
 {
@@ -30,7 +38,7 @@ int	fill_obj_sphere(t_object *ptr_obj_tmp, char **elements,
 		|| elements[3] == NULL || elements[4] != NULL)
 	{
 		*ptr_str_err_msg = ft_strdup(MSG_SPHERE_WRONG_ARGUMENTS);
-		if (ptr_str_err_msg == NULL)
+		if (*ptr_str_err_msg == NULL)
 			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_PERSONNALIZED);
 	}

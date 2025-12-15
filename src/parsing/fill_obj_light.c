@@ -20,6 +20,14 @@ int			fill_obj_light(t_object *ptr_obj_tmp, char **elements,
 static int	fill_light_brightness(char *brightness_str, double *ptr_brightness,
 				char **ptr_str_err_msg);
 
+/* to check : 
+ *  wrong nb args : DONE -> OK !
+ *  ft_strdup fail : DONE ->OK !
+ *  fill_light_brightness fail : DONE -> OK !
+ *  fill_colors fail : DONE ->OK !
+ *  fill_coordinates fail : DONE -> OK !
+*/
+
 int	fill_obj_light(t_object *ptr_obj_tmp, char **elements,
 		char **ptr_str_err_msg)
 {
@@ -30,7 +38,7 @@ int	fill_obj_light(t_object *ptr_obj_tmp, char **elements,
 		|| elements[3] == NULL || elements[4] != NULL)
 	{
 		*ptr_str_err_msg = ft_strdup(MSG_LIGHT_WRONG_ARGUMENTS);
-		if (ptr_str_err_msg == NULL)
+		if (*ptr_str_err_msg == NULL)
 			return (FAILURE_MALLOC);
 		return (FAILURE_PARSE_PERSONNALIZED);
 	}
@@ -58,7 +66,7 @@ static int	fill_light_brightness(char *brightness_str, double *ptr_brightness,
 	ret = ft_atof_safe(brightness_str, ptr_brightness);
 	if (ret != SUCCESS)
 		return (init_msg_atof_failed(ptr_str_err_msg, ret, brightness_str));
-	if (*ptr_brightness <= 0.0 || *ptr_brightness >= 1.0)
+	if (*ptr_brightness < 0.0 || *ptr_brightness > 1.0)
 	{
 		*ptr_str_err_msg = ft_strjoin_free_first(*ptr_str_err_msg, "'");
 		if (*ptr_str_err_msg == NULL)
