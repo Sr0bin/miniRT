@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:46:08 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 11:25:45 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 15:05:09 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,7 @@ static int	create_rays(t_ray **ptr_array_rays, size_t nb_rays,
 	*ptr_array_rays = ft_calloc(nb_rays, sizeof(t_ray));
 	if (ptr_array_rays == NULL)
 		return (FAILURE_MALLOC);
-	if (create_ray_content(*ptr_array_rays,
-			canvas_point_arrays, ptr_cam_point) != SUCCESS)
-	{
-		free_rays(ptr_array_rays);
-		return (FAILURE_MALLOC);
-	}
+	create_ray_content(*ptr_array_rays, canvas_point_arrays, ptr_cam_point);
 	return (SUCCESS);
 }
 
@@ -75,8 +70,6 @@ static int	create_ray_content(t_ray *array_rays,
 		while (y_i < WINDOW_HEIGHT)
 		{
 			array_rays[y_i * WINDOW_WIDTH + x_i].ptr_origin = ptr_cam_point;
-			if (array_rays[y_i * WINDOW_WIDTH + x_i].ptr_origin == NULL)
-				return (FAILURE_MALLOC);
 			array_rays[y_i * WINDOW_WIDTH + x_i].direction
 				= canvas_point_arrays[y_i * WINDOW_WIDTH + x_i];
 			y_i++;
