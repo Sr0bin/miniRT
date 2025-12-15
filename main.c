@@ -23,7 +23,7 @@ static int	mlx_setup_failed(int ret, t_scene *ptr_scene);
 static int	render_failed(int ret, t_scene *ptr_scene, t_mlx *ptr_mlx);
 
 /* to check :
- *	parsing fail : TO DO ;
+ *	parsing fail : DONE -> OK !
  *	mlx_setup fail : DONE -> OK !
  *	render fail : TO DO ;
 */

@@ -18,8 +18,8 @@
 /* to check
  *	check_args fail : DONE -> OK !
  *	get_file_content fail : DONE -> OK !
- *	parse_file_content fail : TO DO ;
- *	scene_init fail : TO DO ;
+ *	parse_file_content fail : DONE -> OK !
+ *	scene_init fail : DONE -> OK !
 */
 
 int	parsing(int argc, char **argv, t_scene *ptr_scene,
