@@ -6,11 +6,13 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/15 12:40:26 by rorollin         ###   ########.fr        #
+#    Updated: 2025/12/15 13:36:29 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
+
+NAME_BONUS = miniRT_bonus
 
 #SOURCES######################
 
@@ -104,6 +106,17 @@ INTERSECTION_FILES = check_intersect_sphere.c check_intersect_plane.c\
 					 cylinder_two_positive_solution.c \
 					 transform_ray.c \
 
+INTERSECTION_FILES_BONUS = check_intersect_sphere.c check_intersect_plane.c\
+						 intersect_operations.c \
+						 polynomial.c \
+						 check_intersect_cylinder.c \
+						 object_single_light_bonus.c \
+						 update_intersect_color.c \
+						 cylinder_rotation_matrix.c \
+						 get_cylinder_normal.c \
+						 cylinder_one_positive_solution.c \
+						 cylinder_two_positive_solution.c \
+						 transform_ray.c \
 
 SCN_OBJ_DIR = scene_objects
 SCN_OBJ_FILES = search_object.c scene_core.c
@@ -126,6 +139,20 @@ SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(OBJECT_DIR)/,$(OBJ_FILES)) \
 			   $(addprefix $(RENDER_DIR)/, $(RENDER_FILES)) \
 
+SOURCES_NAME_BONUS = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
+				   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
+				   $(addprefix $(MLX_SETUP_DIR)/,$(MLX_SETUP_FILES)) \
+				   $(addprefix $(MATRIX_DIR)/,$(MATRIX_FILES)) \
+				   $(addprefix $(VEC3_DIR)/,$(VEC3_FILES)) \
+				   $(addprefix $(VEC4_DIR)/,$(VEC4_FILES)) \
+				   $(addprefix $(POINT3_DIR)/,$(POINT3_FILES)) \
+				   $(addprefix $(POINT4_DIR)/,$(POINT4_FILES)) \
+				   $(addprefix $(MAT3_DIR)/,$(MAT3_FILES)) \
+				   $(addprefix $(MAT4_DIR)/,$(MAT4_FILES)) \
+				   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES_BONUS)) \
+				   $(addprefix $(SCN_OBJ_DIR)/,$(SCN_OBJ_FILES)) \
+				   $(addprefix $(OBJECT_DIR)/,$(OBJ_FILES)) \
+				   $(addprefix $(RENDER_DIR)/, $(RENDER_FILES)) \
 
 #SOURCES_GRAPHIC = 
 
@@ -133,10 +160,11 @@ SOURCES = main.c \
 		  $(addprefix $(SOURCES_DIR)/,\
 		  $(SOURCES_NAME)\
 		  )
-		  # $(addprefix graphic/, $(SOURCES_GRAPHIC))\
-		  # $(addprefix .test/, $(SOURCES_DEBUG))\
-		  
 
+SOURCES_BONUS = main.c \
+		  $(addprefix $(SOURCES_DIR)/,\
+		  $(SOURCES_NAME_BONUS)\
+		  )
 
 #OBJECTS#######################
 
@@ -144,9 +172,13 @@ OBJ_DIR = .obj
 
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
+OBJECTS_BONUS = $(SOURCES_BONUS:%.c=$(OBJ_DIR)/%.o)
+
 #DEPS##########################
 
 DEPS = $(OBJECTS:%.o=%.d)
+
+DEPS_BONUS = $(OBJECTS_BONUS:%.o=%.d)
 
 #INCLUDES#######################
 
@@ -188,16 +220,22 @@ CFLAGS = $(CFLAGS_PROD)
 
 export CFLAGS
 
-# first:
-# 	@echo "OBJECTS = $(OBJECTS)"
 
 all: make_libft make_minilibx $(NAME)
+
+bonus: make_libft make_minilibx $(NAME_BONUS)
 
 $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 	$(CC) $(CFLAGS) -lc -lm -lXext -lX11 $(INCLUDES) $^ -o $@
 	@echo "$(NAME) built succesfully."
 
 -include $(DEPS)
+
+$(NAME_BONUS):  $(OBJECTS_BONUS) $(LIBFT_PATH) $(MINILIBX_PATH)
+	$(CC) $(CFLAGS) -lc -lm -lXext -lX11 $(INCLUDES) $^ -o $@
+	@echo "$(NAME_BONUS) built succesfully."
+
+-include $(DEPS_BONUS)
 
 $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(PRINTING_DIR)\
@@ -283,6 +321,7 @@ fclean:
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) clean
 	@rm -f $(NAME)
+	@rm -f $(NAME_BONUS)
 	@echo "Fcleaned !"
 
 re:	
@@ -290,4 +329,4 @@ re:
 	$(MAKE) all
 
 
-.PHONY: all clean fclean re make_libft make_minilibx git
+.PHONY: all clean fclean re bonus make_libft make_minilibx git

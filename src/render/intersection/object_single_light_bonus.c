@@ -1,11 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_single_light.c                              :+:      :+:    :+:   */
+/*   object_single_light_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
+/*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 09:55:48 by jweber            #+#    #+#             */
+/*   Created: 2025/12/15 13:03:46 by rorollin          #+#    #+#             */
 /*   Updated: 2025/12/15 13:03:56 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ t_color	object_single_light(t_intersect	*ptr_intersect,
 	coeff = coeff_direct_light(ptr_intersect, light);
 	direct_light = multiply_color_coeff(*object_color(ptr_intersect->ptr_obj),
 			light->object_attr.light.color, coeff);
-	coeff = 0;
+	coeff = coeff_specular_light(ptr_intersect, *ptr_intersect->ray, light);
 	return (color_add(direct_light,
 			dim_color(light->object_attr.light.color, coeff)));
 }

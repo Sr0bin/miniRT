@@ -4,6 +4,7 @@ launch_miniRT.sh
 *.d
 *.txt
 miniRT
+miniRT_bonus
 .obj/
 .gitmodules
 .gdb_history
