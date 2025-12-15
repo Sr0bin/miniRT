@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:41:53 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:27:03 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:15:12 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 static int	get_each_line(int fd, t_vector *ptr_file_content);
 static void	free_file_content(t_vector *ptr_vec);
 static int	gnl_failure(int ret);
+static int	ft_vector_add_single_failure(char *line);
+
+/* to check:
+ *	fd fail : DONE -> OK !
+ *	ft_vector_init fail : DONE -> OK !
+ *	get_each_line fail : DONE -> OK !
+*/
 
 int	get_file_content(char *filename, t_vector *ptr_file_content)
 {
@@ -43,6 +50,11 @@ int	get_file_content(char *filename, t_vector *ptr_file_content)
 	return (ret);
 }
 
+/* to check
+ *	get_next_line fail : DONE -> OK !
+ *	ft_vector_add_single fail : DONE -> OK ! (forgot to free line)
+*/
+
 static int	get_each_line(int fd, t_vector *ptr_file_content)
 {
 	t_line	line;
@@ -62,7 +74,7 @@ static int	get_each_line(int fd, t_vector *ptr_file_content)
 		{
 			ret = ft_vector_add_single(ptr_file_content, &line);
 			if (ret != SUCCESS)
-				return (FAILURE_MALLOC);
+				return (ft_vector_add_single_failure(line.content));
 		}
 		else if (line.content != NULL)
 			free(line.content);
@@ -77,6 +89,12 @@ static int	gnl_failure(int ret)
 		return (FAILURE_MALLOC);
 	else
 		return (FAILURE_READ);
+}
+
+static int	ft_vector_add_single_failure(char *line)
+{
+	free(line);
+	return (FAILURE_MALLOC);
 }
 
 static void	free_file_content(t_vector *ptr_vec)

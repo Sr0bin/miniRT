@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:24:56 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:39:38 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:10:09 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ int	print_error(int error, char *str)
 		ft_putstr_fd("Wrong number of Camera object: configuration file can only have one camera object\n", 2);
 	else if (error == FAILURE_MLX)
 		ft_putstr_fd("MLX failed to init itself\n", 2);
+	else if (error == FAILURE_MALLOC)
+		ft_putstr_fd("Memory allocation failure\n", 2);
+	else if (error == FAILURE_READ)
+		ft_putstr_fd("read failure\n", 2);
 	free(str);
 	return (FAILURE);
 }
