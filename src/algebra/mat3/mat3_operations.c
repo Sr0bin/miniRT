@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:28:00 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 15:52:28 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:31:10 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 /*
 * add_mat3: Create a new mat3, the result of addition mat3 A + B.
 * Matrices needs to be of the same size.
-* Returns NULL in case of memory error during allocation.
 */
 
 t_mat3	add_mat3(t_mat3_const a, t_mat3_const b)
 {
 	size_t		i;
 	size_t		j;
-	t_mat3	added;
+	t_mat3		added;
 
 	i = 0;
 	while (i < MAT3_SIZE)
@@ -46,7 +45,7 @@ t_mat3	substract_mat3(t_mat3_const a, t_mat3_const b)
 {
 	size_t		i;
 	size_t		j;
-	t_mat3	substracted;
+	t_mat3		substracted;
 
 	i = 0;
 	while (i < MAT3_SIZE)
@@ -80,14 +79,13 @@ static double	clc_sum(t_mat3_const a, t_mat3_const b, size_t i, size_t j)
 /*
 * multiply_mat3: Create a new mat3, the result of multiplication mat3 A * B.
 * Matrices needs to be of compatible sizes.
-* Returns NULL in case of memory error during allocation.
 */
 
 t_mat3	multiply_mat3(t_mat3_const a, t_mat3_const b)
 {
 	size_t		i;
 	size_t		j;
-	t_mat3	mult;
+	t_mat3		mult;
 
 	i = 0;
 	while (i < MAT3_SIZE)
@@ -104,7 +102,7 @@ t_mat3	multiply_mat3(t_mat3_const a, t_mat3_const b)
 }
 
 /*
-* scalar_mat3: Change the current mat3, the result of multiplication   scalar * A.
+* scalar_mat3: Change the current mat3, the result of multiplication scalar * A.
 */
 
 t_mat3	scalar_mat3(t_mat3_const mat3, double scalar)

@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:33 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 11:44:48 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:01:40 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,7 @@ void	print_vector(t_vec3 vector);
 void	print_mlx_stats(t_mlx mlx);
 void	print_matrix(t_matrix_const *matrix);
 
+int		print_sphere(t_object obj);
+int		print_plane(t_object obj);
+int		print_cylinder(t_object obj);
 #endif

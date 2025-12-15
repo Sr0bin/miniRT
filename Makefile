@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/12 14:45:43 by jweber           ###   ########.fr        #
+#    Updated: 2025/12/15 12:40:26 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,9 +52,9 @@ PARSING_FILES = parsing.c \
 
 PRINTING_DIR = printing
 PRINTING_FILES = print_error.c \
-				 print_types.c \
 				 print_objects.c \
 				 print_mlx_stats.c \
+				 print_tangible.c
 
 RENDER_DIR = render
 RENDER_FILES = render.c \
@@ -66,19 +66,17 @@ RENDER_FILES = render.c \
 			   rotate_canvas_point_array.c \
 			   rotate_double3.c \
 			   set_rotation_matrix.c \
-			   test_intersection_jules.c \
-			   my_dot_product.c \
-			   my_norm_from_vec.c \
+			   set_pixel_color.c \
 			   color_operations.c \
 			   light_coeff.c \
 
 ALGEBRA_DIR = algebra
 
 VEC3_DIR = $(ALGEBRA_DIR)/vec3
-VEC3_FILES = vec3_core.c vec3_operations.c
+VEC3_FILES = vec3_core.c vec3_getset.c vec3_operations.c vec3_algebra.c
 
 VEC4_DIR = $(ALGEBRA_DIR)/vec4
-VEC4_FILES = vec4_core.c vec4_operations.c
+VEC4_FILES = vec4_core.c vec4_operations.c vec4_algebra.c
 
 POINT3_DIR = $(ALGEBRA_DIR)/point3
 POINT3_FILES = point3_core.c point3_operations.c
@@ -91,9 +89,6 @@ MAT3_FILES = mat3_core.c mat3_elem.c mat3_operations.c
 
 MAT4_DIR = $(ALGEBRA_DIR)/mat4
 MAT4_FILES = mat4_core.c mat4_elem.c mat4_operations.c
-
-RAY_DIR = $(RENDER_DIR)/ray
-RAY_FILES = ray_core.c
 
 INTERSECTION_DIR = $(RENDER_DIR)/intersection
 INTERSECTION_FILES = check_intersect_sphere.c check_intersect_plane.c\
@@ -125,7 +120,6 @@ SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(POINT4_DIR)/,$(POINT4_FILES)) \
 			   $(addprefix $(MAT3_DIR)/,$(MAT3_FILES)) \
 			   $(addprefix $(MAT4_DIR)/,$(MAT4_FILES)) \
-			   $(addprefix $(RAY_DIR)/,$(RAY_FILES)) \
 			   $(addprefix $(INTERSECTION_DIR)/,$(INTERSECTION_FILES)) \
 			   $(addprefix $(SCN_OBJ_DIR)/,$(SCN_OBJ_FILES)) \
 			   $(addprefix $(OBJECT_DIR)/,$(OBJ_FILES)) \
@@ -185,7 +179,7 @@ CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsig
 CFLAGS_DEBUG_NO_CASE_ALIGN = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wmissing-prototypes \
 -Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
 -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
--Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11 -O3
+-Wwrite-strings -Wuninitialized -Wunused-function -std=c11 -O3
 
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -g3
 
@@ -214,7 +208,6 @@ $(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)/$(SOURCES_DIR)/$(PARSING_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MAT3_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MAT4_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(MATRIX_DIR)\
-	$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(SCN_OBJ_DIR)\
 	$(OBJ_DIR)/$(SOURCES_DIR)/$(OBJECT_DIR)\
@@ -253,9 +246,6 @@ $(OBJ_DIR)/$(SOURCES_DIR)/$(MAT3_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(MAT4_DIR):
-	mkdir -p $@
-
-$(OBJ_DIR)/$(SOURCES_DIR)/$(RAY_DIR):
 	mkdir -p $@
 
 $(OBJ_DIR)/$(SOURCES_DIR)/$(INTERSECTION_DIR):

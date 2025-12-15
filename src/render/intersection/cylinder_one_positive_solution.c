@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:22:29 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 14:38:28 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:15:39 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int	cylinder_one_positive_solutions(t_intersect_cylinder cyl_inter,
 			cyl_inter.intersect_point_transformed_no_x, cylinder);
 		return (TRUE);
 	}
-	else
-		return (FALSE);
+	return (FALSE);
 }

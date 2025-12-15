@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:45:42 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/12 11:51:33 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:32:06 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,10 @@ int	scene_init(t_scene *scene, t_vector *ptr_objects)
 	}
 	ret = obj_fill_type_vec(&scene->lights_arr, ptr_objects, OBJ_LIGHT);
 	if (ret != SUCCESS)
-	{
-		ft_vector_free(&scene->lights_arr);
-		ft_vector_free(&scene->objects);
-		return (FAILURE_MALLOC);
-	}
+		return (free_scene(scene));
 	ret = obj_fill_tangible_vec(&scene->objects, ptr_objects);
 	if (ret != SUCCESS)
-	{
-		free_scene(scene);
-		return (FAILURE_MALLOC);
-	}
+		return (free_scene(scene));
 	return (SUCCESS);
 }
 
@@ -100,8 +93,9 @@ static void	free_vector_scene(t_vector *vector)
 	free(vector->data);
 }
 
-void	free_scene(t_scene *ptr_scene)
+int	free_scene(t_scene *ptr_scene)
 {
 	ft_vector_free(&ptr_scene->lights_arr);
 	ft_vector_free(&ptr_scene->objects);
+	return (FAILURE_MALLOC);
 }

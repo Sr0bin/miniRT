@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:22:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 15:27:15 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:16:07 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,10 @@ int	cylinder_two_positive_solutions(t_polynomial poly,
 		return (cylinder_x1_x2_valid_height(poly,
 				ptr_intersect_data_tmp, ray, cyl_inter));
 	}
-	else if (one_height_is_valid(poly,
+	if (one_height_is_valid(poly,
 			ptr_intersect_data_tmp, ray, cyl_inter) == TRUE)
-	{
 		return (TRUE);
-	}
-	else
-		return (FALSE);
+	return (FALSE);
 }
 
 static int	one_height_is_valid(t_polynomial poly,
@@ -73,15 +70,14 @@ static int	one_height_is_valid(t_polynomial poly,
 		return (cylinder_one_valid_height(poly, ptr_intersect_data_tmp,
 				ray, cyl_inter));
 	}
-	else if (-cylinder.object_attr.cylinder.height / 2 <= x2
+	if (-cylinder.object_attr.cylinder.height / 2 <= x2
 		&& x2 <= cylinder.object_attr.cylinder.height / 2)
 	{
 		ptr_intersect_data_tmp->distance = poly.t2;
 		return (cylinder_one_valid_height(poly,
 				ptr_intersect_data_tmp, ray, cyl_inter));
 	}
-	else
-		return (FALSE);
+	return (FALSE);
 }
 
 static int	cylinder_x1_x2_valid_height(t_polynomial poly,

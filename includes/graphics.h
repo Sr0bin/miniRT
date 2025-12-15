@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 18:06:16 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/11 18:45:46 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:19:46 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdlib.h>
 
-# define WINDOW_WIDTH 1618
-# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 618
+# define WINDOW_HEIGHT 400
 # if WINDOW_HEIGHT <= 4
 #  error WINDOW_HEIGHT must be greater than 0
 # endif

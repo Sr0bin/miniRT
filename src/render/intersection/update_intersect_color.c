@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 10:53:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/12 11:34:47 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 12:21:08 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include "ft_vectors.h"
 #include "object.h"
 #include "color.h"
+#include "minirt.h"
 
 static t_color	object_sum_lights(t_intersect *ptr_intersect,
 					t_scene *ptr_scene);
 
 void	update_intersect_color(t_intersect	*ptr_intersect, t_scene *ptr_scene)
 {
-	//belek : si il n'y a pas de hit, mettre la backround color
 	if (ptr_intersect->ptr_obj != NULL)
 	{
 		ptr_intersect->crnt_color = object_ambient_color(ptr_intersect->ptr_obj,
@@ -28,6 +28,8 @@ void	update_intersect_color(t_intersect	*ptr_intersect, t_scene *ptr_scene)
 		ptr_intersect->crnt_color = color_add(ptr_intersect->crnt_color,
 				object_sum_lights(ptr_intersect, ptr_scene));
 	}
+	else
+		ptr_intersect->crnt_color.color = BACKGROUND_COLOR;
 }
 
 static t_color	object_sum_lights(t_intersect *ptr_intersect,

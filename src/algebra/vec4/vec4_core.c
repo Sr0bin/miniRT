@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 21:51:23 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/01 22:16:48 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:42:09 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@ t_vec4	*vec4_alloc(double x, double y, double z, double w)
 	return (vector);
 }
 
-t_vec4	*vect4_copy(t_vec4 vector)
-{
-	return (vec4_alloc(
-		vec4_get(vector, X),
-		vec4_get(vector, Y),
-		vec4_get(vector, Z),
-		vec4_get(vector, W)
-	));
-}
 t_vec4	vec4_set_all(double x, double y, double z, double w)
 {
 	t_vec4	vector;
@@ -47,6 +38,7 @@ t_vec4	vec4_set_all(double x, double y, double z, double w)
 	vec4_set(&vector, W, w);
 	return (vector);
 }
+
 void	vec4_set(t_vec4 *vector, t_axis axis, double value)
 {
 	if (axis == X)
@@ -87,10 +79,4 @@ t_vec4	vec4_scale(t_vec4 vector, double scalar)
 		axis++;
 	}
 	return (temp_vec);
-}
-
-void	*free_vec4(t_vec4 *vector)
-{
-	free(vector);
-	return (NULL);
 }

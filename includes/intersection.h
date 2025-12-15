@@ -6,16 +6,16 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/12 14:46:26 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:26:59 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INTERSECTION_H
 # define INTERSECTION_H
 # include "minirt.h"
-#include "point3.h"
+# include "point3.h"
 # include "ray.h"
-#include "vec3.h"
+# include "vec3.h"
 
 typedef struct s_intersect
 {
@@ -88,5 +88,4 @@ int		get_r_tmp_to_cylinder_frame(t_mat3 *r1, t_vec3 cyl_direction,
 			double *ptr_angle);
 int		get_r_world_to_tmp_frame(t_mat3 *r2, t_vec3 cam_direction,
 			double *ptr_angle);
-
 #endif

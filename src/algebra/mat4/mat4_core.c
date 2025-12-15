@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:42:59 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/02 15:45:41 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:42:34 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,26 +72,7 @@ double	mat4_get_coord(const t_mat4 mat4, size_t row, size_t col)
 
 void	mat4_set_value(t_mat4 *mat4, size_t row, size_t col, double value)
 {
-	//TODO: check if row col is out of bounds
 	if (row > MAT4_SIZE || col > MAT4_SIZE)
-		return ; 
+		return ;
 	mat4->index[row][col] = value;
-}
-
-void	print_mat4(t_mat4_const *mat4)
-{
-	size_t	i;
-	size_t	j;
-	i = 0;
-	while (i < MAT4_SIZE || i == 0)
-	{
-		j = 0;
-		while (j < MAT4_SIZE || j == 0)
-		{
-			printf("%f ",mat4->index[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 }
