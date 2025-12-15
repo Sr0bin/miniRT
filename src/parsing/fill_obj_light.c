@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:42:25 by jweber            #+#    #+#             */
-/*   Updated: 2025/11/03 11:33:16 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:48:14 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	fill_obj_light(t_object *ptr_obj_tmp, char **elements,
 			ptr_str_err_msg);
 	if (ret != SUCCESS)
 		return (fail_add_msg("Light colors:\n", ret, ptr_str_err_msg));
+	ptr_obj_tmp->object_attr.light.color.color = DEFAULT_LIGHT_COLOR;
 	ret = fill_coordinates(&ptr_obj_tmp->coordinates, elements[1],
 			ptr_str_err_msg);
 	if (ret != SUCCESS)

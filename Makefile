@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/15 13:40:45 by rorollin         ###   ########.fr        #
+#    Updated: 2025/12/15 13:49:17 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ PARSING_FILES_BONUS = parsing.c \
 					fill_obj_content.c \
 					fill_obj_ambient.c \
 					fill_obj_camera.c \
-					fill_obj_light.c \
+					fill_obj_light_bonus.c \
 					fill_obj_sphere.c \
 					fill_obj_plane.c \
 					fill_plane_coef.c \

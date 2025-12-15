@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 12:32:52 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/15 13:46:52 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define AXIS_FOUR 5
 // # define BACKGROUND_COLOR 0xecb5f5 // Purple Pastel
 # define BACKGROUND_COLOR 0x000000
+# define DEFAULT_LIGHT_COLOR 0xffffff
 
 enum e_status
 {
