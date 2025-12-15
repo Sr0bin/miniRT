@@ -26,8 +26,8 @@ static int	get_tmp_line(t_line line, char **ptr_tmp_line);
 
 /* to check
  *	ft_vector_init fail : DONE -> OK !
- *	get_each_objects fail : TO DO ;
- *	check_object fail : TO DO ;
+ *	get_each_objects fail : DONE -> OK 
+ *	check_object fail : DONE -> OK !
 */
 
 int	parse_file_content(t_vector file_content, t_vector *ptr_objects,
@@ -54,7 +54,7 @@ int	parse_file_content(t_vector file_content, t_vector *ptr_objects,
 }
 
 /* to check
- *	parse_each_line fail : TO DO
+ *	parse_each_line fail : DONE -> OK !
 */
 
 static int	get_each_objects(t_vector file_content, t_vector *ptr_objects,
@@ -77,7 +77,7 @@ static int	get_each_objects(t_vector file_content, t_vector *ptr_objects,
 
 /* to check
  *	ft_split fail : DONE -> OK !
- *	fill_obj_content : TO DO ;
+ *	fill_obj_content : DONE -> OK !
  *	append_line_nbr_content fail : DONE -> OK !
  *	ft_vector_add_single fail : DONE -> OK !
 */
