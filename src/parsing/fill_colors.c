@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:29:01 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:33:51 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:34:40 by jweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	fill_from_splitted_colors(t_rgba *ptr_rgba,
 int			get_color_i(char **splitted_colors, int color_i,
 				uint8_t *ptr_color, char **ptr_str_err_msg);
 
-int	fill_colors(t_rgba *ptr_rgba, const char *colors_str, char **ptr_str_err_msg)
+int	fill_colors(t_rgba *ptr_rgba,
+		const char *colors_str, char **ptr_str_err_msg)
 {
 	char	**splitted_colors;
 	int		ret;
