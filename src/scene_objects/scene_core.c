@@ -59,7 +59,6 @@ static int	obj_fill_type_vec(t_vector *to_fill, t_vector *ptr_objects,
 	{
 		if (crnt_obj->type == OBJ_LIGHT)
 		{
-			printf("infill\n");
 			print_object(*crnt_obj);
 		}
 		ret = ft_vector_add_single(to_fill, crnt_obj);
