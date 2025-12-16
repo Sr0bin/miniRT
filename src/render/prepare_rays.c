@@ -51,7 +51,7 @@ static int	create_rays(t_ray **ptr_array_rays, size_t nb_rays,
 				t_point3 *canvas_point_arrays, t_point3 *ptr_cam_point)
 {
 	*ptr_array_rays = ft_calloc(nb_rays, sizeof(t_ray));
-	if (ptr_array_rays == NULL)
+	if (*ptr_array_rays == NULL)
 		return (FAILURE_MALLOC);
 	create_ray_content(*ptr_array_rays, canvas_point_arrays, ptr_cam_point);
 	return (SUCCESS);
