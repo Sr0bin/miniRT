@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 14:24:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/15 12:16:56 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:04:40 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,28 @@ static void	update_closest_intersect(t_intersect *ptr_intersect,
 static int	update_closest_intersect_return(t_intersect *ptr_intersect,
 				t_intersect *ptr_intersect_tmp);
 
-int	update_intersect_all_object(t_ray *ray, t_object *obj_array,
-		size_t count, t_intersect *ptr_intersect)
+int	update_intersect_light(t_ray *p_ray, t_vector *obj_vector,
+				t_intersect *ptr_inter, double distance)
+{
+	size_t		obj_i;
+	size_t		count;
+	t_object	*obj_array;
+
+	obj_i = 0;
+	count = obj_vector->size;
+	obj_array = obj_vector->data;
+	while (obj_i < count)
+	{
+		if (update_intersect_object(*p_ray, &obj_array[obj_i], ptr_inter) != 0)
+			if (ptr_inter->distance < distance)
+				return (FALSE);
+		obj_i++;
+	}
+	return (TRUE);
+}
+
+int	update_intersect_all_object(t_ray *ptr_ray, t_object *obj_array,
+		size_t count, t_intersect *ptr_inter)
 {
 	size_t	obj_i;
 	int		hit;
@@ -32,7 +52,7 @@ int	update_intersect_all_object(t_ray *ray, t_object *obj_array,
 	hit = 0;
 	while (obj_i < count)
 	{
-		hit |= update_intersect_object(*ray, &obj_array[obj_i], ptr_intersect);
+		hit |= update_intersect_object(*ptr_ray, &obj_array[obj_i], ptr_inter);
 		obj_i++;
 	}
 	return (hit);

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:03:46 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/15 13:03:56 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:46:55 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ static int	light_intersect(t_ray temp_ray, t_scene *ptr_scene,
 	t_intersect	inter;
 
 	inter = (t_intersect){0};
-	update_intersect_all_object(&temp_ray, ptr_scene->objects.data,
-		ptr_scene->objects.size, &inter);
-	if (inter.ptr_obj != NULL && inter.distance < vec3_norm(light_dir))
-		return (FALSE);
-	return (TRUE);
+	return (update_intersect_light(&temp_ray, &ptr_scene->objects,
+			&inter, vec3_norm(light_dir)));
 }

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:03:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/15 11:26:59 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:01:35 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int		check_intersect_cylinder(t_ray ray, t_object cylinder,
 			t_intersect *ptr_intersect_data_tmp);
 int		update_intersect_all_object(t_ray *ray, t_object *obj_array,
 			size_t count, t_intersect *intersect_data);
+int		update_intersect_light(t_ray *p_ray, t_vector *obj_vector,
+			t_intersect *ptr_inter, double distance);
 void	update_intersect_color(t_intersect	*intersect_data,
 			t_scene *ptr_scene);
 t_color	object_single_light(t_intersect	*intersect_data, t_scene *scene,
