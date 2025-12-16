@@ -1,3 +1,7 @@
+test1.rt
+test2.rt
+test3.rt
+*.a
 test.rt
 launch_miniRT.sh
 *.o

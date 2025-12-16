@@ -106,7 +106,7 @@ static int	get_r1(t_mat3 *r1, t_vec3 cam_direction, double *ptr_angle)
 	norm_cam_direction = vec3_norm(cam_direction);
 	angle = (M_PI / 2.0)
 		- acos(vec3_get(cam_direction, Y) / norm_cam_direction);
-	if ((angle - 0) < 1e-5)
+	if (fabs(angle - 0) < 1e-5)
 		return (1);
 	*ptr_angle = angle;
 	set_rotation_matrix(r1, angle, Z);
