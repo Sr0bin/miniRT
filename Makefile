@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/15 13:49:17 by rorollin         ###   ########.fr        #
+#    Updated: 2025/12/16 15:40:44 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,10 +143,12 @@ INTERSECTION_FILES_BONUS = check_intersect_sphere.c check_intersect_plane.c\
 						 transform_ray.c \
 
 SCN_OBJ_DIR = scene_objects
-SCN_OBJ_FILES = search_object.c scene_core.c
+SCN_OBJ_FILES = search_object.c scene_core.c \
+				scene_opti.c
 
 OBJECT_DIR = object
 OBJ_FILES = object_normal.c object_color.c \
+			object_ambient.c \
 			obj_iter.c
 
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
