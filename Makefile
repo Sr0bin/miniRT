@@ -146,7 +146,8 @@ SCN_OBJ_DIR = scene_objects
 SCN_OBJ_FILES = search_object.c scene_core.c
 
 OBJECT_DIR = object
-OBJ_FILES = object_normal.c object_color.c
+OBJ_FILES = object_normal.c object_color.c \
+			obj_iter.c
 
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
