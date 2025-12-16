@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 12:00:27 by rorollin          #+#    #+#             */
-/*   Updated: 2025/12/15 12:05:15 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:21:13 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	print_sphere(t_object obj)
 		obj.object_attr.sphere.color.rgba.red,
 		obj.object_attr.sphere.color.rgba.green,
 		obj.object_attr.sphere.color.rgba.blue);
+	printf("sphere Amb RGB : %i, %i, %i\n",
+		obj.object_attr.sphere.amb_color.rgba.red,
+		obj.object_attr.sphere.amb_color.rgba.green,
+		obj.object_attr.sphere.amb_color.rgba.blue);
 	printf("\n");
 	return (0);
 }
@@ -48,6 +52,10 @@ int	print_plane(t_object obj)
 		obj.object_attr.plane.color.rgba.red,
 		obj.object_attr.plane.color.rgba.green,
 		obj.object_attr.plane.color.rgba.blue);
+	printf("plane Amb RGB : %i, %i, %i\n",
+		obj.object_attr.plane.amb_color.rgba.red,
+		obj.object_attr.plane.amb_color.rgba.green,
+		obj.object_attr.plane.amb_color.rgba.blue);
 	printf("\n");
 	return (0);
 }
@@ -65,6 +73,10 @@ int	print_cylinder(t_object obj)
 		obj.object_attr.cylinder.color.rgba.red,
 		obj.object_attr.cylinder.color.rgba.green,
 		obj.object_attr.cylinder.color.rgba.blue);
+	printf("cylinder Amb RGB : %i, %i, %i\n",
+		obj.object_attr.cylinder.amb_color.rgba.red,
+		obj.object_attr.cylinder.amb_color.rgba.green,
+		obj.object_attr.cylinder.amb_color.rgba.blue);
 	printf("\n");
 	return (0);
 }
