@@ -6,13 +6,14 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:24:56 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 11:59:04 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:55:57 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "ft_io.h"
 #include "parsing.h"
+#include "printing.h"
 
 static void	print_error_second_part(int error, char *str);
 
