@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 14:28:19 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 14:28:21 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/16 15:41:48 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	scene_init(t_scene *scene, t_vector *ptr_objects)
 	ret = obj_fill_tangible_vec(&scene->objects, ptr_objects);
 	if (ret != SUCCESS)
 		return (free_scene(scene));
+	optimize_tangible(scene);
 	return (SUCCESS);
 }
 

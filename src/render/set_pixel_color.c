@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:24:27 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/11 20:48:51 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:31:36 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	set_pixel_color(t_ray ray, t_color *ptr_pixel, t_scene *ptr_scene)
 
 	obj_array = ptr_scene->objects.data;
 	intersect_data = (t_intersect){0};
-	intersect_data.crnt_color.color = 0;
 	update_intersect_all_object(&ray, obj_array, ptr_scene->objects.size,
 		&intersect_data);
 	intersect_data.ray = &ray;

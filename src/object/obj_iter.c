@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_consecutive_comma.c                          :+:      :+:    :+:   */
+/*   obj_iter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
+/*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/15 11:19:20 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/16 16:54:51 by rorollin         ###   ########.fr       */
+/*   Created: 2025/12/16 15:13:45 by rorollin          #+#    #+#             */
+/*   Updated: 2025/12/16 17:23:28 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "minirt.h"
-#include "parsing.h"
+#include "object.h"
+#include "printing.h"
 
-int	check_consecutive_comma(const char *str)
+void	obj_iter(t_vector *p_vec, void *ptr, void (*f)(t_object *, void *))
 {
-	size_t	i;
+	size_t		i;
+	t_object	*p_crnt_obj;
 
 	i = 0;
-	while (str[i])
+	while (i < p_vec->size)
 	{
-		if (str[i] == ',' && str[i + 1] == ',')
-			return (TRUE);
+		p_crnt_obj = &((t_object *)p_vec->data)[i];
+		f(p_crnt_obj, ptr);
 		i++;
 	}
-	return (FALSE);
 }

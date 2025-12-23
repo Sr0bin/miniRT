@@ -6,7 +6,7 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:47:00 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 13:46:52 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:47:02 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,21 @@ typedef struct s_light
 {
 	double	brightness;
 	t_color	color;
+	t_color	amb_color;
 }			t_light;
 
 typedef struct s_sphere
 {
 	double	diameter;
 	t_color	color;
+	t_color	amb_color;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	t_vec3	direction;
 	t_color	color;
+	t_color	amb_color;
 	double	a;
 	double	b;
 	double	c;
@@ -122,6 +125,7 @@ typedef struct s_cylinder
 	double	diameter;
 	double	height;
 	t_color	color;
+	t_color	amb_color;
 }	t_cylinder;
 
 typedef union u_object_attr

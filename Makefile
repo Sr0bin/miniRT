@@ -6,7 +6,7 @@
 #    By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 17:14:59 by jweber            #+#    #+#              #
-#    Updated: 2025/12/15 13:49:17 by rorollin         ###   ########.fr        #
+#    Updated: 2025/12/16 17:16:42 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,10 +143,13 @@ INTERSECTION_FILES_BONUS = check_intersect_sphere.c check_intersect_plane.c\
 						 transform_ray.c \
 
 SCN_OBJ_DIR = scene_objects
-SCN_OBJ_FILES = search_object.c scene_core.c
+SCN_OBJ_FILES = search_object.c scene_core.c \
+				scene_opti.c
 
 OBJECT_DIR = object
-OBJ_FILES = object_normal.c object_color.c
+OBJ_FILES = object_normal.c object_color.c \
+			object_ambient.c \
+			obj_iter.c
 
 SOURCES_NAME = $(addprefix $(PARSING_DIR)/,$(PARSING_FILES)) \
 			   $(addprefix $(PRINTING_DIR)/,$(PRINTING_FILES)) \
@@ -231,14 +234,14 @@ CC = cc
 CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wmissing-prototypes \
 -Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
 -Wcast-align -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
--Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
+-Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -O3 -std=c11
 
 CFLAGS_DEBUG_NO_CASE_ALIGN = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wmissing-prototypes \
 -Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
 -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
 -Wwrite-strings -Wuninitialized -Wunused-function -std=c11 -O3
 
-CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -g3
+CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb -O3
 
 CFLAGS = $(CFLAGS_PROD)
 

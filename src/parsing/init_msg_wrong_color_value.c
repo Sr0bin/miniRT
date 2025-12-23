@@ -6,12 +6,13 @@
 /*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:53:11 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/15 14:04:57 by jweber           ###   ########.fr       */
+/*   Updated: 2025/12/16 16:55:22 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "ft_string.h"
+#include "parsing.h"
 
 /* to check
  *	first ft_strjoin_free_first fail : DONE -> OK !

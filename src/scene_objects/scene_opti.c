@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_consecutive_comma.c                          :+:      :+:    :+:   */
+/*   scene_opti.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jweber <jweber@student.42Lyon.fr>          +#+  +:+       +#+        */
+/*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/15 11:19:20 by jweber            #+#    #+#             */
-/*   Updated: 2025/12/16 16:54:51 by rorollin         ###   ########.fr       */
+/*   Created: 2025/12/16 15:41:35 by rorollin          #+#    #+#             */
+/*   Updated: 2025/12/16 15:41:51 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "minirt.h"
-#include "parsing.h"
+#include "object.h"
 
-int	check_consecutive_comma(const char *str)
+void	optimize_tangible(t_scene *p_scene)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ',' && str[i + 1] == ',')
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
+	obj_iter(&p_scene->objects, p_scene, obj_update_amb);
 }
